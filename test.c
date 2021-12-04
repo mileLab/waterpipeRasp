@@ -10,7 +10,7 @@
 
 #include "aes.h"
 
-
+uint8_t *encryptBuffer[64];
 static void phex(uint8_t* str);
 static uint8_t encrypt_cbc(uint8_t *in);
 static int test_encrypt_cbc(void);
@@ -186,10 +186,10 @@ static int decrypt_input_cbc(uint8_t in[]){
 static uint8_t encrypt_cbc(uint8_t *in)
 {
     printf("encrypt function cbc start\n");
-    uint8_t *inputBuffer[64];
-    for(int i=0;i<65;i++)  inputBuffer[i] = 1;
+    
+    for(int i=0;i<65;i++)  encryptBuffer[i] = 1;
     printf("before memecopy\n");
-    memcpy((char*) inputBuffer, (char*) in, sizeof(inputBuffer));
+    memcpy((char*) encryptBuffer, (char*) in, sizeof(encryptBuffer));
     struct AES_ctx ctx;
     uint8_t iv[]  = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f };
     uint8_t key[] = { 0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c };
@@ -198,7 +198,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
     printf("before for\n");
     for (size_t i = 0; i < 64; i++){
             printf("inside For");
-            inputBuffer[i]=in[i];
+            encryptBuffer[i]=in[i];
             printf("%d",in[i]);
         }       
         printf("end of encrypt function\n");
