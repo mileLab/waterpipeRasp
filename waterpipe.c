@@ -84,7 +84,7 @@ int main(void)
                       0x30, 0xc8, 0x1c, 0x46, 0xa3, 0x5c, 0xe4, 0x11, 0xe5, 0xfb, 0xc1, 0x19, 0x1a, 0x0a, 0x52, 0xef,
                       0xf6, 0x9f, 0x24, 0x45, 0xdf, 0x4f, 0x9b, 0x17, 0xad, 0x2b, 0x41, 0x7b, 0xe6, 0x6c, 0x37, 0x10 };
     encrypt_cbc(in[]);
-/*
+int useless (void){
     struct sockaddr_rc raspPicoServer = {0};
     const char *raspPico = "98:D3:71:FD:F4:3A";
 
@@ -93,8 +93,8 @@ int main(void)
     str2ba(raspPico, &raspPicoServer.rc_bdaddr);
 
     debugMsg("====================  RFCOM SERVER MODE STARTED  ===================== \r\n");
- */
-    /*!< Allocate socket 
+ 
+    /*!< Allocate socket */
     socketPi = socket(AF_BLUETOOTH, SOCK_STREAM, BTPROTO_RFCOMM);
 
     raspPicoServer.rc_family = AF_BLUETOOTH;
@@ -207,7 +207,6 @@ int main(void)
     }
     return 0;
 }
-
 /*!
 **************************************************************
  * @brief Attempt to read the chip-id number of BM*-280 device
