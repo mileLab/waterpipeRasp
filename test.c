@@ -168,7 +168,7 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
     //memcpy(inputBuffer, in, sizeof(inputBuffer));
     
       for (size_t i = 0; i < 64; i++){
-            decrpytBuffer[i]=encryptBuffer[i];
+            decrpytBuffer[i]=&encryptBuffer[i];
            //printf("0x%x",in[i]);
         }  
     printf("decrypt function cbc start\n");
