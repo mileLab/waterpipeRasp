@@ -192,14 +192,14 @@ static uint8_t encrypt_cbc(uint8_t in[])
     
     AES_init_ctx_iv(&ctx, key, iv);
     AES_CBC_encrypt_buffer(&ctx, in, 64);
-    printf("before for")
+    printf("before for");
      for (size_t i = 0; i < 127; i++)
         {
-            printf("inside For")
+            printf("inside For");
             inputBuffer[i]=in[i];
             printf("%s",inputBuffer[i])
         }       
-        printf("after for")
+        printf("after for");
     return *inputBuffer;
 }
 
