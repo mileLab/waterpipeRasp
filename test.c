@@ -180,7 +180,7 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
         }       
         printf("\n");
     AES_CBC_decrypt_buffer(&ctx, encryptBuffer, 64);
-    printf("%s",ctx);
+    printf("%s",&ctx);
     printf("out of o!\n");
     for (size_t i = 0; i < 65; i++){
             
