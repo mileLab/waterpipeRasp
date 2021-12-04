@@ -174,9 +174,10 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
     struct AES_ctx ctx;
     printf("IV\n");
     AES_init_ctx_iv(&ctx, key, iv);
-     for (size_t i = 0; i < 17; i++){
+     for (size_t i = 0; i < 16; i++){
             
             printf("0x%x",iv[i]);
+            printf("\n");
         }       
    printf("secret to decrypt\n");
        for (size_t i = 0; i < 65; i++){
