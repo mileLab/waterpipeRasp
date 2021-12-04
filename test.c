@@ -174,9 +174,9 @@ static int decrypt_input_cbc(uint8_t *in){
     struct AES_ctx ctx;
     printf("before call decrypt\n");
     AES_init_ctx_iv(&ctx, key, iv);
-    AES_CBC_decrypt_buffer(&ctx, in, 64);
+   /* AES_CBC_decrypt_buffer(&ctx, in, 64);
     printf("before memcmp\n");
-   /* if (0 == memcmp((char*) out, (char*) in, 64)) {
+    if (0 == memcmp((char*) out, (char*) in, 64)) {
         printf("SUCCESS!\n");
 	return(0);
     } */
