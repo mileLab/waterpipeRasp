@@ -186,7 +186,7 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
    printf("secret to decrypt\n");
        for (size_t i = 0; i < 65; i++){
             
-            printf("0x%x",encryptBuffer[i]);
+            printf("0x%x",decrptBuffer[i]);
         }       
         printf("\n");
 
