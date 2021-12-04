@@ -165,7 +165,7 @@ static int test_decrypt_cbc(void)
 static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
     //uint8_t inputBuffer[64];
     //memcpy(inputBuffer, in, sizeof(inputBuffer));
-     memcpy((uint8_t*) decrptBuffer, (uint8_t*) encryptBuffer, 64);
+     memcpy((uint8_t*) decrptBuffer, (uint8_t*) encryptBuffer,  sizeof(encryptBuffer));
     printf("decrypt function cbc start\n");
     uint8_t key[] = { 0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c };
      uint8_t iv2[]  = { 0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
