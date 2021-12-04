@@ -197,7 +197,7 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
         }       
     printf("\n");
 
-    AES_CBC_decrypt_buffer(&ctx, encryptBuffer, 64);
+    AES_CBC_decrypt_buffer(&ctx, decrpytBuffer, 64);
     //AES_CBC_decrypt_buffer(&ctx, in, 64);
     // printf("%s",&ctx);
     printf("out of decrypted message!\n");
@@ -207,7 +207,7 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
         
         printf("\n");
          printf("Test with decrptBuffer!\n");
-    if (0 == memcmp((char*) out, (char*) encryptBuffer, 64)) {
+    if (0 == memcmp((char*) out, (char*) decrpytBuffer, 64)) {
         printf("SUCCESS in decryptBuffer!\n");
     }
     printf("Test with IN!\n");
