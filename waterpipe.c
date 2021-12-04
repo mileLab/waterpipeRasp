@@ -101,7 +101,7 @@ int main(void)
 
         }       
         printf("after for");
-    return *inputBuffer; */
+    return *inputBuffer; 
 
 
    // encrypt_cbc(*in); 
