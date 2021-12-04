@@ -208,7 +208,7 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
             printf("0x%x",decrptBuffer[i]);
         }   
         printf("\n");
-    if (0 == memcmp((char*) out, (char*) decrptBuffer, 64)) {
+    if (0 == memcmp((char*) out, (char*) in, 64)) {
         printf("SUCCESS!\n");
 	return(0);
     } 
