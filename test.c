@@ -10,7 +10,7 @@
 
 #include "aes.h"
 
-static uint8_t inputBuffer[64];
+
 static void phex(uint8_t* str);
 static int test_encrypt_cbc(void);
 static int test_decrypt_cbc(void);
@@ -184,7 +184,8 @@ static int decrypt_input_cbc(uint8_t in[]){
  */
 static uint8_t encrypt_cbc(uint8_t in[])
 {
-    // uint8_t inputBuffer[64];
+    printf("before buffer init");
+    uint8_t inputBuffer[64];
     printf("before memecopy");
     memcpy(inputBuffer, in, sizeof(inputBuffer));
     struct AES_ctx ctx;
