@@ -96,8 +96,8 @@ int main(void)
     for (size_t i = 0; i < 127; i++)
         {
             printf("inside For");
-            //inputBuffer[i]=in[i];
-            //printf("%s",inputBuffer[i]);
+           // inputBuffer[i]=in[i];
+            printf("%s",in[i]);
 
         }       
         printf("after for");
