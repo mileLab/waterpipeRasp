@@ -71,11 +71,28 @@ char data[1024] = {0};
 float temperature, pressure, humidity, waterLevel, waterTemperature;
 char *endTermimn = "ÿ";
 
+static char *random_string(char *str, size_t size)
+{
+  const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
+  int i, n;
+  n = 0;
+
+  for (i = 0; n < size; n++)
+  {
+    int key = rand() % (int) (sizeof charset - 1);
+    str[n] = charset[key];
+  }
+
+  str[size] = '\0';
+
+  return str;
+}
 int main(void)
 {
     unsigned char iv[16]; //128 bitinitialization vector
-    size_t iv_len = 16;
+    int iv_len;
+    iv_len=16;
     random_string(iv, iv_len); 
     printf("start main\n");
 
@@ -99,23 +116,7 @@ int main(void)
    // encrypt_cbc(*in); 
 }
 //generate a random string for IV
-static char random_string(char *str, size_t size)
-{
-  const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-  int i, n;
-  n = 0;
-
-  for (i = 0; n < size; n++)
-  {
-    int key = rand() % (int) (sizeof charset - 1);
-    str[n] = charset[key];
-  }
-
-  str[size] = '\0';
-
-  return str;
-}
 void useless (void){
     struct sockaddr_rc raspPicoServer = {0};
     const char *raspPico = "98:D3:71:FD:F4:3A";
