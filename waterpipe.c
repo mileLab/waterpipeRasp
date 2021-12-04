@@ -99,7 +99,7 @@ int main(void)
    // encrypt_cbc(*in); 
 }
 //generate a random string for IV
-static char *random_string(char *str, size_t size)
+static char random_string(char *str, size_t size)
 {
   const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
