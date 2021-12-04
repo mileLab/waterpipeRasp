@@ -13,7 +13,7 @@
 uint8_t *encryptBuffer[64];
 
 static void phex(uint8_t* str);
-uint8_t *decrptBuffer[64];
+uint8_t *decrpytBuffer[64];
 //static uint8_t encrypt_cbc(uint8_t *in);
 static int test_encrypt_cbc(void);
 static int test_decrypt_cbc(void);
@@ -168,8 +168,7 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
     //memcpy(inputBuffer, in, sizeof(inputBuffer));
     
       for (size_t i = 0; i < 64; i++){
-            
-            decrptBuffer[i]=encryptBuffer[i];
+            decrpytBuffer[i]=encryptBuffer[i];
            //printf("0x%x",in[i]);
         }  
     printf("decrypt function cbc start\n");
@@ -190,7 +189,7 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
         }       
     printf("Secret to decrypt via decryptBuffer\n");
        for (size_t i = 0; i < 64; i++){
-            printf("0x%x",decrptBuffer[i]);
+            printf("0x%x",decrpytBuffer[i]);
         }      printf("\n");  
     printf("Secret to decrypt via in\n");
         for (size_t i = 0; i < 64; i++){      
@@ -198,17 +197,17 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
         }       
     printf("\n");
 
-    //AES_CBC_decrypt_buffer(&ctx, decrptBuffer, 64);
-    AES_CBC_decrypt_buffer(&ctx, in, 64);
+    AES_CBC_decrypt_buffer(&ctx, encryptBuffer, 64);
+    //AES_CBC_decrypt_buffer(&ctx, in, 64);
     // printf("%s",&ctx);
     printf("out of decrypted message!\n");
         for (size_t i = 0; i < 64; i++){  
-            printf("0x%x",decrptBuffer[i]);
+            printf("0x%x",decrpytBuffer[i]);
         }   
         
         printf("\n");
          printf("Test with decrptBuffer!\n");
-    if (0 == memcmp((char*) out, (char*) decrptBuffer, 64)) {
+    if (0 == memcmp((char*) out, (char*) encryptBuffer, 64)) {
         printf("SUCCESS in decryptBuffer!\n");
     }
     printf("Test with IN!\n");
