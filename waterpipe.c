@@ -86,15 +86,15 @@ static char *random_string(char *str, size_t size)
 
   str[size] = '\0';
 
-  return str;
+  return (uint8_t)atoi(str);
 }
 int main(void)
 {
-    unsigned char iv[16]; //128 bitinitialization vector
+    uint8_t iv[16]; //128 bitinitialization vector
     int iv_len;
     iv_len=16;
     random_string(iv, iv_len); 
-    uint8_t ivUint = (uint8_t)atoi(iv);
+    
 
     printf("start main\n");
 
