@@ -10,7 +10,7 @@
 
 #include "aes.h"
 
-uint8_t *encryptBuffer[64];
+uint8_t* encryptBuffer;
 
 static void phex(uint8_t* str);
 uint8_t *decrpytBuffer[64];
@@ -197,7 +197,7 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
         }       
     printf("\n");
 
-    AES_CBC_decrypt_buffer(&ctx, &decrpytBuffer, 64);
+    AES_CBC_decrypt_buffer(&ctx, decrpytBuffer, 64);
     //AES_CBC_decrypt_buffer(&ctx, in, 64);
     // printf("%s",&ctx);
     printf("out of decrypted message!\n");
