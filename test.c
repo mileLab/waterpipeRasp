@@ -175,13 +175,10 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
     printf("before call decrypt\n");
     AES_init_ctx_iv(&ctx, key, iv);
     printf("IV decrypt\n");
-    for (size_t i = 0; i < 17; i++){
-            
-            printf("0x%x\n",iv[i]);
-        }       
+       
     AES_CBC_decrypt_buffer(&ctx, encryptBuffer, 64);
    
-   printf("before memcmp\n");
+   printf("secret to decrypt\n");
     for (size_t i = 0; i < 65; i++){
             
             printf("0x%x",encryptBuffer[i]);
@@ -201,10 +198,7 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
     struct AES_ctx ctx;
     //uint8_t iv[]  = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f };
     uint8_t key[] = { 0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c };
-    for (size_t i = 0; i < 17; i++){
-            
-            printf("0x%x\n",iv[i]);
-        }       
+     
     AES_init_ctx_iv(&ctx, key, iv);
     AES_CBC_encrypt_buffer(&ctx, in, 64);
     printf("before for\n");
