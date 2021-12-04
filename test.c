@@ -199,7 +199,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
      for (size_t i = 0; i < 127; i++)
         {
             printf("inside For");
-            inputBuffer[i]=*in[i];
+            inputBuffer[i]=in[i];
             printf("%s",inputBuffer[i]);
 
         }       
