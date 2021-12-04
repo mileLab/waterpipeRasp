@@ -204,12 +204,12 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
     AES_init_ctx_iv(&ctx, key, iv);
     AES_CBC_encrypt_buffer(&ctx, in, 64);
     printf("before for\n");
-    for (size_t i = 0; i < 64; i++){
+  /*  for (size_t i = 0; i < 64; i++){
             
             encryptBuffer[i]=in[i];
             printf("\n");
             printf("0x%x\n",in[i]);
-        }       
+        }       */
     printf("end of encrypt function\n");
 }
 
