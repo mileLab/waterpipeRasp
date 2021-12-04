@@ -182,9 +182,9 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
     AES_CBC_decrypt_buffer(&ctx, encryptBuffer, 64);
    
    printf("before memcmp\n");
-    for (size_t i = 0; i < 17; i++){
+    for (size_t i = 0; i < 65; i++){
             
-            printf("0x%x\n",encryptBuffer[i]);
+            printf("0x%x",encryptBuffer[i]);
         }       
     if (0 == memcmp((char*) out, (char*) in, 64)) {
         printf("SUCCESS!\n");
@@ -208,11 +208,17 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
     AES_init_ctx_iv(&ctx, key, iv);
     AES_CBC_encrypt_buffer(&ctx, in, 64);
     printf("before for\n");
-    for (size_t i = 0; i < 64; i++){
+    for (size_t i = 0; i < 65; i++){
             
             encryptBuffer[i]=in[i];
-            printf("0x%x",in[i]);
-        }       
+           //printf("0x%x",in[i]);
+        }  
+         printf("encrypted string\n");
+ for (size_t i = 0; i < 64; i++){
+            
+            
+           printf("0x%x",in[i]);
+        }  
     printf("end of encrypt function\n");
 }
 
