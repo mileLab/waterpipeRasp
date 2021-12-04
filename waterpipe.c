@@ -93,11 +93,11 @@ int main(void)
     AES_init_ctx_iv(&ctx, key, iv);
     AES_CBC_encrypt_buffer(&ctx, in, 64);
     printf("before for");
-    for (size_t i = 0; i < 127; i++)
+    for (size_t i = 0; i < 64; i++)
         {
             printf("inside For");
            // inputBuffer[i]=in[i];
-            printf("%s",in[i]);
+            printf("%d",in[i]);
 
         }       
         printf("after for");
