@@ -226,7 +226,8 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
     AES_CBC_encrypt_buffer(&ctx, in, 64);
 
     for (size_t i = 0; i < 64; i++){
-            encryptBuffer[i]=&in[i];
+        memcpy(encryptBuffer, in, sizeof(in));
+            //encryptBuffer[i]=&in[i];
            //printf("0x%x",in[i]);
         }  
          printf("encrypted string via encrypt buffer \n");
