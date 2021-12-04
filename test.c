@@ -188,6 +188,10 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
             
             printf("0x%x",decrptBuffer[i]);
         }       
+        for (size_t i = 0; i < 64; i++){
+            
+            printf("0x%x",in[i]);
+        }       
         printf("\n");
 
     AES_CBC_decrypt_buffer(&ctx, in, 64);
