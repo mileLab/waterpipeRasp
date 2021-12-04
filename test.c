@@ -161,7 +161,7 @@ static int test_decrypt_cbc(void)
     }
 }
 
-static int decrypt_input_cbc(uint8_t *in,uint8_t *iv){
+static int decrypt_input_cbc(uint8_t *in, uint8_t *ivE){
     //uint8_t inputBuffer[64];
     //memcpy(inputBuffer, in, sizeof(inputBuffer));
     printf("decrypt function cbc start\n");
@@ -182,7 +182,7 @@ static int decrypt_input_cbc(uint8_t *in,uint8_t *iv){
     } 
     }
  
-static uint8_t encrypt_cbc(uint8_t *in,uint8_t *iv)
+static uint8_t encrypt_cbc(uint8_t *in, uint8_t *ivE)
 {
     printf("encrypt function cbc start\n");
     
