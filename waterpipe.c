@@ -75,7 +75,7 @@ char *endTermimn = "ÿ";
 int main(void)
 {
     unsigned char iv[16]; //128 bitinitialization vector
-    int iv_len = 16;
+    size_t iv_len = 16;
     random_string(iv, iv_len); 
     printf("start main\n");
 
@@ -98,7 +98,7 @@ int main(void)
  
    // encrypt_cbc(*in); 
 }
-
+//generate a random string for IV
 static char *random_string(char *str, size_t size)
 {
   const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
