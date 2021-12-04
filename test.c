@@ -186,7 +186,6 @@ static uint8_t encrypt_cbc(uint8_t *in)
 {
     printf("encrypt function cbc start\n");
     
-    for(int i=0;i<65;i++)  encryptBuffer[i] = 1;
     printf("before memecopy\n");
     memcpy((uint8_t*) encryptBuffer, (uint8_t*) in, sizeof(encryptBuffer));
     struct AES_ctx ctx;
@@ -198,6 +197,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
     for (size_t i = 0; i < 64; i++){
             
             encryptBuffer[i]=in[i];
+            printf("/n");
             printf("%d",in[i]);
         }       
     printf("end of encrypt function\n");
