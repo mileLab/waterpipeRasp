@@ -175,11 +175,11 @@ static int decrypt_input_cbc(uint8_t *in){
     printf("before call decrypt\n");
     AES_init_ctx_iv(&ctx, key, iv);
     AES_CBC_decrypt_buffer(&ctx, in, 64);
-   /* printf("before memcmp\n");
+   printf("before memcmp\n");
     if (0 == memcmp((char*) out, (char*) in, 64)) {
         printf("SUCCESS!\n");
 	return(0);
-    } */
+    } 
     }
  
 static uint8_t encrypt_cbc(uint8_t *in)
