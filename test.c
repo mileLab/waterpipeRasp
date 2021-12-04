@@ -189,7 +189,7 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
         printf("out of in!\n");
         for (size_t i = 0; i < 65; i++){
             
-            printf("0x%x",in[i]);
+            printf("0x%x",encryptBuffer[i]);
         }   
         printf("\n");
     if (0 == memcmp((char*) out, (char*) encryptBuffer, 64)) {
