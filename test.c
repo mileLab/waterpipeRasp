@@ -10,10 +10,10 @@
 
 #include "aes.h"
 
-uint8_t* encryptBuffer;
+uint8_t* encryptBuffer[64];
 
 static void phex(uint8_t* str);
-uint8_t *decrpytBuffer[64];
+uint8_t decrpytBuffer[64];
 //static uint8_t encrypt_cbc(uint8_t *in);
 static int test_encrypt_cbc(void);
 static int test_decrypt_cbc(void);
