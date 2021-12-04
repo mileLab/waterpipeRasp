@@ -13,8 +13,8 @@
 /*=========================================================*/
 /*== INCLUDES =============================================*/
 /*=========================================================*/
-//#include <wiringPi.h>
-//#include <softPwm.h>
+#include <wiringPi.h>
+#include <softPwm.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
@@ -24,11 +24,11 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/time.h>
-/*
+
 #include <sys/socket.h>
 #include <bluetooth/bluetooth.h>
 #include <bluetooth/rfcomm.h>
-*/
+
 #include "waterpipe.h"
 #include "test.c"
 /*=========================================================*/
