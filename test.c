@@ -184,7 +184,8 @@ static int decrypt_input_cbc(uint8_t in[]){
  */
 static uint8_t encrypt_cbc(uint8_t in[])
 {
-    uint8_t inputBuffer[64];
+    // uint8_t inputBuffer[64];
+    printf("before memecopy");
     memcpy(inputBuffer, in, sizeof(inputBuffer));
     struct AES_ctx ctx;
     uint8_t iv[]  = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f };
@@ -198,7 +199,7 @@ static uint8_t encrypt_cbc(uint8_t in[])
             printf("inside For");
             inputBuffer[i]=in[i];
             printf("%s",inputBuffer[i]);
-            
+
         }       
         printf("after for");
     return *inputBuffer;
