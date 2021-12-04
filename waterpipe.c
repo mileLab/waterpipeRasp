@@ -81,7 +81,7 @@ int main(void)
                       0xf6, 0x9f, 0x24, 0x45, 0xdf, 0x4f, 0x9b, 0x17, 0xad, 0x2b, 0x41, 0x7b, 0xe6, 0x6c, 0x37, 0x10 };
     printf("before buffer init");
     uint8_t *inputBuffer[64];
-    for(i=0;i<65;i++)  inputBuffer[i] = 1;
+    for(int i=0;i<65;i++)  inputBuffer[i] = 1;
     printf("before memecopy");
     memcpy(inputBuffer, *in, sizeof(inputBuffer));
     struct AES_ctx ctx;
