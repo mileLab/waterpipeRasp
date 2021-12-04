@@ -217,7 +217,7 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
  for (size_t i = 0; i < 64; i++){
             
             
-           printf("0x%x",in[i]);
+           printf("0x%x",encryptBuffer[i]);
         }  
     printf("end of encrypt function\n");
 }
