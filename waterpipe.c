@@ -83,8 +83,8 @@ int main(void)
     uint8_t *inputBuffer[64];
     for(int i=0;i<65;i++)  inputBuffer[i] = 1;
     printf("before memecopy");
-    int a = sizeof((char *) in);
-   printf("%s",a);
+    printf("%s",sizeof((char *) in));
+   //printf("%s",a);
    /*  memcpy(*inputBuffer, *in, sizeof(inputBuffer));
     struct AES_ctx ctx;
     uint8_t iv[]  = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f };
