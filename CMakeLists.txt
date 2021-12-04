@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.16)
+set(CMAKE_C_STANDART 11)
+set(CMAKE_CXX_STANDARD 17)
+project (waterpipe C CXX ASM)
+add_executable( waterpipe 
+                waterpipe.c
+                aes.c)
+
+target_link_libraries(  waterpipe
+                        wiringPi
+                        bluetooth)
+
+target_sources(${PROJECT_NAME}
+    PRIVATE
+        ${CMAKE_CURRENT_LIST_DIR}/aes.c
+    INTERFACE
+        ${CMAKE_CURRENT_LIST_DIR}/aes.h
+         ${CMAKE_CURRENT_LIST_DIR}/aes.hpp)
