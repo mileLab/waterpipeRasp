@@ -118,7 +118,7 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
     int inputLength = sizeof(in);
      if (inputLength < 64)
         {
-        puts("Padding needed",inputLength);
+        printf("Padding needed",inputLength);
         
         }
 
