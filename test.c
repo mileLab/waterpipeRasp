@@ -92,7 +92,7 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
 {     
      size_t blockSize = 64;
      // Padding check still in work
-     int n = sizeof(in)/sizeof(uint8_t);
+     int n = sizeof(in);
     printf("%d",n);
      if (sizeof(in) < blockSize)
         {
