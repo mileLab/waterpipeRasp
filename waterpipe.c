@@ -81,7 +81,7 @@ static char *random_string(char *str, size_t size)
   for (i = 0; n < size; n++)
   { 
     int key = rand() % (int) (sizeof charset - 1);
-     printf("%s",key);
+     printf("%s",rand() % (int) (sizeof charset - 1));
      printf("\n");
     str[n] = charset[key];
   }
