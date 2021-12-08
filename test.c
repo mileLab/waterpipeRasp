@@ -150,6 +150,19 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
         printf("SUCCESS!\n");
 	return(0);
     } 
+    printf("IN DATA!\n");
+        for (size_t i = 0; i < 64; i++){  
+            printf("0x%x",in[i]);
+        }
+            printf("IN DATA!\n");
+        for (size_t i = 0; i < 64; i++){  
+            printf("0x%x",out[i]);
+        }  
+            printf("encryptBuffer DATA!\n");
+        for (size_t i = 0; i < 64; i++){  
+            printf("0x%x",encryptBuffer[i]);
+        } 
+
     printf("end of encrypt function\n");
 }
 
