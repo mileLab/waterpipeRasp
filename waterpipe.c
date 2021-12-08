@@ -80,11 +80,12 @@ static char *random_string(char *str, size_t size)
 
   for (i = 0; n < size; n++)
   { 
+       printf("%d\n", rand() % (int) (sizeof charset - 1));
     int key = rand() % (int) (sizeof charset - 1);
  
     str[n] = charset[key];
   }
-    printf("%d\n", rand() % (int) (sizeof charset - 1));
+   
   str[size] = '\0';
 
   return str;
