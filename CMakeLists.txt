@@ -4,7 +4,9 @@ set(CMAKE_CXX_STANDARD 17)
 project (waterpipe C CXX ASM)
 add_executable( waterpipe 
                 waterpipe.c
-                aes.c)
+                aes.c
+                PKSC7.c)
+
 
 target_link_libraries(  waterpipe
                         wiringPi
@@ -13,6 +15,8 @@ target_link_libraries(  waterpipe
 target_sources(${PROJECT_NAME}
     PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/aes.c
+        ${CMAKE_CURRENT_LIST_DIR}/PKSC7.c
     INTERFACE
+        ${CMAKE_CURRENT_LIST_DIR}/PKSC7.h
         ${CMAKE_CURRENT_LIST_DIR}/aes.h
          ${CMAKE_CURRENT_LIST_DIR}/aes.hpp)
