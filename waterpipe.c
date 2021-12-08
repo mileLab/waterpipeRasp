@@ -133,7 +133,7 @@ int main(void)
                       0x3f, 0xf1, 0xca, 0xa1, 0x68, 0x1f, 0xac, 0x09, 0x12, 0x0e, 0xca, 0x30, 0x75, 0x86, 0xe1, 0xa7 };
   int inputLength = 2;
      inputLength = (int)sizeof(in);
-     printf("%s",inputLength)
+     printf("%s",inputLength);
   encrypt_cbc(in,iv);
      printf("start decrypt\n");
     decrypt_input_cbc(encryptedIn,iv);
