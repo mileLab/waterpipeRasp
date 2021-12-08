@@ -24,7 +24,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/time.h>
-
+#include <ctime>
 #include <sys/socket.h>
 #include <bluetooth/bluetooth.h>
 #include <bluetooth/rfcomm.h>
@@ -75,7 +75,7 @@ int rand_comparison(const void *a, const void *b)
 {
     (void)a; (void)b;
 
-    return rand() % 2 ? +1 : -1;
+    return rand() % ;
 }
 
 void shuffle(void *base, size_t nmemb, size_t size)
@@ -94,7 +94,6 @@ static char *random_string(char *str, size_t size)
     shuffle(charset, (int) (sizeof charset), sizeof(char));
     printf("%d\n", rand() % (int) (sizeof charset - 1));
     int key = rand() % (int) (sizeof charset - 1);
- 
     str[n] = charset[key];
   }
    
@@ -103,7 +102,7 @@ static char *random_string(char *str, size_t size)
   return str;
 }
 int main(void)
-{
+{ srand(time(NULL));  
     uint8_t iv[16]; //128 bitinitialization vector
     int iv_len;
     iv_len=16;
