@@ -137,10 +137,7 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
         printf("0x%x",encryptBuffer[i]);
         }  
         printf("\n");
-    printf("encrypted string via  IN \n");
-    for (size_t i = 0; i < 64; i++){ 
-        printf("0x%x",in[i]);
-        }  
+   
      uint8_t out[] = { 0x76, 0x49, 0xab, 0xac, 0x81, 0x19, 0xb2, 0x46, 0xce, 0xe9, 0x8e, 0x9b, 0x12, 0xe9, 0x19, 0x7d,
                       0x50, 0x86, 0xcb, 0x9b, 0x50, 0x72, 0x19, 0xee, 0x95, 0xdb, 0x11, 0x3a, 0x91, 0x76, 0x78, 0xb2,
                       0x73, 0xbe, 0xd6, 0xb8, 0xe3, 0xc1, 0x74, 0x3b, 0x71, 0x16, 0xe6, 0x9e, 0x22, 0x22, 0x95, 0x16,
@@ -154,10 +151,12 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
         for (size_t i = 0; i < 64; i++){  
             printf("0x%x",in[i]);
         }
-            printf("IN DATA!\n");
+         printf("\n");
+            printf("OUT DATA!\n");
         for (size_t i = 0; i < 64; i++){  
             printf("0x%x",out[i]);
         }  
+         printf("\n");
             printf("encryptBuffer DATA!\n");
         for (size_t i = 0; i < 64; i++){  
             printf("0x%x",encryptBuffer[i]);
