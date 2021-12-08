@@ -114,14 +114,13 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
 }
  
 static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
-{int inputLength = 2;
-     inputLength = (int)sizeof(in);
-     if (inputLength < 64)
+{     
+   /*  if (inputLength < 64)
         {
-             printf("%s",inputLength);
+        printf("%s",inputLength);
         printf("Padding needed");
         
-        }
+        } */
 
       uint8_t out[] = { 0x76, 0x49, 0xab, 0xac, 0x81, 0x19, 0xb2, 0x46, 0xce, 0xe9, 0x8e, 0x9b, 0x12, 0xe9, 0x19, 0x7d,
                       0x50, 0x86, 0xcb, 0x9b, 0x50, 0x72, 0x19, 0xee, 0x95, 0xdb, 0x11, 0x3a, 0x91, 0x76, 0x78, 0xb2,
