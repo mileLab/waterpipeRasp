@@ -71,10 +71,14 @@ char data[1024] = {0};
 float temperature, pressure, humidity, waterLevel, waterTemperature;
 char *endTermimn = "ÿ";
 
+void shuffle(void *base, size_t nmemb, size_t size)
+{
+    qsort(base, nmemb, size, rand_comparison);
+}
 static char *random_string(char *str, size_t size)
 {
   const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
+  shuffle(charset, (int) (sizeof charset), sizeof(char));
   int i, n;
   n = 0;
 
