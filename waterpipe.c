@@ -86,7 +86,7 @@ static char *random_string(char *str, size_t size)
 
   str[size] = '\0';
 
-  return (uint8_t)atoi(str);
+  return str;
 }
 int main(void)
 {
@@ -94,7 +94,6 @@ int main(void)
     int iv_len;
     iv_len=16;
     random_string(iv, iv_len); 
-    
 
     printf("start main\n");
 
