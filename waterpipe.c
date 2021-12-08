@@ -71,6 +71,13 @@ char data[1024] = {0};
 float temperature, pressure, humidity, waterLevel, waterTemperature;
 char *endTermimn = "ÿ";
 
+int rand_comparison(const void *a, const void *b)
+{
+    (void)a; (void)b;
+
+    return rand() % 2 ? +1 : -1;
+}
+
 void shuffle(void *base, size_t nmemb, size_t size)
 {
     qsort(base, nmemb, size, rand_comparison);
@@ -78,13 +85,14 @@ void shuffle(void *base, size_t nmemb, size_t size)
 static char *random_string(char *str, size_t size)
 {
   const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  shuffle(charset, (int) (sizeof charset), sizeof(char));
+  
   int i, n;
   n = 0;
 
   for (i = 0; n < size; n++)
   { 
-       printf("%d\n", rand() % (int) (sizeof charset - 1));
+    shuffle(charset, (int) (sizeof charset), sizeof(char));
+    printf("%d\n", rand() % (int) (sizeof charset - 1));
     int key = rand() % (int) (sizeof charset - 1);
  
     str[n] = charset[key];
