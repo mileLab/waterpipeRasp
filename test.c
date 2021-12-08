@@ -143,9 +143,15 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
                       0x73, 0xbe, 0xd6, 0xb8, 0xe3, 0xc1, 0x74, 0x3b, 0x71, 0x16, 0xe6, 0x9e, 0x22, 0x22, 0x95, 0x16,
                       0x3f, 0xf1, 0xca, 0xa1, 0x68, 0x1f, 0xac, 0x09, 0x12, 0x0e, 0xca, 0x30, 0x75, 0x86, 0xe1, 0xa7 };
     //testing encryption still works
-   if (0 == memcmp((char*) out, (char*) in, 64)) {
+      printf("CBC encrypt: ");
+
+    if (0 == memcmp((char*) out, (char*) in, 64)) {
         printf("SUCCESS!\n");
 	return(0);
+    } else {
+        printf("FAILURE!\n");
+	return(1);
+    }
     } 
     printf("IN DATA!\n");
         for (size_t i = 0; i < 64; i++){  
