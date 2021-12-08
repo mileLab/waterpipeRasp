@@ -75,7 +75,7 @@ int rand_comparison(const void *a, const void *b)
 {
     (void)a; (void)b;
 
-    return rand() % ;
+    return rand() % 2 ? +1 : -1; ;
 }
 
 void shuffle(void *base, size_t nmemb, size_t size)
