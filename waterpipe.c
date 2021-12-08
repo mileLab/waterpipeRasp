@@ -93,6 +93,12 @@ int main(void)
     uint8_t iv[16]; //128 bitinitialization vector
     int iv_len;
     iv_len=16;
+    printf("IV before random string\n");
+    for (size_t i = 0; i < 16; i++){
+            printf("0x%x",iv[i]);
+            printf("\n");
+        }       
+
     random_string(iv, iv_len); 
 
     printf("start main\n");
