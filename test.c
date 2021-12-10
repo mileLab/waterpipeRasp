@@ -90,13 +90,15 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
  
 static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
 {     
-     size_t blockSize = 64;
+     uint8_t blockSize = 256;
      // Padding check still in work
      size_t n = sizeof(in);
     printf("%d",n);
      if (sizeof(in) < blockSize)
         {
         printf("Padding needed");
+        //int databitLenght = sizeof(in);
+       // PaddingPlainText(in,databitLenght,256)
         } 
         //https://github.com/GRISHNOV/PKCS7-Padding/blob/master/src/PKCS7.c
 

@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdint.h>
 #include "PKSC7.h"
-
+//https://thmsdnnr.com/blog/lets-implement-pkcs7-padding/
 PKCS7_Padding* addPadding(const void* const data, const uint64_t dataLength, const uint8_t BLOCK_SIZE)
 {
     if (0 == BLOCK_SIZE)
