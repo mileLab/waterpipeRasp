@@ -94,6 +94,8 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
      // Padding check still in work
      size_t n = sizeof(in);
     printf("%d",n);
+    printf("Check for padding need?");
+    printf("%d",blockSize);
      if (sizeof(in) < blockSize)
         {
         printf("Padding needed");
