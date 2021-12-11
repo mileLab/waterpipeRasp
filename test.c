@@ -12,7 +12,7 @@
 #include "PKSC7.h"
 
 uint8_t* encryptBuffer[64];
-
+ PKCS7_Padding* structWithPaddingResult;
 static void phex(uint8_t* str);
 uint8_t decrpytBuffer[64];
 //static uint8_t encrypt_cbc(uint8_t *in);
@@ -50,7 +50,7 @@ void PaddingPlainText(const uint8_t* const plainTextData, const uint16_t dataBit
     memcpy(testData, plainTextData, testDataLength);
     printf("\n************************************\n");
     printf("\nORIGINAL DATA (size is %i bytes):\n\n", testDataLength);
-    PKCS7_Padding* structWithPaddingResult = addPadding(testData, testDataLength, BLOCK_SIZE); 
+    structWithPaddingResult = addPadding(testData, testDataLength, BLOCK_SIZE); 
     uint8_t* ptrToPaddingDataResult  = structWithPaddingResult->dataWithPadding; 
      printf("\nWITH PADDING (now size is %li bytes):\n\n", structWithPaddingResult->dataLengthWithPadding); 
 }
