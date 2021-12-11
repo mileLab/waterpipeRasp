@@ -99,8 +99,8 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
      if (sizeof(in) < blockSize)
         {
         printf("Padding needed");
-        //int databitLenght = sizeof(in);
-       // PaddingPlainText(in,databitLenght,256)
+        
+         PaddingPlainText(in,n,256)
         } 
         //https://github.com/GRISHNOV/PKCS7-Padding/blob/master/src/PKCS7.c
 
