@@ -37,7 +37,7 @@ PKCS7_Padding* addPadding(const void* const data, const uint64_t dataLength, con
         dataWithPadding[dataLength + i] = paddingResult->valueOfByteForPadding;   /* adding padding bytes */
     }
     paddingResult->dataWithPadding = dataWithPadding;
-    printf("short before return");
+     printf("\nWITH PADDING (now size is %li bytes):\n\n", paddingResult->dataLengthWithPadding); 
     return paddingResult;
 }
 
