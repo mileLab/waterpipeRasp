@@ -47,6 +47,7 @@ void PaddingPlainText(const uint8_t* const plainTextData, const uint16_t dataBit
 {
     uint8_t  testDataLength = dataBitLength / 8;
     uint8_t* testData       = (uint8_t*) malloc(testDataLength);
+    memcpy(testData, plainTextData, testDataLength);
     printf("\n************************************\n");
     printf("\nORIGINAL DATA (size is %i bytes):\n\n", testDataLength);
     PKCS7_Padding* structWithPaddingResult = addPadding(testData, testDataLength, BLOCK_SIZE); 
