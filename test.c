@@ -50,7 +50,8 @@ void PaddingPlainText(const uint8_t* const plainTextData, const uint16_t dataBit
     printf("\n************************************\n");
     printf("\nORIGINAL DATA (size is %i bytes):\n\n", testDataLength);
     PKCS7_Padding* structWithPaddingResult = addPadding(testData, testDataLength, BLOCK_SIZE); 
-    uint8_t* ptrToPaddingDataResult  = structWithPaddingResult->dataWithPadding;  
+    uint8_t* ptrToPaddingDataResult  = structWithPaddingResult->dataWithPadding; 
+     printf("\nWITH PADDING (now size is %li bytes):\n\n", structWithPaddingResult->dataLengthWithPadding); 
 }
 //removal of padding
 void unPaddingCipher(const void* const data, const uint64_t dataLength){
@@ -65,7 +66,15 @@ void unPaddingCipher(const void* const data, const uint64_t dataLength){
 static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
     //uint8_t inputBuffer[64];
     //memcpy(inputBuffer, in, sizeof(inputBuffer));
-    
+    // Start unpadding 
+     size_t n = sizeof(in);
+     int testNumber = 1;
+     if (testNumber == 1)
+        {
+        printf("remove padding");
+        
+         unPaddingCipher(structWithPaddingResult->dataWithPadding,structWithPaddingResult->dataLengthWithPadding);
+        } 
       for (size_t i = 0; i < 64; i++){
             decrpytBuffer[i]=encryptBuffer[i];
            //printf("0x%x",in[i]);
@@ -95,6 +104,7 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
      size_t n = sizeof(in);
     printf("%d",n);
     printf("Check for padding need?");
+
     printf("%d",blockSize);
      if (sizeof(in) < blockSize)
         {
