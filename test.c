@@ -53,13 +53,17 @@ void PaddingPlainText(const uint8_t* const plainTextData, const uint16_t dataBit
     structWithPaddingResult = addPadding(testData, testDataLength, BLOCK_SIZE); 
     uint8_t* ptrToPaddingDataResult  = structWithPaddingResult->dataWithPadding; 
      printf("\nWITH PADDING (now size is %li bytes):\n\n", structWithPaddingResult->dataLengthWithPadding); 
+      PKCS7_unPadding* structWithUnpaddingResult = removePadding(structWithPaddingResult->dataWithPadding, structWithPaddingResult->dataLengthWithPadding);
+     uint8_t* ptrToUnpaddingDataResult  = structWithUnpaddingResult->dataWithoutPadding;
+
+     printf("\nREMOVE PADDING (size is %li bytes):\n\n", structWithUnpaddingResult->dataLengthWithoutPadding);
 }
 //removal of padding
 void unPaddingCipher(const void* const data, const uint64_t dataLength){
      PKCS7_unPadding* structWithUnpaddingResult = removePadding(data, dataLength);
      uint8_t* ptrToUnpaddingDataResult  = structWithUnpaddingResult->dataWithoutPadding;
 
-    printf("\nREMOVE PADDING (size is %li bytes):\n\n", structWithUnpaddingResult->dataLengthWithoutPadding);
+     printf("\nREMOVE PADDING (size is %li bytes):\n\n", structWithUnpaddingResult->dataLengthWithoutPadding);
 
 }
 
@@ -74,11 +78,10 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
         {
         printf("remove padding");
         // unPaddingCipher(*structWithPaddingResult->dataLengthWithPadding,*structWithPaddingResult->dataLengthWithPadding);
-        unPaddingCipher(*structWithPaddingResult->dataWithPadding,*structWithPaddingResult->dataLengthWithPadding);
+        //unPaddingCipher(structWithPaddingResult->dataWithPadding,structWithPaddingResult->dataLengthWithPadding);
         } 
       for (size_t i = 0; i < 64; i++){
             decrpytBuffer[i]=encryptBuffer[i];
-           //printf("0x%x",in[i]);
         }  
     printf("decrypt function cbc start\n");
     uint8_t key[] = { 0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c };
