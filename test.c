@@ -90,7 +90,7 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
  
 static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
 {     
-     uint8_t blockSize = 256;
+     uint8_t blockSize = 256/8;
      // Padding check still in work
      size_t n = sizeof(in);
     printf("%d",n);
