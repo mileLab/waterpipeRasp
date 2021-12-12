@@ -115,7 +115,7 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
 
 
     
-    //printf("%d",nTest);
+    printf("%d",nTest);
     printf("Check for padding need?");
 
     printf("%d",blockSize);
