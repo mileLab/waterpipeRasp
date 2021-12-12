@@ -19,7 +19,7 @@ PKCS7_Padding* addPadding(const void* const data, const uint64_t dataLength, con
         exit(-1);
     }
 
-    uint8_t paddingBytesAmount           = BLOCK_SIZE - (dataLength % BLOCK_SIZE);  /* number of bytes to be appended */
+    uint64_t paddingBytesAmount = BLOCK_SIZE - (dataLength % BLOCK_SIZE);  /* number of bytes to be appended */
     printf("padding ammount needed %d",paddingBytesAmount); //print needed padding amount 
     paddingResult->valueOfByteForPadding = paddingBytesAmount;      
      printf("paddingResult->valueOfByteForPadding %d",paddingResult->valueOfByteForPadding);                /* according to the PKCS7 */
