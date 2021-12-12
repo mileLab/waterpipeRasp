@@ -69,11 +69,19 @@ void PaddingPlainText(const uint8_t* const plainTextData, const uint16_t dataBit
         ptrToPaddingDataResult++;
     }
     printf("\n************************************\n");
-
-
-   /*  PKCS7_unPadding* structWithUnpaddingResult = removePadding(structWithPaddingResult->dataWithPadding, structWithPaddingResult->dataLengthWithPadding);
+    printf("\n************************************\n");
+    printf("\nStart unpadding\n");
+    PKCS7_unPadding* structWithUnpaddingResult = removePadding(structWithPaddingResult->dataWithPadding, structWithPaddingResult->dataLengthWithPadding);
     uint8_t* ptrToUnpaddingDataResult  = structWithUnpaddingResult->dataWithoutPadding;
-    printf("\nREMOVE PADDING (size is %li bytes):\n\n", structWithUnpaddingResult->dataLengthWithoutPadding); */
+    printf("\nREMOVE PADDING (size is %li bytes):\n\n", structWithUnpaddingResult->dataLengthWithoutPadding); 
+    for (uint16_t i = 0; i < structWithUnpaddingResult->dataLengthWithoutPadding; i++)
+    {
+        printf("%x", *ptrToUnpaddingDataResult);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+        ptrToUnpaddingDataResult++;
+    }
+    printf("\n\n************************************\n\n");
+
 }
 //removal of padding
 void unPaddingCipher(const void* const data, const uint64_t dataLength){
