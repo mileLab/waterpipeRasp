@@ -45,7 +45,34 @@ static void phex(uint8_t* str)
 // Padding of blocks if to small 
 void PaddingPlainText(const uint8_t* const plainTextData, const uint16_t dataBitLength, const uint8_t BLOCK_SIZE)
 {
-    uint8_t  testDataLength = dataBitLength ;
+
+     uint8_t  testDataLength = dataBitLength / 8;
+    uint8_t* testData       = (uint8_t*) malloc(testDataLength);
+    
+    memcpy(testData, plainTextData, testDataLength);
+
+    printf("\n************************************\n");
+    printf("\nORIGINAL DATA (size is %i bytes):\n\n", testDataLength);
+    for (uint8_t i = 0; i < testDataLength; i++)
+    {
+        printf("%x", testData[i]);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+    }
+    printf("\n\n************************************\n");
+
+    PKCS7_Padding* structWithPaddingResult = addPadding(testData, testDataLength, BLOCK_SIZE); 
+    uint8_t*       ptrToPaddingDataResult  = structWithPaddingResult->dataWithPadding;
+
+    printf("\nWITH PADDING (now size is %li bytes):\n\n", structWithPaddingResult->dataLengthWithPadding);
+    for (uint16_t i = 0; i < structWithPaddingResult->dataLengthWithPadding; i++)
+    {
+        printf("%x", *ptrToPaddingDataResult);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+        ptrToPaddingDataResult++;
+    }
+    printf("\n************************************\n");
+
+  /*  uint8_t  testDataLength = dataBitLength ;
     uint8_t* testData       = (uint8_t*) malloc(testDataLength);
     memcpy(testData, plainTextData, testDataLength);
     printf("\n************************************\n");
@@ -63,7 +90,7 @@ void PaddingPlainText(const uint8_t* const plainTextData, const uint16_t dataBit
     printf("\nWITH PADDING (now size is %li bytes):\n\n", structWithPaddingResult->dataLengthWithPadding); 
     PKCS7_unPadding* structWithUnpaddingResult = removePadding(structWithPaddingResult->dataWithPadding, structWithPaddingResult->dataLengthWithPadding);
     uint8_t* ptrToUnpaddingDataResult  = structWithUnpaddingResult->dataWithoutPadding;
-    printf("\nREMOVE PADDING (size is %li bytes):\n\n", structWithUnpaddingResult->dataLengthWithoutPadding);
+    printf("\nREMOVE PADDING (size is %li bytes):\n\n", structWithUnpaddingResult->dataLengthWithoutPadding); */
 }
 //removal of padding
 void unPaddingCipher(const void* const data, const uint64_t dataLength){
