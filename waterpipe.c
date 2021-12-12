@@ -70,77 +70,35 @@ char data[1024] = {0};
 
 float temperature, pressure, humidity, waterLevel, waterTemperature;
 char *endTermimn = "ÿ";
+// function for randomization
 
-int rand_comparison(const void *a, const void *b)
-{
-    (void)a; (void)b;
-
-    return rand() % 2 ? +1 : -1; ;
-}
-// added seed for randomizaiton (no secure random function)
-void shuffle(void *base, size_t nmemb, size_t size)
-{
-    qsort(base, nmemb, size, rand_comparison);
-}
-static char *random_string(char *str, size_t size)
-{
-  const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  
-  int i, n;
-  n = 0;
-
-  for (i = 0; n < size; n++)
-  { 
-    shuffle(charset, (int) (sizeof charset), sizeof(char));
-    printf("%d\n", rand() % (int) (sizeof charset - 1));
-    int key = rand() % (int) (sizeof charset - 1);
-    str[n] = charset[key];
-  }
-   
-  str[size] = '\0';
-
-  return str;
-}
 int main(void)
-{   
-    srand(time(NULL));  
-    uint8_t iv[16]; //128 bitinitialization vector
-    int iv_len;
-    iv_len=16;
-    printf("IV before random string\n");
-    for (size_t i = 0; i < 16; i++){
-            printf("0x%x",iv[i]);
-            printf("\n");
-        }       
-
-    random_string(iv, iv_len); 
-
+{
+    srand(time(NULL));
+    
+    printf("\n\n************************************\n");   
     printf("start main\n");
-
-    uint8_t in[64]  = { 0x6b, 0xc1, 0xbe, 0xe2, 0x2e, 0x40, 0x9f, 0x96, 0xe9, 0x3d, 0x7e, 0x11, 0x73, 0x93, 0x17, 0x2a,
+    printf("\n\n************************************\n");
+    uint8_t in[64] = {0x6b, 0xc1, 0xbe, 0xe2, 0x2e, 0x40, 0x9f, 0x96, 0xe9, 0x3d, 0x7e, 0x11, 0x73, 0x93, 0x17, 0x2a,
                       0xae, 0x2d, 0x8a, 0x57, 0x1e, 0x03, 0xac, 0x9c, 0x9e, 0xb7, 0x6f, 0xac, 0x45, 0xaf, 0x8e, 0x51,
                       0x30, 0xc8, 0x1c, 0x46, 0xa3, 0x5c, 0xe4, 0x11, 0xe5, 0xfb, 0xc1, 0x19, 0x1a, 0x0a, 0x52, 0xef,
-                      0xf6, 0x9f, 0x24, 0x45, 0xdf, 0x4f, 0x9b, 0x17, 0xad, 0x2b, 0x41, 0x7b, 0xe6, 0x6c, 0x37, 0x10 };
- // needed to test if padding is working 
- uint8_t in2[8]  = {   0xff,   0xfe,   0xfd,   0xfc, 
-                      0xfb,   0xfa,   0xf9,   0xf8};
-    uint8_t encryptedIn[]  = { 0x76, 0x49, 0xab, 0xac, 0x81, 0x19, 0xb2, 0x46, 0xce, 0xe9, 0x8e, 0x9b, 0x12, 0xe9, 0x19, 0x7d,
-                      0x50, 0x86, 0xcb, 0x9b, 0x50, 0x72, 0x19, 0xee, 0x95, 0xdb, 0x11, 0x3a, 0x91, 0x76, 0x78, 0xb2,
-                      0x73, 0xbe, 0xd6, 0xb8, 0xe3, 0xc1, 0x74, 0x3b, 0x71, 0x16, 0xe6, 0x9e, 0x22, 0x22, 0x95, 0x16,
-                      0x3f, 0xf1, 0xca, 0xa1, 0x68, 0x1f, 0xac, 0x09, 0x12, 0x0e, 0xca, 0x30, 0x75, 0x86, 0xe1, 0xa7 };
-     
-  encrypt_cbc(in2,iv);
-     printf("start decrypt\n");
-    decrypt_input_cbc(encryptedIn,iv);
+                      0xf6, 0x9f, 0x24, 0x45, 0xdf, 0x4f, 0x9b, 0x17, 0xad, 0x2b, 0x41, 0x7b, 0xe6, 0x6c, 0x37, 0x10};
+    // needed to test if padding is working
+    uint8_t in2[8] = {0xff, 0xfe, 0xfd, 0xfc,0xfb, 0xfa, 0xf9, 0xf8};
+    uint8_t encryptedIn[] = {0x76, 0x49, 0xab, 0xac, 0x81, 0x19, 0xb2, 0x46, 0xce, 0xe9, 0x8e, 0x9b, 0x12, 0xe9, 0x19, 0x7d,
+                             0x50, 0x86, 0xcb, 0x9b, 0x50, 0x72, 0x19, 0xee, 0x95, 0xdb, 0x11, 0x3a, 0x91, 0x76, 0x78, 0xb2,
+                             0x73, 0xbe, 0xd6, 0xb8, 0xe3, 0xc1, 0x74, 0x3b, 0x71, 0x16, 0xe6, 0x9e, 0x22, 0x22, 0x95, 0x16,
+                             0x3f, 0xf1, 0xca, 0xa1, 0x68, 0x1f, 0xac, 0x09, 0x12, 0x0e, 0xca, 0x30, 0x75, 0x86, 0xe1, 0xa7};
 
+    encrypt_cbc(in2);
+    
+    decrypt_input_cbc(encryptedPaket);
 
-//https://stackoverflow.com/questions/25360893/convert-char-to-uint8-t
- 
-   
+    //https://stackoverflow.com/questions/25360893/convert-char-to-uint8-t
 }
 
-
-void useless (void){
+void useless(void)
+{
     struct sockaddr_rc raspPicoServer = {0};
     const char *raspPico = "98:D3:71:FD:F4:3A";
 
@@ -149,7 +107,7 @@ void useless (void){
     str2ba(raspPico, &raspPicoServer.rc_bdaddr);
 
     debugMsg("====================  RFCOM SERVER MODE STARTED  ===================== \r\n");
- 
+
     /*!< Allocate socket */
     socketPi = socket(AF_BLUETOOTH, SOCK_STREAM, BTPROTO_RFCOMM);
 
@@ -165,7 +123,7 @@ void useless (void){
     }
     else
     {
-    /* 
+        /* 
         bytesRead = read(socketPi, data, sizeof(data));
         if (bytesRead > 0)
         {
@@ -173,7 +131,6 @@ void useless (void){
             memset(data, 0, sizeof(data));
         } 
     */
-  
     }
 
     debugTerm();
@@ -237,29 +194,22 @@ void useless (void){
     debugMsg("====================  OPERATION MODE STARTED  ======================== \r\n");
     //delay(5000);
 
-
     debugMsg("====================  INIT SIGNAL HANDLER STARTED  =================== \r\n");
     signal(SIGALRM, sig_handler);
     signal(SIGINT, sig_handler);
     //signal(SIGVTALRM, sig_handler);
     alarm(1);
-  
-
-
 
     runMotA = 1;
     memset(data, 0, sizeof(data));
 
     timer_Us(100000);
 
-
     while (1)
     {
         //pwmWrite(PWM_PIN0, dutyCycle);/*!< Needs to be in the while loop */
         MOTOR_A_ON(pwmDC);
         //MOTOR_B_ON(511);
-
-
     }
     return 0;
 }
@@ -381,21 +331,13 @@ void debugTerm(void)
     debugMsg("======================================================================\r\n\n");
 }
 
-
-
-
-
-
-
 void sig_handler(int32_t sigNr)
 {
 
-    
     if (sigNr == SIGALRM)
     { //signal handler for SIGALRM
 
-
-      /*   
+        /*   
       bytesRead = read(socketPi, data, sizeof(data));
         if (bytesRead >= 51)
         {
@@ -416,17 +358,13 @@ void sig_handler(int32_t sigNr)
             memset(data, 0, sizeof(data)); 
         } */
 
-
-        
-
         memset(data, 0, sizeof(data));
-  
 
         //printf("2 Seconds Signal-IRQ\r\n");
         if (pwmDC < 1)
         {
             pwmDC += 0.1;
-            debugVal("[X] POWER %f [X]\r\n",pwmDC);
+            debugVal("[X] POWER %f [X]\r\n", pwmDC);
         }
         else if (pwmDC = 1.0f)
         {
@@ -444,7 +382,6 @@ void sig_handler(int32_t sigNr)
     {
         __NOP();
     }
-    
 
     if (sigNr == SIGINT)
     { // signal handler for SIGINT
@@ -457,7 +394,7 @@ void sig_handler(int32_t sigNr)
     {
         __NOP();
     }
-    
+
     clrscr();
 }
 
@@ -466,7 +403,7 @@ void timer_Us(int64_t uSeconds)
     struct sigaction sa;
     struct itimerval timer;
 
-    memset(&sa, 0, sizeof (sa));
+    memset(&sa, 0, sizeof(sa));
     sigemptyset(&sa.sa_mask);
     sa.sa_handler = &timer_handler;
     sigaction(SIGVTALRM, &sa, NULL);
@@ -480,63 +417,58 @@ void timer_Us(int64_t uSeconds)
     setitimer(ITIMER_VIRTUAL, &timer, NULL);
 }
 
-void timer_handler (int32_t sigNr)
+void timer_handler(int32_t sigNr)
 {
 
     bytesRead = read(socketPi, data, sizeof(data));
 
-        debugVal("%s\r\n", data);
-        debugVal("Bytes recieved:%d",bytesRead);
-        if (bytesRead != -1)
-        { 
-            filterChar(data, "A:","ÿ");
-            filterChar(data, "B:","ÿ");
-            filterChar(data, "C:","ÿ");
-            filterChar(data, "D:","ÿ");
-            filterChar(data, "E:","ÿ"); 
-            memset(data, 0, sizeof(data));   
-        }
-    
-    
-
-  }
-
-
+    debugVal("%s\r\n", data);
+    debugVal("Bytes recieved:%d", bytesRead);
+    if (bytesRead != -1)
+    {
+        filterChar(data, "A:", "ÿ");
+        filterChar(data, "B:", "ÿ");
+        filterChar(data, "C:", "ÿ");
+        filterChar(data, "D:", "ÿ");
+        filterChar(data, "E:", "ÿ");
+        memset(data, 0, sizeof(data));
+    }
+}
 
 float filterChar(char *string, char *searchString, char *term)
 {
-	int len;
-	char buff[strlen(searchString)];
-	char *ret = strstr(string, searchString);
+    int len;
+    char buff[strlen(searchString)];
+    char *ret = strstr(string, searchString);
 
-	if (ret != 0)
-	{
-		for (int i = 0; i < strlen(searchString); ++i)
-		{
-			buff[i] = ret[i];
-		}
-	}
+    if (ret != 0)
+    {
+        for (int i = 0; i < strlen(searchString); ++i)
+        {
+            buff[i] = ret[i];
+        }
+    }
 
-	if (strcmp(buff, searchString) == 0 && ret != 0)
-	{
+    if (strcmp(buff, searchString) == 0 && ret != 0)
+    {
 
-		len = strcspn(ret, term);
-		char buff[len];
+        len = strcspn(ret, term);
+        char buff[len];
 
-		for (int i = 0; i < len; ++i)
-		{
-			buff[i] = ret[i + strlen(searchString)];
-		}
+        for (int i = 0; i < len; ++i)
+        {
+            buff[i] = ret[i + strlen(searchString)];
+        }
 
-		buff[len - strlen(searchString)] ='\0'/*"ÿ"*/;
-		debug2Val("\r\n %s%s [X] \r\n",searchString,buff);
-		return strtod(buff,NULL); /*!< strtod gives better control of undefined range */
-	}
-	else
-	{
-		debugMsg("=============================\r\n");
-		debugVal("%s not found\r\n",searchString);
-		debugMsg("=============================\r\n");
-		return -200;
-	}
+        buff[len - strlen(searchString)] = '\0' /*"ÿ"*/;
+        debug2Val("\r\n %s%s [X] \r\n", searchString, buff);
+        return strtod(buff, NULL); /*!< strtod gives better control of undefined range */
+    }
+    else
+    {
+        debugMsg("=============================\r\n");
+        debugVal("%s not found\r\n", searchString);
+        debugMsg("=============================\r\n");
+        return -200;
+    }
 }
