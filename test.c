@@ -100,9 +100,21 @@ static int decrypt_input_cbc(uint8_t *in, uint8_t *iv){
  
 static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
 {     
+     uint8_t  nTest = sizeof(in);
      uint8_t blockSize = 256/8;
      // Padding check still in work
-     size_t n = sizeof(in);
+
+    printf("\n************************************\n");
+    printf("\nORIGINAL DATA (size is %i bytes):\n\n", nTest);
+    for (uint8_t i = 0; i < nTest; i++)
+    {
+        printf("%x", in[i]);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+    }
+    printf("\n\n************************************\n");
+
+
+    
     printf("%d",n);
     printf("Check for padding need?");
 
