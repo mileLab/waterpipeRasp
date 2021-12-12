@@ -46,7 +46,7 @@ static void phex(uint8_t* str)
 void PaddingPlainText(const uint8_t* const plainTextData, const uint16_t dataBitLength, const uint8_t BLOCK_SIZE)
 {
 
-     uint8_t  testDataLength = dataBitLength / 8;
+     uint8_t  testDataLength = dataBitLength ;
     uint8_t* testData       = (uint8_t*) malloc(testDataLength);
     
     memcpy(testData, plainTextData, testDataLength);
