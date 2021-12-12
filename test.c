@@ -123,7 +123,7 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t *iv)
         {
         printf("Padding needed");
         
-         PaddingPlainText(in,n,blockSize);
+         //PaddingPlainText(in,n,blockSize);
         } 
         //https://github.com/GRISHNOV/PKCS7-Padding/blob/master/src/PKCS7.c
 
