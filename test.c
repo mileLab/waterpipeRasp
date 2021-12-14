@@ -12,7 +12,7 @@
 #include "PKSC7.h"
 
 uint8_t *encryptBuffer[64];
-uint8_t *encryptedPaket[88];
+uint8_t *encryptedPaket[89];
 static void phex(uint8_t *str);
 uint8_t decrpytBuffer[64];
 uint8_t* iv[16]; //128 bitinitialization vector
@@ -85,7 +85,20 @@ void unPaddingCipher(const void *const data, const uint64_t dataLength)
 }
 static int decrypt_input_cbc(uint8_t *in)
 {   
+    extractFlags();
+    uint8_t startFlag[4];
+    uint8_t endflagFlag[5];
+
+    for(int i=0; i<4; i++){
+         startFlag[] = in[i];
+    }
+
+    for(int i=85; i<90; i++){
+         endflagFlag[] = in[i];
+    }
+
     
+
     for (size_t i = 2; i <17; i++)
     {
         Decryptiv[i] = in[i];
@@ -180,16 +193,21 @@ static uint8_t encrypt_cbc(uint8_t *in)
         printf("FAILURE!\n");
         return (1);
     }
-    encryptedPaket[0] = 0x79;
-    encryptedPaket[1] = 0x3a; // Assci y:
-    encryptedPaket[82] = 0x32;
-    encryptedPaket[83] = 0x35;
-    encryptedPaket[84] = 0x35;
-    for (size_t i = 2; i <17; i++)
+    
+    encryptedPaket[0] = 0x79; //Start flag 
+    encryptedPaket[1] = 0x3a; //
+    encryptedPaket[2] = 0x2f; //
+    encryptedPaket[3] = 0x3d; // Assci y:
+    encryptedPaket[85] = 0x32; // End Flag
+    encryptedPaket[86] = 0x35; //
+    encryptedPaket[87] = 0x35; //
+    encryptedPaket[88] = 0x2f; //
+    encryptedPaket[89] = 0x3d; //
+    for (size_t i = 4; i <20; i++)
     {
         encryptedPaket[i] = iv[i];
     }
-    for (size_t i = 17; i < 81; i++)
+    for (size_t i = 20; i < 85; i++)
     {
         encryptedPaket[i] = in[i];
     }
