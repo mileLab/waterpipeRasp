@@ -12,7 +12,7 @@
 #include "PKSC7.h"
 
 uint8_t *encryptBuffer[64];
-uint8_t *encryptedPaket[89];
+uint8_t encryptedPaket[89];
 static void phex(uint8_t *str);
 uint8_t *decrpytBuffer[64];
 uint8_t iv[16]; //128 bitinitialization vector
