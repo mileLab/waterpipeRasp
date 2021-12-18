@@ -18,6 +18,7 @@ uint8_t *decrpytBuffer[32];
 uint8_t *ptrToPaddingDataResultBuffer[32];
 PKCS7_Padding *structWithPaddingResult;
 PKCS7_unPadding *structWithUnpaddingResult;
+uint8_t *ptrToPaddingDataResult2[32];
 uint8_t iv[16];         //128 bitinitialization vector
 uint8_t *Decryptiv[16]; //128 bitinitialization vector
 static int test_encrypt_cbc(void);
@@ -277,7 +278,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
     printf("\n\n************************************\n");
     printf("START ENCRYPTION\n");
     printf("\n\n************************************\n");
-    uint8_t *ptrToPaddingDataResult2 = structWithPaddingResult->dataWithPadding;
+    ptrToPaddingDataResult2 = structWithPaddingResult->dataWithPadding;
    
     struct AES_ctx ctx;
     uint8_t key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
