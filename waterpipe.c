@@ -91,7 +91,7 @@ int main(void)
 
     encrypt_cbc(in2);
     
-    decrypt_input_cbc(encryptedPaket);
+    decrypt_input_cbc(encryptedPaket2);
 
     //https://stackoverflow.com/questions/25360893/convert-char-to-uint8-t
 }
