@@ -17,6 +17,7 @@ static void phex(uint8_t *str);
 uint8_t *decrpytBuffer[64];
 uint8_t *ptrToPaddingDataResultBuffer[64];
 PKCS7_Padding *structWithPaddingResult;
+PKCS7_unPadding *structWithUnpaddingResult;
 uint8_t iv[16];         //128 bitinitialization vector
 uint8_t *Decryptiv[16]; //128 bitinitialization vector
 static int test_encrypt_cbc(void);
@@ -61,8 +62,8 @@ void unPaddingCipher(const void *const data, const uint64_t dataLength)
 {
     printf("\n************************************\n");
     printf("\nStart unpadding\n");
-    PKCS7_unPadding *structWithUnpaddingResult = removePadding(data, dataLength);
-    uint8_t *ptrToUnpaddingDataResult = structWithUnpaddingResult->dataWithoutPadding;
+    structWithUnpaddingResult = removePadding(data, dataLength);
+   /* uint8_t *ptrToUnpaddingDataResult = structWithUnpaddingResult->dataWithoutPadding;
 
     printf("\nREMOVE PADDING (size is %li bytes):\n\n", structWithUnpaddingResult->dataLengthWithoutPadding);
     for (uint16_t i = 0; i < structWithUnpaddingResult->dataLengthWithoutPadding; i++)
@@ -70,7 +71,7 @@ void unPaddingCipher(const void *const data, const uint64_t dataLength)
         printf("%x", *ptrToUnpaddingDataResult);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
         ptrToUnpaddingDataResult++;
-    }
+    } */
     printf("\n\n************************************\n\n");
 }
 static int decrypt_input_cbc(uint8_t *in)
