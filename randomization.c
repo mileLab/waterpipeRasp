@@ -11,7 +11,7 @@ int rand_comparison(const void *a, const void *b)
     ;
 }
 // added seed for randomizaiton (no secure random function)
-void shuffle(void *base, size_t nmemb, size_t size)
+/*void shuffle(void *base, size_t nmemb, size_t size)
 {
     qsort(base, nmemb, size, rand_comparison);
 }
@@ -34,4 +34,4 @@ static char *random_string(char *str, size_t size)
     str[size] = '\0';
 
     return str;
-}
+} */
