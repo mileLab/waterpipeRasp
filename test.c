@@ -130,7 +130,7 @@ static int decrypt_input_cbc(uint8_t *in)
 
     size_t n = sizeof(in);
     int testNumber = 1;
-     uint8_t cipherLength = sizeof(cipher);
+    uint8_t cipherLength = sizeof(cipher);
    
     for (size_t i = 0; i < 32; i++)
     {
@@ -150,7 +150,7 @@ static int decrypt_input_cbc(uint8_t *in)
     AES_CBC_decrypt_buffer(&ctx, cipher, 32);
     if (testNumber == 1)
     {
-      //  removePadding(cipher,cipherLength);
+        removePadding(cipher,cipherLength);
         printf("remove padding");
     }
     printf("\nTest with decrptBuffer!\n");
