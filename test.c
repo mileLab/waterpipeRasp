@@ -128,6 +128,13 @@ static int decrypt_input_cbc(uint8_t *in)
     {
         cipher[i - 20] = in[i];
     }
+printf("\n************************************\n");
+    printf("\n>Cipher:\n\n");
+    for (uint8_t i = 0; i < 32; i++)
+    {
+        printf("%x", cipher[i]);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+    }
     size_t n = sizeof(in);
     int testNumber = 1;
     uint8_t cipherLength = sizeof(cipher);
