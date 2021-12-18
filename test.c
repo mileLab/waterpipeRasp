@@ -326,6 +326,14 @@ static uint8_t encrypt_cbc(uint8_t *in)
         encryptedPaket2[i] = ptrToPaddingDataResult2[i - 20];
     }
     
+    printf("\n\n************************************\n");
+    printf("Final encryptedPaket2 which will be send:\n");
+    for (uint8_t i = 0; i < 32; i++)
+    {
+        printf("%x", encryptedPaket2[i]);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+    }
+    printf("\n\n************************************\n");
    
     printf("\n\n************************************\n");
     printf("Final Paket which will be send:\n");
