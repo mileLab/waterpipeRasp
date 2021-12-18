@@ -12,7 +12,7 @@
 #include "PKSC7.h"
 
 uint8_t *encryptBuffer[32];
-uint8_t encryptedPaket[89];
+uint8_t encryptedPaket[57];
 static void phex(uint8_t *str);
 uint8_t *decrpytBuffer[64];
 uint8_t *ptrToPaddingDataResultBuffer[64];
@@ -75,7 +75,7 @@ void unPaddingCipher(const void *const data, const uint64_t dataLength)
 }
 static int decrypt_input_cbc(uint8_t *in)
 {
-    for (uint8_t i = 0; i < 90; i++)
+    for (uint8_t i = 0; i < 58; i++)
     {
         printf("%x", in[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
@@ -84,7 +84,7 @@ static int decrypt_input_cbc(uint8_t *in)
     //extractFlags();
     uint8_t startFlag[4];
     uint8_t endflagFlag[5];
-    uint8_t cipher[64];
+
 
     for (int i = 0; i < 4; i++)
     {
@@ -98,9 +98,9 @@ static int decrypt_input_cbc(uint8_t *in)
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
     printf("end of endflag \n");
-    for (int i = 85; i < 90; i++)
+    for (int i = 53; i < 58; i++)
     {
-        endflagFlag[i - 85] = in[i];
+        endflagFlag[i - 53] = in[i];
     }
 
     printf("\n************************************\n");
@@ -123,7 +123,7 @@ static int decrypt_input_cbc(uint8_t *in)
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
 
-    for (size_t i = 20; i < 85; i++)
+    for (size_t i = 20; i < 53; i++)
     {
         cipher[i - 20] = in[i];
     }
@@ -132,7 +132,7 @@ static int decrypt_input_cbc(uint8_t *in)
     int testNumber = 1;
      uint8_t cipherLength = sizeof(cipher);
    
-    for (size_t i = 0; i < 64; i++)
+    for (size_t i = 0; i < 32; i++)
     {
         decrpytBuffer[i] = encryptBuffer[i];
     }
@@ -147,14 +147,14 @@ static int decrypt_input_cbc(uint8_t *in)
     struct AES_ctx ctx;
 
     AES_init_ctx_iv(&ctx, key, iv);
-    AES_CBC_decrypt_buffer(&ctx, cipher, 64);
+    AES_CBC_decrypt_buffer(&ctx, cipher, 32);
     if (testNumber == 1)
     {
         removePadding(cipher,cipherLength);
         printf("remove padding");
     }
     printf("\nTest with decrptBuffer!\n");
-    if (0 == memcmp((char *)out2, (char *)decrpytBuffer, 64))
+    if (0 == memcmp((char *)out2, (char *)decrpytBuffer, 32))
     {
         printf("SUCCESS in decryptBuffer!\n");
     for (uint8_t i = 0; i < 16; i++)
@@ -264,7 +264,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
     }
      printf("\n\n************************************\n");
     AES_init_ctx_iv(&ctx, key, iv);
-    AES_CBC_encrypt_buffer(&ctx, ptrToPaddingDataResult2, 64);
+    AES_CBC_encrypt_buffer(&ctx, ptrToPaddingDataResult2, 32);
     for (uint8_t i = 0; i < 64; i++)
     {
         printf("%x", ptrToPaddingDataResult2[i]);
@@ -277,17 +277,17 @@ static uint8_t encrypt_cbc(uint8_t *in)
     encryptedPaket[1] = 0x3a;  //
     encryptedPaket[2] = 0x2f;  //
     encryptedPaket[3] = 0x3d;  // Assci y:
-    encryptedPaket[85] = 0x32; // End Flag
-    encryptedPaket[86] = 0x35; //
-    encryptedPaket[87] = 0x35; //
-    encryptedPaket[88] = 0x2f; //
-    encryptedPaket[89] = 0x3d; //
+    encryptedPaket[53] = 0x32; // End Flag
+    encryptedPaket[54] = 0x35; //
+    encryptedPaket[55] = 0x35; //
+    encryptedPaket[56] = 0x2f; //
+    encryptedPaket[57] = 0x3d; //
 
     for (size_t i = 4; i < 20; i++)
     {
         encryptedPaket[i] = iv[i - 4];
     }
-    for (size_t i = 20; i < 85; i++)
+    for (size_t i = 20; i < 53; i++)
     {
         encryptedPaket[i] = in[i - 20];
     }
@@ -295,7 +295,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
    
     printf("\n\n************************************\n");
     printf("Final Paket which will be send:\n");
-    for (uint8_t i = 0; i < 90; i++)
+    for (uint8_t i = 0; i < 58; i++)
     {
         printf("%x", encryptedPaket[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
@@ -303,7 +303,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
     printf("\n\n************************************\n");
     printf("end of encrypt function\n");
     printf("\n\n************************************\n");
-    if (0 == memcmp((char *)out, (char *)in, 64))
+    if (0 == memcmp((char *)out, (char *)in, 32))
     {
         printf("SUCCESS!\n");
         return (0);
