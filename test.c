@@ -88,23 +88,47 @@ static int decrypt_input_cbc(uint8_t *in)
     //extractFlags();
     uint8_t startFlag[4];
     uint8_t endflagFlag[5];
-
+    uint8_t cipher[64]; 
 
     for(int i=0; i<4; i++){
          startFlag[i] = in[i];
     }
-
+     printf("\n************************************\n");
+    printf("\nStartFlag:\n\n");
+    for (uint8_t i = 0; i < 5; i++)
+    {
+     printf("%x", startFlag[i]);
+     ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+    }
+    printf("end of endflag \n");
     for(int i=85; i<90; i++){
          endflagFlag[i] = in[i];
+    }
+
+
+      printf("\n************************************\n");
+    printf("\n>EndFlag:\n\n");
+    for (uint8_t i = 0; i < 6; i++)
+    {
+     printf("%x", endflagFlag[i]);
+     ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
 
    for (size_t i = 4; i <20; i++)
     {
         Decryptiv[i] = in[i];
     } 
+      printf("\n************************************\n");
+    printf("\n>IV:\n\n");
+    for (uint8_t i = 0; i < 6; i++)
+    {
+     printf("%x", Decryptiv[i]);
+     ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+    }
+
     for (size_t i = 20; i < 85; i++)
     {
-        in[i] = in[i];
+        cipher[i] = in[i];
     }
  
 
