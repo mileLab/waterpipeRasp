@@ -84,7 +84,13 @@ void unPaddingCipher(const void *const data, const uint64_t dataLength)
     printf("\n\n************************************\n\n");
 }
 static int decrypt_input_cbc(uint8_t *in)
-{   
+{   for (uint8_t i = 0; i < 90; i++)
+    {
+     printf("%x", in[i]);
+     ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+    }
+
+
     //extractFlags();
     uint8_t startFlag[4];
     uint8_t endflagFlag[5];
