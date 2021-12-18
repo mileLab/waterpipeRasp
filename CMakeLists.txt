@@ -17,9 +17,9 @@ target_sources(${PROJECT_NAME}
     PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/aes.c
         ${CMAKE_CURRENT_LIST_DIR}/PKSC7.c
-        ${CMAKE_CURRENT_LIST_DIR}/randomization.c
+       
     INTERFACE
-        ${CMAKE_CURRENT_LIST_DIR}/randomization.h
+       
         ${CMAKE_CURRENT_LIST_DIR}/PKSC7.h
         ${CMAKE_CURRENT_LIST_DIR}/aes.h
          ${CMAKE_CURRENT_LIST_DIR}/aes.hpp)
