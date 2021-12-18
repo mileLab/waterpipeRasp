@@ -299,7 +299,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
     }
     for (size_t i = 20; i < 53; i++)
     {
-        encryptedPaket[i] = in[i - 20];
+        encryptedPaket[i] = ptrToPaddingDataResult2[i - 20];
     }
     
    
