@@ -12,7 +12,7 @@
 #include "PKSC7.h"
 
 uint8_t *encryptBuffer[32];
-uint8_t encryptedPaket[89];
+uint8_t encryptedPaket[57];
 static void phex(uint8_t *str);
 uint8_t *decrpytBuffer[32];
 uint8_t *ptrToPaddingDataResultBuffer[32];
