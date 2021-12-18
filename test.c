@@ -11,7 +11,7 @@
 #include "aes.h"
 #include "PKSC7.h"
 
-uint8_t *encryptBuffer[64];
+uint8_t *encryptBuffer[32];
 uint8_t encryptedPaket[89];
 static void phex(uint8_t *str);
 uint8_t *decrpytBuffer[64];
@@ -258,7 +258,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
       uint8_t *ptrToPaddingDataResult2 = structWithPaddingResult->dataWithPadding;
      for (uint8_t i = 0; i < 32; i++)
     {
-        printf("%x", ptrToPaddingDataResult2[i]);
+        printf("%x", encryptBuffer[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
      printf("\n\n************************************\n");
