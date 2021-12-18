@@ -126,7 +126,7 @@ static int decrypt_input_cbc(uint8_t *in)
     } 
       printf("\n************************************\n");
     printf("\n>IV:\n\n");
-    for (uint8_t i = 0; i < 6; i++)
+    for (uint8_t i = 0; i < 16; i++)
     {
      printf("%x", Decryptiv[i]);
      ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
@@ -136,9 +136,6 @@ static int decrypt_input_cbc(uint8_t *in)
     {
         cipher[i-20] = in[i];
     }
- 
-
-
 
     size_t n = sizeof(in);
     int testNumber = 1;
