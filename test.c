@@ -54,8 +54,7 @@ void PaddingPlainText(const uint8_t *const plainTextData, const uint16_t dataBit
     
     printf("\n\n************************************\n");
     printf("\nblock size(size is %i bytes):\n\n", BLOCK_SIZE);
-    structWithPaddingResult = addPadding(testData, testDataLength, BLOCK_SIZE);
-    uint8_t *ptrToPaddingDataResult = structWithPaddingResult->dataWithPadding;
+    structWithPaddingResult = addPadding(testData, testDataLength, BLOCK_SIZE); uint8_t *ptrToPaddingDataResult = structWithPaddingResult->dataWithPadding;
     uint8_t *ptrToPaddingDataResult = structWithPaddingResult->dataWithPadding;
     printf("\n Add PADDING (size is %li bytes):\n\n", structWithPaddingResult->dataLengthWithPadding);
     
