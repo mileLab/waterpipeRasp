@@ -252,7 +252,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
     
     printf("\n\n************************************\n");
     printf("Final message\n");
-    for (uint8_t i = 0; i < nTest; i++)
+    for (uint8_t i = 0; i < 90; i++)
     {
      printf("%x", encryptedPaket[i]);
      ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
