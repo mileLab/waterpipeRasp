@@ -200,17 +200,16 @@ static char *random_string(char *str, size_t size)
 }
 
 void calculateIV(){
-    int iv_len;
-    iv_len = 16;
-    random_string(iv, iv_len);
+  
 
 }
 
 static uint8_t encrypt_cbc(uint8_t *in)
 {
 
-    calculateIV();
-   
+    int iv_len;
+    iv_len = 16;
+    random_string(iv, iv_len);
     uint8_t nTest = sizeof(in);
     uint8_t blockSize = 256 / 8;
 
