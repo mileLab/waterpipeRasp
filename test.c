@@ -160,7 +160,7 @@ static int decrypt_input_cbc(uint8_t *in)
     AES_CBC_decrypt_buffer(&ctx, cipher, 64);
     if (testNumber == 1)
     {
-        removePadding(cipher,cipherLength)
+        removePadding(cipher,cipherLength);
         printf("remove padding");
     }
     printf("\nTest with decrptBuffer!\n");
