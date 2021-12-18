@@ -12,7 +12,7 @@
 #include "PKSC7.h"
 
 uint8_t *encryptBuffer[32];
-uint8_t encryptedPaket2[32];
+uint8_t encryptedPaket2[48];
 uint8_t encryptedPaket[57];
 static void phex(uint8_t *str);
 uint8_t *decrpytBuffer[32];
@@ -124,7 +124,7 @@ static int decrypt_input_cbc(uint8_t *in)
 
     for (size_t i = 4; i < 20; i++)
     {
-        Decryptiv[i - 4] = in[i];
+        Decryptiv[i - 4] = in[i-4];
     }
     printf("\n************************************\n");
     printf("\n>IV:\n\n");
@@ -169,7 +169,7 @@ static int decrypt_input_cbc(uint8_t *in)
     }
     printf("\n************************************\n");
 
-    AES_init_ctx_iv(&ctx, key, iv);
+    AES_init_ctx_iv(&ctx, key, Decryptiv);
     AES_CBC_decrypt_buffer(&ctx, encryptedPaket2, 32);
     if (testNumber == 1)
     {   printf("\n************************************\n");
@@ -317,11 +317,12 @@ static uint8_t encrypt_cbc(uint8_t *in)
     for (size_t i = 4; i < 20; i++)
     {
         encryptedPaket[i] = iv[i - 4];
+        encryptedPaket2[i-4] = iv[i - 4];
     }
     for (size_t i = 20; i < 58; i++)
     {
         encryptedPaket[i] = ptrToPaddingDataResult2[i - 20];
-        encryptedPaket2[i-20] = ptrToPaddingDataResult2[i - 20];
+        encryptedPaket2[i-4] = ptrToPaddingDataResult2[i - 20];
     }
     
     printf("\n\n************************************\n");
