@@ -14,7 +14,7 @@
 uint8_t *encryptBuffer[64];
 uint8_t *encryptedPaket[89];
 static void phex(uint8_t *str);
-uint8_t decrpytBuffer[64];
+uint8_t *decrpytBuffer[64];
 uint8_t* iv[16]; //128 bitinitialization vector
 uint8_t* Decryptiv[16]; //128 bitinitialization vector
 static int test_encrypt_cbc(void);
@@ -89,24 +89,26 @@ static int decrypt_input_cbc(uint8_t *in)
     uint8_t startFlag[4];
     uint8_t endflagFlag[5];
 
+
     for(int i=0; i<4; i++){
-         startFlag[] = in[i];
+         startFlag[i] = in[i];
     }
 
     for(int i=85; i<90; i++){
-         endflagFlag[] = in[i];
+         endflagFlag[i] = in[i];
     }
 
-    
-
-    for (size_t i = 2; i <17; i++)
+   for (size_t i = 4; i <20; i++)
     {
         Decryptiv[i] = in[i];
     } 
-    for (size_t i = 17; i < 81; i++)
+    for (size_t i = 20; i < 85; i++)
     {
         in[i] = in[i];
     }
+ 
+
+
 
     size_t n = sizeof(in);
     int testNumber = 1;
