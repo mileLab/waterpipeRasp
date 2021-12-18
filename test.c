@@ -84,7 +84,7 @@ static int decrypt_input_cbc(uint8_t *in)
     //extractFlags();
     uint8_t startFlag[4];
     uint8_t endflagFlag[5];
-    uint8_t cipher[32]
+    uint8_t cipher[32];
 
     for (int i = 0; i < 4; i++)
     {
