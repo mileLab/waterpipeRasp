@@ -167,6 +167,11 @@ static int decrypt_input_cbc(uint8_t *in)
     if (0 == memcmp((char *)out2, (char *)decrpytBuffer, 64))
     {
         printf("SUCCESS in decryptBuffer!\n");
+    for (uint8_t i = 0; i < 16; i++)
+    {
+        printf("%x", decrpytBuffer[i]);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+    }
         return (0);
     }
 }
