@@ -163,6 +163,23 @@ static int decrypt_input_cbc(uint8_t *in)
     }
 }
 
+
+
+// function for randomization
+int rand_comparison(const void *a, const void *b)
+{
+    (void)a;
+    (void)b;
+
+    return rand() % 2 ? +1 : -1;
+    ;
+}
+// added seed for randomizaiton (no secure random function)
+void shuffle(void *base, size_t nmemb, size_t size)
+{
+    qsort(base, nmemb, size, rand_comparison);
+}
+
 // final randomfunction 
 static char *random_string(char *str, size_t size)
 {
@@ -278,18 +295,3 @@ static uint8_t encrypt_cbc(uint8_t *in)
 }
 
 
-
-// function for randomization
-int rand_comparison(const void *a, const void *b)
-{
-    (void)a;
-    (void)b;
-
-    return rand() % 2 ? +1 : -1;
-    ;
-}
-// added seed for randomizaiton (no secure random function)
-void shuffle(void *base, size_t nmemb, size_t size)
-{
-    qsort(base, nmemb, size, rand_comparison);
-}
