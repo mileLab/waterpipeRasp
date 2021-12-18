@@ -108,7 +108,7 @@ static int decrypt_input_cbc(uint8_t *in)
     }
     printf("end of endflag \n");
     for(int i=85; i<90; i++){
-         endflagFlag[i] = in[i];
+         endflagFlag[i-85] = in[i];
     }
 
 
@@ -122,7 +122,7 @@ static int decrypt_input_cbc(uint8_t *in)
 
    for (size_t i = 4; i <20; i++)
     {
-        Decryptiv[i] = in[i];
+        Decryptiv[i-4] = in[i];
     } 
       printf("\n************************************\n");
     printf("\n>IV:\n\n");
@@ -134,7 +134,7 @@ static int decrypt_input_cbc(uint8_t *in)
 
     for (size_t i = 20; i < 85; i++)
     {
-        cipher[i] = in[i];
+        cipher[i-20] = in[i];
     }
  
 
