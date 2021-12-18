@@ -54,7 +54,14 @@ void PaddingPlainText(const uint8_t *const plainTextData, const uint16_t dataBit
     printf("\n\n************************************\n");
     printf("\nblock size(size is %i bytes):\n\n", BLOCK_SIZE);
     structWithPaddingResult = addPadding(testData, testDataLength, BLOCK_SIZE);
-    //uint8_t *ptrToPaddingDataResult = structWithPaddingResult->dataWithPadding;
+    uint8_t *ptrToPaddingDataResult = structWithPaddingResult->dataWithPadding;
+    printf("\n Add PADDING (size is %li bytes):\n\n", structWithPaddingResult->dataLengthPadding);
+    for (uint16_t i = 0; i < structWithPaddingResult->dataLengthPadding; i++)
+    {
+        printf("%x", *ptrToUnpaddingDataResult);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+        ptrToUnpaddingDataResult++;
+    } 
     
 }
 //// Function to remove PKSC7 Padding
