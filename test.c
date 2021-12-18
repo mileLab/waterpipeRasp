@@ -230,16 +230,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
         encryptBuffer[i] = in[i];
     }
     printf("CBC encrypt: ");
-    if (0 == memcmp((char *)out, (char *)in, 64))
-    {
-        printf("SUCCESS!\n");
-        return (0);
-    }
-    else
-    {
-        printf("FAILURE!\n");
-        return (1);
-    }
+   
     
     encryptedPaket[0] = 0x79; //Start flag 
     encryptedPaket[1] = 0x3a; //
@@ -268,6 +259,16 @@ static uint8_t encrypt_cbc(uint8_t *in)
     }
     printf("end of encrypt function\n");
     printf("\n\n************************************\n");
+     if (0 == memcmp((char *)out, (char *)in, 64))
+    {
+        printf("SUCCESS!\n");
+        return (0);
+    }
+    else
+    {
+        printf("FAILURE!\n");
+        return (1);
+    }
 }
 
 
