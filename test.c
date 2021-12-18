@@ -15,6 +15,8 @@ uint8_t *encryptBuffer[64];
 uint8_t encryptedPaket[89];
 static void phex(uint8_t *str);
 uint8_t *decrpytBuffer[64];
+uint8_t *ptrToPaddingDataResultBuffer[64];
+PKCS7_Padding *structWithPaddingResult;
 uint8_t iv[16];         //128 bitinitialization vector
 uint8_t *Decryptiv[16]; //128 bitinitialization vector
 static int test_encrypt_cbc(void);
@@ -56,8 +58,9 @@ void PaddingPlainText(const uint8_t *const plainTextData, const uint16_t dataBit
     }
     printf("\n\n************************************\n");
     printf("\nblock size(size is %i bytes):\n\n", BLOCK_SIZE);
-    PKCS7_Padding *structWithPaddingResult = addPadding(testData, testDataLength, BLOCK_SIZE);
+    structWithPaddingResult = addPadding(testData, testDataLength, BLOCK_SIZE);
     uint8_t *ptrToPaddingDataResult = structWithPaddingResult->dataWithPadding;
+    
     printf("\nWITH PADDING (now size is %li bytes):\n\n", structWithPaddingResult->dataLengthWithPadding);
     for (uint16_t i = 0; i < structWithPaddingResult->dataLengthWithPadding; i++)
     {
