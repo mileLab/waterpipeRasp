@@ -177,7 +177,7 @@ static int decrypt_input_cbc(uint8_t *in)
     {   printf("\n************************************\n");
          for (uint8_t i = 0; i < 32; i++)
     {
-        printf("%x", cipher[i]);
+        printf("%x", encryptedPaket2[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
         //removePadding(cipher,cipherLength);
