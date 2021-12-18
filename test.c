@@ -279,7 +279,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
     }
     for (size_t i = 20; i < 85; i++)
     {
-        encryptedPaket[i] = in[i];
+        encryptedPaket[i] = in[i-20];
     }
     
     printf("\n\n************************************\n");
