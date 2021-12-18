@@ -140,10 +140,8 @@ static int decrypt_input_cbc(uint8_t *in)
 
     size_t n = sizeof(in);
     int testNumber = 1;
-    if (testNumber == 1)
-    {
-        printf("remove padding");
-    }
+     uint8_t cipherLength = sizeof(cipher);
+   
     for (size_t i = 0; i < 64; i++)
     {
         decrpytBuffer[i] = encryptBuffer[i];
@@ -159,8 +157,12 @@ static int decrypt_input_cbc(uint8_t *in)
     struct AES_ctx ctx;
 
     AES_init_ctx_iv(&ctx, key, iv);
-    AES_CBC_decrypt_buffer(&ctx, decrpytBuffer, 64);
-
+    AES_CBC_decrypt_buffer(&ctx, cipher, 64);
+    if (testNumber == 1)
+    {
+        removePadding(cipher,cipherLength)
+        printf("remove padding");
+    }
     printf("\nTest with decrptBuffer!\n");
     if (0 == memcmp((char *)out2, (char *)decrpytBuffer, 64))
     {
