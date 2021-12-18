@@ -214,7 +214,10 @@ void calculateIV(uint8_t* iv){
 
 static uint8_t encrypt_cbc(uint8_t *in)
 {
-    calculateIV(iv);
+    int iv_len;
+    iv_len = 16;
+    random_string(iv, iv_len);
+    //calculateIV(iv);
     for (size_t i = 0; i <16; i++)
     {
     printf("%x", iv[i]);
