@@ -275,7 +275,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
     }
     
     AES_init_ctx_iv(&ctx, key, iv);
-    AES_CBC_encrypt_buffer(&ctx, in, 64);
+    AES_CBC_encrypt_buffer(&ctx, encryptBuffer, 64);
 
 
 
