@@ -225,10 +225,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
     uint8_t key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
     AES_init_ctx_iv(&ctx, key, iv);
     AES_CBC_encrypt_buffer(&ctx, in, 64);
-    for (size_t i = 0; i < 64; i++)
-    {
-        encryptBuffer[i] = in[i];
-    }
+    
     printf("CBC encrypt: ");
    
     
@@ -241,6 +238,15 @@ static uint8_t encrypt_cbc(uint8_t *in)
     encryptedPaket[87] = 0x35; //
     encryptedPaket[88] = 0x2f; //
     encryptedPaket[89] = 0x3d; //
+
+    printf("\n\n************************************\n");
+    printf("IV\n");
+    for (size_t i = 0; i <16; i++)
+    {
+    printf("%x", iv[i]);
+     ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+     }
+      printf("\n\n************************************\n");
     for (size_t i = 4; i <20; i++)
     {
         encryptedPaket[i] = iv[i];
