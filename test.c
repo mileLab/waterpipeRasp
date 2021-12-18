@@ -14,8 +14,8 @@
 uint8_t *encryptBuffer[32];
 uint8_t encryptedPaket[57];
 static void phex(uint8_t *str);
-uint8_t *decrpytBuffer[64];
-uint8_t *ptrToPaddingDataResultBuffer[64];
+uint8_t *decrpytBuffer[32];
+uint8_t *ptrToPaddingDataResultBuffer[32];
 PKCS7_Padding *structWithPaddingResult;
 PKCS7_unPadding *structWithUnpaddingResult;
 uint8_t iv[16];         //128 bitinitialization vector
@@ -242,7 +242,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
     calculateIV(iv);
     uint8_t nTest = sizeof(in);
     uint8_t blockSize = 256 / 8;
-    uint8_t paddedBuffer[64];
+    
 
    /*Ä printf("\n************************************\n");
     printf("\nORIGINAL DATA (size is %i bytes) before Padding:\n\n", nTest);
