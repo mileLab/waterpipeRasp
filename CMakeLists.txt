@@ -5,7 +5,8 @@ project (waterpipe C CXX ASM)
 add_executable( waterpipe 
                 waterpipe.c
                 aes.c
-                PKSC7.c)
+                PKSC7.c
+                randomization.c)
 
 
 target_link_libraries(  waterpipe
@@ -16,7 +17,9 @@ target_sources(${PROJECT_NAME}
     PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/aes.c
         ${CMAKE_CURRENT_LIST_DIR}/PKSC7.c
+        ${CMAKE_CURRENT_LIST_DIR}/randomization.c
     INTERFACE
+        ${CMAKE_CURRENT_LIST_DIR}/randomization.h
         ${CMAKE_CURRENT_LIST_DIR}/PKSC7.h
         ${CMAKE_CURRENT_LIST_DIR}/aes.h
          ${CMAKE_CURRENT_LIST_DIR}/aes.hpp)
