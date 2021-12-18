@@ -15,7 +15,7 @@ uint8_t *encryptBuffer[64];
 uint8_t *encryptedPaket[89];
 static void phex(uint8_t *str);
 uint8_t *decrpytBuffer[64];
-uint8_t* iv[16]; //128 bitinitialization vector
+uint8_t iv[16]; //128 bitinitialization vector
 uint8_t* Decryptiv[16]; //128 bitinitialization vector
 static int test_encrypt_cbc(void);
 static int test_decrypt_cbc(void);
