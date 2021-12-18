@@ -272,8 +272,9 @@ static uint8_t encrypt_cbc(uint8_t *in)
     printf("IV\n");
     
     for (size_t i = 4; i <20; i++)
-    {
-        encryptedPaket[i] = iv[i];
+    {   size_t count=0;
+        encryptedPaket[i] = iv[count];
+        count++;
     }
     for (size_t i = 20; i < 85; i++)
     {
