@@ -281,7 +281,14 @@ static uint8_t encrypt_cbc(uint8_t *in)
     {
         encryptedPaket[i] = in[i-20];
     }
-    
+    printf("\n\n************************************\n");
+    printf("Final message\n");
+    for (uint8_t i = 0; i < 64; i++)
+    {
+     printf("%x", in[i]);
+     ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+    }
+
     printf("\n\n************************************\n");
     printf("Final message\n");
     for (uint8_t i = 0; i < 90; i++)
