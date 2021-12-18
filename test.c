@@ -55,12 +55,12 @@ void PaddingPlainText(const uint8_t *const plainTextData, const uint16_t dataBit
     printf("\nblock size(size is %i bytes):\n\n", BLOCK_SIZE);
     structWithPaddingResult = addPadding(testData, testDataLength, BLOCK_SIZE);
     uint8_t *ptrToPaddingDataResult = structWithPaddingResult->dataWithPadding;
-    printf("\n Add PADDING (size is %li bytes):\n\n", structWithPaddingResult->dataLengthPadding);
-    for (uint16_t i = 0; i < structWithPaddingResult->dataLengthPadding; i++)
+    printf("\n Add PADDING (size is %li bytes):\n\n", structWithPaddingResult->dataLengthWithPadding);
+    for (uint16_t i = 0; i < structWithPaddingResult->dataLengthWithPadding; i++)
     {
-        printf("%x", *ptrToUnpaddingDataResult);
+        printf("%x", *ptrToPaddingDataResult);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-        ptrToUnpaddingDataResult++;
+        ptrToPaddingDataResult++;
     } 
     
 }
