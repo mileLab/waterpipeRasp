@@ -1,6 +1,6 @@
 #ifndef PKCS7_H
 #define PKCS7_H
-
+#include "randomization.h"
 /* 
     Examples of commonly used block sizes for data padding.
     WARNING: block size for PKCS7 padding can be 0 < BLOCK_SIZE < 256 bytes.

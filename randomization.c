@@ -1,3 +1,4 @@
+#include "randomization.h"
 #include <stdlib.h>
 
 // function for randomization
