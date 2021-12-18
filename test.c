@@ -294,7 +294,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
     for (uint8_t i = 0; i < 32; i++)
     {
         printf("%x", in[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+        
     }
     
 
