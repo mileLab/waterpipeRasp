@@ -252,10 +252,11 @@ static uint8_t encrypt_cbc(uint8_t *in)
     printf("\n\n************************************\n");
     printf("START ENCRYPTION\n");
     printf("\n\n************************************\n");
-    memcpy((char *)encryptBuffer, (char *)structWithPaddingResult->dataWithPadding, structWithPaddingResult->dataLengthWithPadding);
+    uint8_t *ptrToPaddingDataResult2 = structWithPaddingResult->dataWithPadding;
+    memcpy((char *)encryptBuffer, (char *)ptrToPaddingDataResult2, 32);
     struct AES_ctx ctx;
     uint8_t key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
-      uint8_t *ptrToPaddingDataResult2 = structWithPaddingResult->dataWithPadding;
+      
      for (uint8_t i = 0; i < 32; i++)
     {
         printf("%x", encryptBuffer[i]);
