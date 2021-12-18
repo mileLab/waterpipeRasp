@@ -15,8 +15,8 @@ uint8_t *encryptBuffer[64];
 uint8_t encryptedPaket[89];
 static void phex(uint8_t *str);
 uint8_t *decrpytBuffer[64];
-uint8_t iv[16]; //128 bitinitialization vector
-uint8_t* Decryptiv[16]; //128 bitinitialization vector
+uint8_t iv[16];         //128 bitinitialization vector
+uint8_t *Decryptiv[16]; //128 bitinitialization vector
 static int test_encrypt_cbc(void);
 static int test_decrypt_cbc(void);
 
@@ -66,7 +66,7 @@ void PaddingPlainText(const uint8_t *const plainTextData, const uint16_t dataBit
         ptrToPaddingDataResult++;
     }
 }
-//// Function to remove PKSC7 Padding 
+//// Function to remove PKSC7 Padding
 void unPaddingCipher(const void *const data, const uint64_t dataLength)
 {
     printf("\n************************************\n");
@@ -84,57 +84,58 @@ void unPaddingCipher(const void *const data, const uint64_t dataLength)
     printf("\n\n************************************\n\n");
 }
 static int decrypt_input_cbc(uint8_t *in)
-{   for (uint8_t i = 0; i < 90; i++)
+{
+    for (uint8_t i = 0; i < 90; i++)
     {
-     printf("%x", in[i]);
-     ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+        printf("%x", in[i]);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
-
 
     //extractFlags();
     uint8_t startFlag[4];
     uint8_t endflagFlag[5];
-    uint8_t cipher[64]; 
+    uint8_t cipher[64];
 
-    for(int i=0; i<4; i++){
-         startFlag[i] = in[i];
+    for (int i = 0; i < 4; i++)
+    {
+        startFlag[i] = in[i];
     }
-     printf("\n************************************\n");
+    printf("\n************************************\n");
     printf("\nStartFlag:\n\n");
     for (uint8_t i = 0; i < 5; i++)
     {
-     printf("%x", startFlag[i]);
-     ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+        printf("%x", startFlag[i]);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
     printf("end of endflag \n");
-    for(int i=85; i<90; i++){
-         endflagFlag[i-85] = in[i];
+    for (int i = 85; i < 90; i++)
+    {
+        endflagFlag[i - 85] = in[i];
     }
 
-
-      printf("\n************************************\n");
+    printf("\n************************************\n");
     printf("\n>EndFlag:\n\n");
     for (uint8_t i = 0; i < 6; i++)
     {
-     printf("%x", endflagFlag[i]);
-     ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+        printf("%x", endflagFlag[i]);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
 
-   for (size_t i = 4; i <20; i++)
+    for (size_t i = 4; i < 20; i++)
     {
-        Decryptiv[i-4] = in[i];
-    } 
-      printf("\n************************************\n");
+        Decryptiv[i - 4] = in[i];
+    }
+    printf("\n************************************\n");
     printf("\n>IV:\n\n");
     for (uint8_t i = 0; i < 16; i++)
     {
-     printf("%x", Decryptiv[i]);
-     ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+        printf("%x", Decryptiv[i]);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
 
     for (size_t i = 20; i < 85; i++)
     {
-        cipher[i-20] = in[i];
+        cipher[i - 20] = in[i];
     }
 
     size_t n = sizeof(in);
@@ -181,69 +182,67 @@ void shuffle(void *base, size_t nmemb, size_t size)
     qsort(base, nmemb, size, rand_comparison);
 }
 
-// final randomfunction 
+// final randomfunction
 static char *random_string(char *str, size_t size)
 {
-  const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-  int i, n;
-  n = 0;
+    int i, n;
+    n = 0;
 
-  for (i = 0; n < size; n++)
-  { 
-    shuffle(charset, (int) (sizeof charset), sizeof(char));
-    printf("%d\n", rand() % (int) (sizeof charset - 1));
-    int key = rand() % (int) (sizeof charset - 1);
-    str[n] = charset[key];
-  }
+    for (i = 0; n < size; n++)
+    {
+        shuffle(charset, (int)(sizeof charset), sizeof(char));
+        printf("%d\n", rand() % (int)(sizeof charset - 1));
+        int key = rand() % (int)(sizeof charset - 1);
+        str[n] = charset[key];
+    }
 
-  str[size] = '\0';
+    str[size] = '\0';
 
-  return str;
+    return str;
 }
 
-void calculateIV(uint8_t* iv){
-   int iv_len;
+void calculateIV(uint8_t *iv)
+{
+    int iv_len;
     iv_len = 16;
     random_string(iv, iv_len);
-      printf("\n\n************************************\n");
+    printf("\n\n************************************\n");
     for (uint8_t i = 0; i < 16; i++)
     {
         printf("%x", iv[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
+    return 0;
     printf("\n\n************************************\n");
 }
 
 static uint8_t encrypt_cbc(uint8_t *in)
 {
-    int iv_len;
+  /* int iv_len;
     iv_len = 16;
-    random_string(iv, iv_len);
-    //calculateIV(iv);
-    for (size_t i = 0; i <16; i++)
-    {
-    printf("%x", iv[i]);
-     ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-     }
-      printf("\n\n************************************\n");
-   
+    random_string(iv, iv_len); */
+    calculateIV(iv);
     uint8_t nTest = sizeof(in);
     uint8_t blockSize = 256 / 8;
 
-    printf("\n************************************\n");
+   /*Ä printf("\n************************************\n");
     printf("\nORIGINAL DATA (size is %i bytes) before Padding:\n\n", nTest);
     for (uint8_t i = 0; i < nTest; i++)
     {
         printf("%x", in[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
-    printf("Blocksize is: %d", blockSize);
-    printf("\n\n************************************\n");
+
+     printf("\n\n************************************\n");
+    printf("Startpadding Blocksize  is: %d", blockSize);
+   */
     if (sizeof(in) < blockSize)
     {
         PaddingPlainText(in, nTest, blockSize);
     }
+     printf("\n\n************************************\n");
     //https://github.com/GRISHNOV/PKCS7-Padding/blob/master/src/PKCS7.c
 
     uint8_t out[] = {0x76, 0x49, 0xab, 0xac, 0x81, 0x19, 0xb2, 0x46, 0xce, 0xe9, 0x8e, 0x9b, 0x12, 0xe9, 0x19, 0x7d,
@@ -251,57 +250,47 @@ static uint8_t encrypt_cbc(uint8_t *in)
                      0x73, 0xbe, 0xd6, 0xb8, 0xe3, 0xc1, 0x74, 0x3b, 0x71, 0x16, 0xe6, 0x9e, 0x22, 0x22, 0x95, 0x16,
                      0x3f, 0xf1, 0xca, 0xa1, 0x68, 0x1f, 0xac, 0x09, 0x12, 0x0e, 0xca, 0x30, 0x75, 0x86, 0xe1, 0xa7};
     printf("\n\n************************************\n");
-    printf("encrypt function cbc start\n");
+    printf("START ENCRYPTION\n");
+    printf("\n\n************************************\n");
     memcpy((char *)encryptBuffer, (char *)in, sizeof(encryptBuffer));
     struct AES_ctx ctx;
     uint8_t key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
     AES_init_ctx_iv(&ctx, key, iv);
     AES_CBC_encrypt_buffer(&ctx, in, 64);
-    
-    printf("CBC encrypt: ");
-   
-    
-    encryptedPaket[0] = 0x79; //Start flag 
-    encryptedPaket[1] = 0x3a; //
-    encryptedPaket[2] = 0x2f; //
-    encryptedPaket[3] = 0x3d; // Assci y:
+
+
+
+    encryptedPaket[0] = 0x79;  //Start flag
+    encryptedPaket[1] = 0x3a;  //
+    encryptedPaket[2] = 0x2f;  //
+    encryptedPaket[3] = 0x3d;  // Assci y:
     encryptedPaket[85] = 0x32; // End Flag
     encryptedPaket[86] = 0x35; //
     encryptedPaket[87] = 0x35; //
     encryptedPaket[88] = 0x2f; //
     encryptedPaket[89] = 0x3d; //
 
-    printf("\n\n************************************\n");
-    printf("IV\n");
-    
-    for (size_t i = 4; i <20; i++)
-    {   
-        
-        encryptedPaket[i] = iv[i-4];
-     
+    for (size_t i = 4; i < 20; i++)
+    {
+        encryptedPaket[i] = iv[i - 4];
     }
     for (size_t i = 20; i < 85; i++)
     {
-        encryptedPaket[i] = in[i-20];
+        encryptedPaket[i] = in[i - 20];
     }
+    
+   
     printf("\n\n************************************\n");
-    printf("Final message\n");
-    for (uint8_t i = 0; i < 64; i++)
-    {
-     printf("%x", in[i]);
-     ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
-
-    printf("\n\n************************************\n");
-    printf("Final message\n");
+    printf("Final Paket which will be send:\n");
     for (uint8_t i = 0; i < 90; i++)
     {
-     printf("%x", encryptedPaket[i]);
-     ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+        printf("%x", encryptedPaket[i]);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
+    printf("\n\n************************************\n");
     printf("end of encrypt function\n");
     printf("\n\n************************************\n");
-     if (0 == memcmp((char *)out, (char *)in, 64))
+    if (0 == memcmp((char *)out, (char *)in, 64))
     {
         printf("SUCCESS!\n");
         return (0);
@@ -312,5 +301,3 @@ static uint8_t encrypt_cbc(uint8_t *in)
         return (1);
     }
 }
-
-
