@@ -203,16 +203,24 @@ void calculateIV(uint8_t* iv){
    int iv_len;
     iv_len = 16;
     random_string(iv, iv_len);
+      printf("\n\n************************************\n");
     for (uint8_t i = 0; i < 16; i++)
     {
         printf("%x", iv[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
+    printf("\n\n************************************\n");
 }
 
 static uint8_t encrypt_cbc(uint8_t *in)
 {
     calculateIV(iv);
+    for (size_t i = 0; i <16; i++)
+    {
+    printf("%x", iv[i]);
+     ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+     }
+      printf("\n\n************************************\n");
    
     uint8_t nTest = sizeof(in);
     uint8_t blockSize = 256 / 8;
@@ -259,12 +267,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
 
     printf("\n\n************************************\n");
     printf("IV\n");
-    for (size_t i = 0; i <16; i++)
-    {
-    printf("%x", iv[i]);
-     ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-     }
-      printf("\n\n************************************\n");
+    
     for (size_t i = 4; i <20; i++)
     {
         encryptedPaket[i] = iv[i];
