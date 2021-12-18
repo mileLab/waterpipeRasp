@@ -235,6 +235,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
     calculateIV(iv);
     uint8_t nTest = sizeof(in);
     uint8_t blockSize = 256 / 8;
+    uint8_t paddedBuffer[64];
 
    /*Ä printf("\n************************************\n");
     printf("\nORIGINAL DATA (size is %i bytes) before Padding:\n\n", nTest);
@@ -261,7 +262,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
     printf("\n\n************************************\n");
     printf("START ENCRYPTION\n");
     printf("\n\n************************************\n");
-    memcpy((char *)encryptBuffer, (char *)in, sizeof(encryptBuffer));
+    memcpy((char *)encryptBuffer, (char *)ptrToPaddingDataResult, sizeof(encryptBuffer));
     struct AES_ctx ctx;
     uint8_t key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
     for (uint8_t i = 0; i < 64; i++)
