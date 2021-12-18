@@ -143,17 +143,18 @@ static int decrypt_input_cbc(uint8_t *in)
     uint8_t out2[] = {0xff, 0xfe, 0xfd, 0xfc,0xfb, 0xfa, 0xf9, 0xf8};
    
     struct AES_ctx ctx;
+    printf("\n************************************\n");
       for (uint8_t i = 0; i < 32; i++)
     {
         printf("%x", cipher[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
-
+    printf("\n************************************\n");
 
     AES_init_ctx_iv(&ctx, key, Decryptiv);
     AES_CBC_decrypt_buffer(&ctx, cipher, 32);
     if (testNumber == 1)
-    {   
+    {   printf("\n************************************\n");
          for (uint8_t i = 0; i < 32; i++)
     {
         printf("%x", cipher[i]);
