@@ -266,7 +266,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
    */
     if (sizeof(in) < blockSize)
     {
-        PaddingPlainText(in, nTest, blockSize);
+       // PaddingPlainText(in, nTest, blockSize);
     }
      printf("\n\n************************************\n");
     //https://github.com/GRISHNOV/PKCS7-Padding/blob/master/src/PKCS7.c
@@ -278,22 +278,22 @@ static uint8_t encrypt_cbc(uint8_t *in)
     printf("\n\n************************************\n");
     printf("START ENCRYPTION\n");
     printf("\n\n************************************\n");
-    ptrToPaddingDataResult2 = structWithPaddingResult->dataWithPadding;
+    //ptrToPaddingDataResult2 = structWithPaddingResult->dataWithPadding;
    
     struct AES_ctx ctx;
     uint8_t key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
       
-     for (uint8_t i = 0; i < 32; i++)
+   /*  for (uint8_t i = 0; i < 32; i++)
     {
         printf("%x", ptrToPaddingDataResult2[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
+    } */
      printf("\n\n************************************\n");
     AES_init_ctx_iv(&ctx, key, iv);
-    AES_CBC_encrypt_buffer(&ctx, ptrToPaddingDataResult2, 32);
+    AES_CBC_encrypt_buffer(&ctx, in, 32);
     for (uint8_t i = 0; i < 32; i++)
     {
-        printf("%x", ptrToPaddingDataResult2[i]);
+        printf("%x", in[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
     
@@ -315,7 +315,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
     }
     for (size_t i = 20; i < 85; i++)
     {
-        encryptedPaket[i] = ptrToPaddingDataResult2[i - 20];
+        encryptedPaket[i] = in[i - 20];
     }
     
    
