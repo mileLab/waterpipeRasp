@@ -49,25 +49,12 @@ void PaddingPlainText(const uint8_t *const plainTextData, const uint16_t dataBit
     uint8_t testDataLength = dataBitLength;
     uint8_t *testData = (uint8_t *)malloc(testDataLength);
     memcpy(testData, plainTextData, testDataLength);
-    printf("\n************************************\n");
-    printf("\nORIGINAL DATA (size is %i bytes):\n\n", testDataLength);
-    for (uint8_t i = 0; i < testDataLength; i++)
-    {
-        printf("%x", testData[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
+    
     printf("\n\n************************************\n");
     printf("\nblock size(size is %i bytes):\n\n", BLOCK_SIZE);
     structWithPaddingResult = addPadding(testData, testDataLength, BLOCK_SIZE);
-    uint8_t *ptrToPaddingDataResult = structWithPaddingResult->dataWithPadding;
+    //uint8_t *ptrToPaddingDataResult = structWithPaddingResult->dataWithPadding;
     
-    printf("\nWITH PADDING (now size is %li bytes):\n\n", structWithPaddingResult->dataLengthWithPadding);
-    for (uint16_t i = 0; i < structWithPaddingResult->dataLengthWithPadding; i++)
-    {
-        printf("%x", *ptrToPaddingDataResult);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-        ptrToPaddingDataResult++;
-    }
 }
 //// Function to remove PKSC7 Padding
 void unPaddingCipher(const void *const data, const uint64_t dataLength)
@@ -268,9 +255,10 @@ static uint8_t encrypt_cbc(uint8_t *in)
     memcpy((char *)encryptBuffer, (char *)structWithPaddingResult->dataWithPadding, sizeof(encryptBuffer));
     struct AES_ctx ctx;
     uint8_t key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
+      uint8_t *ptrToPaddingDataResult2 = structWithPaddingResult->dataWithPadding;
      for (uint8_t i = 0; i < 64; i++)
     {
-        printf("%x", structWithPaddingResult->dataWithPadding[i]);
+        printf("%x", ptrToPaddingDataResult2[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
     AES_init_ctx_iv(&ctx, key, iv);
