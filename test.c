@@ -253,7 +253,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
     printf("START ENCRYPTION\n");
     printf("\n\n************************************\n");
     uint8_t *ptrToPaddingDataResult2 = structWithPaddingResult->dataWithPadding;
-    memcpy(encryptBuffer, ptrToPaddingDataResult2, 32);
+   
     struct AES_ctx ctx;
     uint8_t key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
       
@@ -264,10 +264,10 @@ static uint8_t encrypt_cbc(uint8_t *in)
     }
      printf("\n\n************************************\n");
     AES_init_ctx_iv(&ctx, key, iv);
-    AES_CBC_encrypt_buffer(&ctx, encryptBuffer, 64);
+    AES_CBC_encrypt_buffer(&ctx, ptrToPaddingDataResult2, 64);
     for (uint8_t i = 0; i < 64; i++)
     {
-        printf("%x", encryptBuffer[i]);
+        printf("%x", ptrToPaddingDataResult2[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
     
