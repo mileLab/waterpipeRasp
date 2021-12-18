@@ -261,6 +261,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
         printf("%x", ptrToPaddingDataResult2[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
+     printf("\n\n************************************\n");
     AES_init_ctx_iv(&ctx, key, iv);
     AES_CBC_encrypt_buffer(&ctx, encryptBuffer, 64);
     for (uint8_t i = 0; i < 64; i++)
