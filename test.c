@@ -85,7 +85,7 @@ void unPaddingCipher(const void *const data, const uint64_t dataLength)
 }
 static int decrypt_input_cbc(uint8_t *in)
 {   
-    extractFlags();
+    //extractFlags();
     uint8_t startFlag[4];
     uint8_t endflagFlag[5];
 
