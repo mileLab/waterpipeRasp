@@ -165,8 +165,6 @@ static int decrypt_input_cbc(uint8_t *in)
     size_t n = sizeof(in);
     int testNumber = 1;
     uint8_t cipherLength = sizeof(cipher);
-    printf("\nCipgher lenght\n");
-    printf("%d", cipherLength);
   
     printf("decrypt function cbc start\n");
     uint8_t key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
@@ -178,14 +176,6 @@ static int decrypt_input_cbc(uint8_t *in)
     //uint8_t iv2[] = {0x6b, 0xc1, 0xbe, 0xe2, 0x2e, 0x40, 0x9f, 0x96, 0xe9, 0x3d, 0x7e, 0x11, 0x73, 0x93, 0x17, 0x2a,    };
 
     struct AES_ctx ctx;
-    printf("\n************************************\n");
-      for (uint8_t i = 0; i < 32; i++)
-    {
-        printf("%x", encryptedPaket2[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
-    printf("\n************************************\n");
-
     AES_init_ctx_iv(&ctx, key, iv);
     AES_CBC_decrypt_buffer(&ctx, cipher, 32);
     if (testNumber == 1)
