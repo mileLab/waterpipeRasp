@@ -127,7 +127,7 @@ static int decrypt_input_cbc(uint8_t *in)
     {
         Decryptiv[i - 4] = in[i-4];
     }
-     if (0 == memcmp(iv,Decryptiv, 16))
+     if (0 == memcmp((char *)iv,Decryptiv, 16))
     {
         printf("IV the same!\n");
     for (uint8_t i = 0; i < 16; i++)
@@ -199,6 +199,10 @@ static int decrypt_input_cbc(uint8_t *in)
         printf("remove padding");
     }
     memcmp((char *)iv, (char *)decrpytBuffer, 16); //copy Iv
+    if (0 == memcmp((char *)out2, (char *)decrpytBuffer, 32))
+    {
+        printf("SUCCESS in IV!\n");
+    }
     printf("\nTest with decrptBuffer!\n");
     if (0 == memcmp((char *)out2, (char *)decrpytBuffer, 32))
     {
