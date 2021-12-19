@@ -15,7 +15,7 @@ uint8_t *encryptBuffer[32];
 uint8_t encryptedPaket2[48];
 uint8_t encryptedPaket[57];
 static void phex(uint8_t *str);
-uint8_t *decrpytBuffer[32];
+uint8_t *decrpytBuffer[16];
 uint8_t *ptrToPaddingDataResultBuffer[32];
 PKCS7_Padding *structWithPaddingResult;
 PKCS7_unPadding *structWithUnpaddingResult;
@@ -127,7 +127,7 @@ static int decrypt_input_cbc(uint8_t *in)
     {
         Decryptiv[i - 4] = in[i-4];
     }
-     if (0 == memcmp((char *)iv, (char *)iv, 16))
+     if (0 == memcmp((char *)iv, (char *)decrpytBuffer, 16))
     {
         printf("IV the same!\n");
     for (uint8_t i = 0; i < 16; i++)
@@ -200,9 +200,11 @@ static int decrypt_input_cbc(uint8_t *in)
         printf("%x", encryptedPaket2[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
+
         //removePadding(cipher,cipherLength);
         printf("remove padding");
     }
+    memcmp((char *)iv, (char *)decrpytBuffer, 16);
     printf("\nTest with decrptBuffer!\n");
     if (0 == memcmp((char *)out2, (char *)decrpytBuffer, 32))
     {
