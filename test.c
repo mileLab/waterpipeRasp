@@ -101,7 +101,7 @@ static int decrypt_input_cbc(uint8_t *in)
     }
     for (int i = 53; i < 58; i++)
     {
-        endflagFlag[i - 58] = in[i];
+        endFlag[i - 58] = in[i];
     }
     /*
     printf("\n************************************\n");
