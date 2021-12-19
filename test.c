@@ -186,7 +186,7 @@ static int decrypt_input_cbc(uint8_t *in)
     }
     printf("\n************************************\n");
 
-    AES_init_ctx_iv(&ctx, key, Decryptiv);
+    AES_init_ctx_iv(&ctx, key, iv);
     AES_CBC_decrypt_buffer(&ctx, cipher, 32);
     if (testNumber == 1)
     {   printf("\n************************************\n");
