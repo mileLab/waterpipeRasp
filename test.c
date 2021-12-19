@@ -75,7 +75,7 @@ void unPaddingCipher(const void *const data, const uint64_t dataLength)
     printf("\nStart unpadding\n");
      printf("%d",dataLength*8);
     structWithUnpaddingResult = removePadding(data, dataLength*8);
-   /* uint8_t *ptrToUnpaddingDataResult = structWithUnpaddingResult->dataWithoutPadding;
+    uint8_t *ptrToUnpaddingDataResult = structWithUnpaddingResult->dataWithoutPadding;
 
     printf("\nREMOVE PADDING (size is %li bytes):\n\n", structWithUnpaddingResult->dataLengthWithoutPadding);
     for (uint16_t i = 0; i < structWithUnpaddingResult->dataLengthWithoutPadding; i++)
@@ -83,7 +83,7 @@ void unPaddingCipher(const void *const data, const uint64_t dataLength)
         printf("%x", *ptrToUnpaddingDataResult);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
         ptrToUnpaddingDataResult++;
-    } */
+    } 
     printf("\n\n************************************\n\n");
 }
 static int decrypt_input_cbc(uint8_t *in)
