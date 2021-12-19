@@ -346,6 +346,12 @@ static uint8_t encrypt_cbc(uint8_t *in)
     if (0 == memcmp((char *)iv, (char *)decrpytBuffer, 16))
     {
         printf("SUCCESS in IV!\n");
+    }else{
+        printf("False in IV!\n");
+       for (uint8_t i = 0; i < 16; i++)
+    {
+        printf("%x", decrpytBuffer[i]);
+    }
     }
     printf("\n\n************************************\n");
     printf("Final encryptedPaket2 which will be send:\n");
