@@ -152,7 +152,7 @@ static int decrypt_input_cbc(uint8_t *in)
 
     for (size_t i = 20; i < 53; i++)
     {
-        cipher[i - 20] = in[i];
+        cipher[i - 20] = in[i-4];
     }
     printf("\n************************************\n");
     printf("\n>decryption Cipher:\n\n");
