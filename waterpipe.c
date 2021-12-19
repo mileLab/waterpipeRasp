@@ -83,9 +83,9 @@ int main(void)
     // needed to test if padding is working
     uint8_t in2[8] = {0xff, 0xfe, 0xfd, 0xfc,0xfb, 0xfa, 0xf9, 0xf8};
   
-    encrypt_cbc(in2);
+    encrypt_cbc(in2,8);
     
-    decrypt_input_cbc(encryptedPaket2);
+    decrypt_input_cbc(encryptedPaket);
 
     //https://stackoverflow.com/questions/25360893/convert-char-to-uint8-t
 }

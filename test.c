@@ -95,11 +95,15 @@ static int decrypt_input_cbc(uint8_t *in)
     uint8_t endFlag[5];
     uint8_t cipher[32];
     uint8_t Decryptiv[16]; 
-   
-  /*  for (int i = 0; i < 4; i++)
+     for (int i = 0; i < 4; i++)
     {
         startFlag[i] = in[i];
     }
+    for (int i = 53; i < 58; i++)
+    {
+        endflagFlag[i - 58] = in[i];
+    }
+    /*
     printf("\n************************************\n");
     printf("\n Decryption StartFlag:\n\n");
     for (uint8_t i = 0; i < 5; i++)
@@ -124,7 +128,7 @@ static int decrypt_input_cbc(uint8_t *in)
     
     for (size_t i = 4; i < 20; i++)
     {
-        Decryptiv[i - 4] = in[i-4];
+        Decryptiv[i - 4] = in[i];
     }
      if (0 == memcmp((char *)iv,(char *)Decryptiv, 16))
     {
@@ -145,7 +149,7 @@ static int decrypt_input_cbc(uint8_t *in)
     // get Cipher text out of Paket (input)
     for (size_t i = 20; i < 53; i++)
     {
-        cipher[i - 20] = in[i-4];
+        cipher[i - 20] = in[i];
     }
 
     //size_t n = sizeof(in);
@@ -238,13 +242,11 @@ void calculateIV(uint8_t *iv)
     
 }
 
-static uint8_t encrypt_cbc(uint8_t *in)
+static uint8_t encrypt_cbc(uint8_t *in,uint8_t inputSize)
 {
   
     calculateIV(iv); // calculate IV everytime new for each run
-    uint8_t inputSize = sizeof(in)*sizeof(uint8_t);
-    printf("\n\nSize of INn");
-    printf("%d", sizeof(in));
+    
     uint8_t blockSize = 256 / 8;
     
 
