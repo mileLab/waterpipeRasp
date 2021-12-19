@@ -204,7 +204,7 @@ static int decrypt_input_cbc(uint8_t *in)
         //removePadding(cipher,cipherLength);
         printf("remove padding");
     }
-    memcmp((char *)iv, (char *)decrpytBuffer, 16);
+    memcmp(iv, decrpytBuffer, 16); //copy Iv
     printf("\nTest with decrptBuffer!\n");
     if (0 == memcmp((char *)out2, (char *)decrpytBuffer, 32))
     {
