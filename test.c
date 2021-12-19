@@ -138,7 +138,7 @@ static int decrypt_input_cbc(uint8_t *in)
         printf("%x", Decryptiv[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
-        return (0);
+      
     }else{
          printf("\nIDecrypton V not the same!\n");
     }
