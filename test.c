@@ -242,7 +242,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
 {
   
     calculateIV(iv); // calculate IV everytime new for each run
-    uint8_t inputSize = sizeof(in)/sizeof(uint8_t);
+    uint8_t inputSize = sizeof(in)*sizeof(uint8_t);
     printf("\n\nSize of INn");
     printf("%d", sizeof(in));
     uint8_t blockSize = 256 / 8;
