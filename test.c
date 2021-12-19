@@ -196,7 +196,7 @@ static int decrypt_input_cbc(uint8_t *in)
     printf("Decrpytion SUCCESS in decryptBuffer!\n");
     for (uint8_t i = 0; i < 8; i++)
     {
-        printf("%x", *ptrToPaddingDataResult3[i]);
+        printf("%x", ptrToPaddingDataResult3[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
         
