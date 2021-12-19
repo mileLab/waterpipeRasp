@@ -125,7 +125,7 @@ static int decrypt_input_cbc(uint8_t *in)
     
     for (size_t i = 4; i < 20; i++)
     {
-        Decryptiv[i - 4] = in[i];
+        Decryptiv[i - 4] = in[i-4];
     }
      if (0 == memcmp((char *)iv,(char *)Decryptiv, 16))
     {
