@@ -183,13 +183,9 @@ static int decrypt_input_cbc(uint8_t *in)
     if (testNumber == 1)
     {   printf("\n************************************\n");
     printf("\nRemove Padding\n");
-         for (uint8_t i = 0; i < 32; i++)
-    {
-        printf("%x", cipher[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
+   
 
-        //removePadding(cipher,cipherLength);
+        removePadding(cipher,cipherLength);
         printf("Decrpytion remove padding");
     }
    
