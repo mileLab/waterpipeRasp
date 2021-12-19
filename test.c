@@ -141,10 +141,10 @@ static int decrypt_input_cbc(uint8_t *in)
          for (uint8_t i = 0; i < 16; i++)
     {
         printf("%x", Decryptiv[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+       
           printf("\n************************************\n");
           printf("%x", iv[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+     
     }
     }
 
@@ -204,7 +204,7 @@ static int decrypt_input_cbc(uint8_t *in)
         //removePadding(cipher,cipherLength);
         printf("remove padding");
     }
-    memcmp(iv, decrpytBuffer, 16); //copy Iv
+    memcmp(iv, (char *)decrpytBuffer, 16); //copy Iv
     printf("\nTest with decrptBuffer!\n");
     if (0 == memcmp((char *)out2, (char *)decrpytBuffer, 32))
     {
