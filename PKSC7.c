@@ -43,7 +43,7 @@ PKCS7_Padding* addPadding(const void* const data, const uint64_t dataLength, con
     return paddingResult;
 }
 
-PKCS7_unPadding* removePadding(const void* const data, const uint64_t dataLength)
+PKCS7_unPadding* removePadding(const void* const data, const uint8_t dataLength)
 {
     PKCS7_unPadding* unpaddingResult = (PKCS7_unPadding*) malloc(sizeof(PKCS7_unPadding));
     if (NULL == unpaddingResult)
