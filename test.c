@@ -140,7 +140,7 @@ static int decrypt_input_cbc(uint8_t *in)
          printf("\nIV not the same!\n");
      
     }
-    }
+    
 
     printf("\n************************************\n");
     printf("\n>IV:\n\n");
