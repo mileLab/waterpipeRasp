@@ -342,7 +342,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
         encryptedPaket[i] = ptrToPaddingDataResult2[i - 20];
         encryptedPaket2[i-4] = ptrToPaddingDataResult2[i - 20];
     }
-     memcmp((char *)iv, (char *)decrpytBuffer, 16); //copy Iv
+    memcpy((char *)decrpytBuffer, (char *)iv, 16); //copy Iv
     if (0 == memcmp((char *)iv, (char *)decrpytBuffer, 16))
     {
         printf("SUCCESS in IV!\n");
