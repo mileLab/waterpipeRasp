@@ -186,6 +186,13 @@ static int decrypt_input_cbc(uint8_t *in)
         unPaddingCipher(cipher,cipherLength);
         printf("Decrpytion remove padding");
     } */
+    printf("Decrpytion  decrypted cipher!\n");
+    for (uint8_t i = 0; i < 32; i++)
+    {
+        printf("%x", cipher[i]);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+    }
+
    
     printf("\nDecrpytion Test with decrptBuffer!\n");
     if (0 == memcmp((char *)out2, (char *)cipher, 32))
