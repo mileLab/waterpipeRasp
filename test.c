@@ -20,7 +20,7 @@ uint8_t *ptrToPaddingDataResultBuffer[32];
 PKCS7_Padding *structWithPaddingResult;
 PKCS7_unPadding *structWithUnpaddingResult;
 
-uint8_t iv[16];         //128 bitinitialization vector
+uint8_t* iv[16];         //128 bitinitialization vector
 //128 bitinitialization vector
 static int test_encrypt_cbc(void);
 static int test_decrypt_cbc(void);
@@ -127,7 +127,7 @@ static int decrypt_input_cbc(uint8_t *in)
     {
         Decryptiv[i - 4] = in[i-4];
     }
-     if (0 == memcmp(iv,decrpytBuffer, 16))
+     if (0 == memcmp(iv,Decryptiv, 16))
     {
         printf("IV the same!\n");
     for (uint8_t i = 0; i < 16; i++)
@@ -138,11 +138,6 @@ static int decrypt_input_cbc(uint8_t *in)
         return (0);
     }else{
          printf("\nIV not the same!\n");
-         for (uint8_t i = 0; i < 16; i++)
-    {
-        printf("%x", iv[i]);
-        printf("\n************************************\n");
-        printf("%x", iv[i]);
      
     }
     }
