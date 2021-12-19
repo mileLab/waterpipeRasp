@@ -140,7 +140,7 @@ static int decrypt_input_cbc(uint8_t *in)
          printf("\nIV not the same!\n");
          for (uint8_t i = 0; i < 16; i++)
     {
-        printf("%x", Decryptiv[i]);
+        printf("%x", iv[i]);
        
           printf("\n************************************\n");
           printf("%x", iv[i]);
