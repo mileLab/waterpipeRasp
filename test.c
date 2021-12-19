@@ -317,7 +317,7 @@ static uint8_t encrypt_cbc(uint8_t *in,uint8_t inputSize)
         encryptedPaket[i] = iv[i - 4];
         encryptedPaket2[i-4] = iv[i - 4];
     }
-    for (size_t i = 20; i < 58; i++)
+    for (size_t i = 20; i < 52; i++)
     {
         encryptedPaket[i] = ptrToPaddingDataResult2[i - 20];
         encryptedPaket2[i-4] = ptrToPaddingDataResult2[i - 20];
