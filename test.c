@@ -87,18 +87,12 @@ void unPaddingCipher(const void *const data, const uint64_t dataLength)
 static int decrypt_input_cbc(uint8_t *in)
 {
     uint8_t* Decryptiv[16]; 
-    for (uint8_t i = 0; i < 58; i++)
-    {
-        printf("%x", in[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
-
     //extractFlags();
     uint8_t startFlag[4];
     uint8_t endflagFlag[5];
     uint8_t cipher[32];
 
-    for (int i = 0; i < 4; i++)
+  /*  for (int i = 0; i < 4; i++)
     {
         startFlag[i] = in[i];
     }
@@ -114,7 +108,7 @@ static int decrypt_input_cbc(uint8_t *in)
     {
         endflagFlag[i - 58] = in[i];
     }
-
+       
     printf("\n************************************\n");
     printf("\n>Decryption EndFlag:\n\n");
     for (uint8_t i = 0; i < 6; i++)
@@ -122,7 +116,15 @@ static int decrypt_input_cbc(uint8_t *in)
         printf("%x", endflagFlag[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
-    
+     */
+     printf("\n************************************\n");
+    printf("\n>Decrpytion Cipher to decrypt\n\n");
+    for (uint8_t i = 0; i < 16; i++)
+    {
+        printf("%x", Decryptiv[i]);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+    }
+       printf("\n************************************\n");
     for (size_t i = 4; i < 20; i++)
     {
         Decryptiv[i - 4] = in[i-4];
@@ -138,7 +140,6 @@ static int decrypt_input_cbc(uint8_t *in)
         return (0);
     }else{
          printf("\nIDecrypton V not the same!\n");
-     
     }
     
 
@@ -361,7 +362,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
     }
     printf("\n\n************************************\n");
     printf("Final encryptedPaket2 which will be send:\n");
-    for (uint8_t i = 0; i < 32; i++)
+    for (uint8_t i = 0; i < 48; i++)
     {
         printf("%x", encryptedPaket2[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
