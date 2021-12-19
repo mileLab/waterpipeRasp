@@ -180,23 +180,26 @@ static int decrypt_input_cbc(uint8_t *in)
     struct AES_ctx ctx;
     AES_init_ctx_iv(&ctx, key, Decryptiv);
     AES_CBC_decrypt_buffer(&ctx, cipher, 32);
-    if (testNumber == 1)
-    {   printf("\n************************************\n");
-    printf("\nRemove Padding\n");
-        unPaddingCipher(cipher,cipherLength);
-        printf("Decrpytion remove padding");
-    }
+    
    
     printf("\nDecrpytion Test with decrptBuffer!\n");
     if (0 == memcmp((char *)out2, (char *)cipher, 32))
     {
-        printf("Decrpytion SUCCESS in decryptBuffer!\n");
-    for (uint8_t i = 0; i < 32; i++)
+        if (testNumber == 1)
+    {   printf("\n************************************\n");
+        printf("\nRemove Padding\n");
+        unPaddingCipher(cipher,cipherLength);
+        printf("Decrpytion remove padding");
+    }
+    uint8_t *ptrToPaddingDataResult3 = structWithUnpaddingResult->dataWithoutPadding;  
+        
+    printf("Decrpytion SUCCESS in decryptBuffer!\n");
+    for (uint8_t i = 0; i < 8; i++)
     {
-        printf("%x", cipher[i]);
+        printf("%x", *ptrToPaddingDataResult3[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
-        return (0);
+        
     }
 }
 
