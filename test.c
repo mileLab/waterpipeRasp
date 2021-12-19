@@ -189,6 +189,7 @@ static int decrypt_input_cbc(uint8_t *in)
     AES_CBC_decrypt_buffer(&ctx, encryptedPaket2, 32);
     if (testNumber == 1)
     {   printf("\n************************************\n");
+    printf("\nRemove Padding\n");
          for (uint8_t i = 0; i < 32; i++)
     {
         printf("%x", encryptedPaket2[i]);
@@ -200,12 +201,12 @@ static int decrypt_input_cbc(uint8_t *in)
     }
    
     printf("\nDecrpytion Test with decrptBuffer!\n");
-    if (0 == memcmp((char *)out2, (char *)decrpytBuffer, 32))
+    if (0 == memcmp((char *)out2, (char *)encryptedPaket2, 32))
     {
         printf("Decrpytion SUCCESS in decryptBuffer!\n");
-    for (uint8_t i = 0; i < 16; i++)
+    for (uint8_t i = 0; i < 32; i++)
     {
-        printf("%x", decrpytBuffer[i]);
+        printf("%x", encryptedPaket2[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
         return (0);
