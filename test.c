@@ -199,7 +199,7 @@ static int decrypt_input_cbc(uint8_t *in)
         printf("remove padding");
     }
     memcmp((char *)iv, (char *)decrpytBuffer, 16); //copy Iv
-    if (0 == memcmp((char *)out2, (char *)decrpytBuffer, 32))
+    if (0 == memcmp((char *)iv, (char *)decrpytBuffer, 16))
     {
         printf("SUCCESS in IV!\n");
     }
