@@ -94,7 +94,7 @@ static int decrypt_input_cbc(uint8_t *in)
     uint8_t endflagFlag[5];
     uint8_t cipher[32];
     uint8_t Decryptiv[16]; 
-    uint8_t *ptrToPaddingDataResult3;
+   
   /*  for (int i = 0; i < 4; i++)
     {
         startFlag[i] = in[i];
@@ -181,13 +181,12 @@ static int decrypt_input_cbc(uint8_t *in)
     struct AES_ctx ctx;
     AES_init_ctx_iv(&ctx, key, Decryptiv);
     AES_CBC_decrypt_buffer(&ctx, cipher, 32);
-   if (testNumber == 1)
-    {   printf("\n************************************\n");
+   printf("\n************************************\n");
     printf("\nRemove Padding\n");
         unPaddingCipher(cipher,cipherLength);
         printf("Decrpytion remove padding");
-        ptrToPaddingDataResult3 = structWithPaddingResult->dataWithPadding;
-    } 
+         uint8_t *ptrToPaddingDataResult3; = structWithPaddingResult->dataWithPadding;
+    
 
     printf("Decrpytion  decrypted cipher!\n");
     for (uint8_t i = 0; i < 32; i++)
@@ -203,7 +202,7 @@ static int decrypt_input_cbc(uint8_t *in)
         printf("Decrpytion SUCCESS in decryptBuffer!\n");
     for (uint8_t i = 0; i < 32; i++)
     {
-        printf("%x", cipher[i]);
+        printf("%x", ptrToPaddingDataResult3[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
         return (0);
