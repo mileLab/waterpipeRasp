@@ -73,6 +73,7 @@ void unPaddingCipher(const void *const data, const uint64_t dataLength)
 {
     printf("\n************************************\n");
     printf("\nStart unpadding\n");
+     printf("%d",dataLength);
     structWithUnpaddingResult = removePadding(data, dataLength);
    /* uint8_t *ptrToUnpaddingDataResult = structWithUnpaddingResult->dataWithoutPadding;
 
@@ -180,13 +181,13 @@ static int decrypt_input_cbc(uint8_t *in)
     struct AES_ctx ctx;
     AES_init_ctx_iv(&ctx, key, Decryptiv);
     AES_CBC_decrypt_buffer(&ctx, cipher, 32);
-  /*  if (testNumber == 1)
+   if (testNumber == 1)
     {   printf("\n************************************\n");
     printf("\nRemove Padding\n");
         unPaddingCipher(cipher,cipherLength);
         printf("Decrpytion remove padding");
         ptrToPaddingDataResult3 = structWithPaddingResult->dataWithPadding;
-    } */
+    } 
 
     printf("Decrpytion  decrypted cipher!\n");
     for (uint8_t i = 0; i < 32; i++)
