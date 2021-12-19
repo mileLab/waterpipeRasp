@@ -21,7 +21,7 @@ PKCS7_Padding *structWithPaddingResult;
 PKCS7_unPadding *structWithUnpaddingResult;
 
 uint8_t iv[16];         //128 bitinitialization vector
-uint8_t Decryptiv[16]; 
+
 //128 bitinitialization vector
 static int test_encrypt_cbc(void);
 static int test_decrypt_cbc(void);
@@ -92,6 +92,7 @@ static int decrypt_input_cbc(uint8_t *in)
     uint8_t startFlag[4];
     uint8_t endflagFlag[5];
     uint8_t cipher[32];
+    uint8_t Decryptiv[16]; 
 
   /*  for (int i = 0; i < 4; i++)
     {
