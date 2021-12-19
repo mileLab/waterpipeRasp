@@ -86,7 +86,7 @@ void unPaddingCipher(const void *const data, const uint64_t dataLength)
 }
 static int decrypt_input_cbc(uint8_t *in)
 {
-    uint8_t Decryptiv[16]; 
+    uint8_t* Decryptiv[16]; 
     for (uint8_t i = 0; i < 58; i++)
     {
         printf("%x", in[i]);
@@ -122,11 +122,24 @@ static int decrypt_input_cbc(uint8_t *in)
         printf("%x", endflagFlag[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
-
+    
     for (size_t i = 4; i < 20; i++)
     {
         Decryptiv[i - 4] = in[i-4];
     }
+     if (0 == memcmp((char *)iv, (char *)Decryptiv, 32))
+    {
+        printf("IV the same!\n");
+    for (uint8_t i = 0; i < 16; i++)
+    {
+        printf("%x", decrpytBuffer[i]);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+    }
+        return (0);
+    }else{
+         printf("IV not the same!\n");
+    }
+
     printf("\n************************************\n");
     printf("\n>IV:\n\n");
     for (uint8_t i = 0; i < 16; i++)
