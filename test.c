@@ -127,7 +127,7 @@ static int decrypt_input_cbc(uint8_t *in)
     {
         Decryptiv[i - 4] = in[i-4];
     }
-     if (0 == memcmp((char *)iv, (char *)Decryptiv, 32))
+     if (0 == memcmp((char *)iv, (char *)Decryptiv, 16))
     {
         printf("IV the same!\n");
     for (uint8_t i = 0; i < 16; i++)
