@@ -197,7 +197,7 @@ static int decrypt_input_cbc(uint8_t *in)
 
    
     printf("\nDecrpytion Test with decrptBuffer!\n");
-    if (0 == memcmp((char *)out2, (char *)ptrToPaddingDataResult3, 32))
+    if (0 == memcmp((char *)out2, (char *)ptrToPaddingDataResult3, 8))
     {
         printf("Decrpytion SUCCESS in decryptBuffer!\n");
     for (uint8_t i = 0; i < 32; i++)
