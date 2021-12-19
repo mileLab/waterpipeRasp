@@ -103,7 +103,7 @@ static int decrypt_input_cbc(uint8_t *in)
         startFlag[i] = in[i];
     }
     printf("\n************************************\n");
-    printf("\nStartFlag:\n\n");
+    printf("\n Decryption StartFlag:\n\n");
     for (uint8_t i = 0; i < 5; i++)
     {
         printf("%x", startFlag[i]);
@@ -116,7 +116,7 @@ static int decrypt_input_cbc(uint8_t *in)
     }
 
     printf("\n************************************\n");
-    printf("\n>EndFlag:\n\n");
+    printf("\n>Decryption EndFlag:\n\n");
     for (uint8_t i = 0; i < 6; i++)
     {
         printf("%x", endflagFlag[i]);
@@ -129,7 +129,7 @@ static int decrypt_input_cbc(uint8_t *in)
     }
      if (0 == memcmp((char *)iv,(char *)Decryptiv, 16))
     {
-        printf("IV the same!\n");
+        printf("Decryption IV the same!\n");
     for (uint8_t i = 0; i < 16; i++)
     {
         printf("%x", Decryptiv[i]);
@@ -137,13 +137,13 @@ static int decrypt_input_cbc(uint8_t *in)
     }
         return (0);
     }else{
-         printf("\nIV not the same!\n");
+         printf("\nIDecrypton V not the same!\n");
      
     }
     
 
     printf("\n************************************\n");
-    printf("\n>IV:\n\n");
+    printf("\n>Decrpytion IV:\n\n");
     for (uint8_t i = 0; i < 16; i++)
     {
         printf("%x", Decryptiv[i]);
@@ -155,7 +155,7 @@ static int decrypt_input_cbc(uint8_t *in)
         cipher[i - 20] = in[i];
     }
     printf("\n************************************\n");
-    printf("\n>Cipher:\n\n");
+    printf("\n>decryption Cipher:\n\n");
     for (uint8_t i = 0; i < 32; i++)
     {
         printf("%x", cipher[i]);
@@ -196,13 +196,13 @@ static int decrypt_input_cbc(uint8_t *in)
     }
 
         //removePadding(cipher,cipherLength);
-        printf("remove padding");
+        printf("Decrpytion remove padding");
     }
    
-    printf("\nTest with decrptBuffer!\n");
+    printf("\nDecrpytion Test with decrptBuffer!\n");
     if (0 == memcmp((char *)out2, (char *)decrpytBuffer, 32))
     {
-        printf("SUCCESS in decryptBuffer!\n");
+        printf("Decrpytion SUCCESS in decryptBuffer!\n");
     for (uint8_t i = 0; i < 16; i++)
     {
         printf("%x", decrpytBuffer[i]);
@@ -254,6 +254,7 @@ void calculateIV(uint8_t *iv)
     iv_len = 16;
     random_string(iv, iv_len);
     printf("\n\n************************************\n");
+    printf("\n Encryption IV \n");
     for (uint8_t i = 0; i < 16; i++)
     {
         printf("%x", iv[i]);
@@ -303,6 +304,9 @@ static uint8_t encrypt_cbc(uint8_t *in)
     struct AES_ctx ctx;
     uint8_t key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
      
+     printf("\n\n************************************\n");
+    printf(" ENCRYPTION PaddingResult \n");
+    printf("\n\n************************************\n");
     for (uint8_t i = 0; i < 32; i++)
     {
         printf("%x", ptrToPaddingDataResult2[i]);
@@ -310,14 +314,15 @@ static uint8_t encrypt_cbc(uint8_t *in)
     } 
     //uint8_t iv2[] = {0x6b, 0xc1, 0xbe, 0xe2, 0x2e, 0x40, 0x9f, 0x96, 0xe9, 0x3d, 0x7e, 0x11, 0x73, 0x93, 0x17, 0x2a,};
                       
-                      
-     printf("\n\n************************************\n");
+    
     AES_init_ctx_iv(&ctx, key, iv);
     AES_CBC_encrypt_buffer(&ctx, ptrToPaddingDataResult2, 32);
+     printf("\n\n************************************\n");
+    printf(" ENCRYPTION PaddingResult after encryption \n");
+    printf("\n\n************************************\n");
     for (uint8_t i = 0; i < 32; i++)
     {
-        printf("%x", ptrToPaddingDataResult2[i]);
-        
+        printf("%x", ptrToPaddingDataResult2[i]); 
     }
     
 
@@ -345,9 +350,9 @@ static uint8_t encrypt_cbc(uint8_t *in)
     memcpy((char *)decrpytBuffer, (char *)iv, 16); //copy Iv
     if (0 == memcmp((char *)iv, (char *)decrpytBuffer, 16))
     {
-        printf("SUCCESS in IV!\n");
+        printf("\n enrcyption SUCCESS in IV!\n");
     }else{
-        printf("False in IV!\n");
+        printf("\n enrcyption False in IV!\n");
        for (uint8_t i = 0; i < 16; i++)
     {
         printf("%x", decrpytBuffer[i]);
@@ -362,13 +367,13 @@ static uint8_t encrypt_cbc(uint8_t *in)
     }
     printf("\n\n************************************\n");
    
-    printf("\n\n************************************\n");
+  /*  printf("\n\n************************************\n");
     printf("Final Paket which will be send:\n");
     for (uint8_t i = 0; i < 58; i++)
     {
         printf("%x", encryptedPaket[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
+    } */
     printf("\n\n************************************\n");
     printf("end of encrypt function\n");
     printf("\n\n************************************\n");
