@@ -198,11 +198,7 @@ static int decrypt_input_cbc(uint8_t *in)
         //removePadding(cipher,cipherLength);
         printf("remove padding");
     }
-    memcmp((char *)iv, (char *)decrpytBuffer, 16); //copy Iv
-    if (0 == memcmp((char *)iv, (char *)decrpytBuffer, 16))
-    {
-        printf("SUCCESS in IV!\n");
-    }
+   
     printf("\nTest with decrptBuffer!\n");
     if (0 == memcmp((char *)out2, (char *)decrpytBuffer, 32))
     {
@@ -346,7 +342,11 @@ static uint8_t encrypt_cbc(uint8_t *in)
         encryptedPaket[i] = ptrToPaddingDataResult2[i - 20];
         encryptedPaket2[i-4] = ptrToPaddingDataResult2[i - 20];
     }
-    
+     memcmp((char *)iv, (char *)decrpytBuffer, 16); //copy Iv
+    if (0 == memcmp((char *)iv, (char *)decrpytBuffer, 16))
+    {
+        printf("SUCCESS in IV!\n");
+    }
     printf("\n\n************************************\n");
     printf("Final encryptedPaket2 which will be send:\n");
     for (uint8_t i = 0; i < 32; i++)
