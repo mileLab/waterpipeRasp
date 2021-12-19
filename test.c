@@ -261,7 +261,7 @@ static uint8_t encrypt_cbc(uint8_t *in)
    */
     if (sizeof(in) < blockSize)
     {
-       PaddingPlainText(in, inputSize, blockSize);
+       PaddingPlainText(in, 8, blockSize);
     }
      printf("\n\n************************************\n");
     //https://github.com/GRISHNOV/PKCS7-Padding/blob/master/src/PKCS7.c
