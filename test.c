@@ -73,8 +73,8 @@ void unPaddingCipher(const void *const data, const uint64_t dataLength)
 {
     printf("\n************************************\n");
     printf("\nStart unpadding\n");
-     printf("%d",dataLength);
-    structWithUnpaddingResult = removePadding(data, dataLength);
+     printf("%d",dataLength*8);
+    structWithUnpaddingResult = removePadding(data, dataLength*8);
    /* uint8_t *ptrToUnpaddingDataResult = structWithUnpaddingResult->dataWithoutPadding;
 
     printf("\nREMOVE PADDING (size is %li bytes):\n\n", structWithUnpaddingResult->dataLengthWithoutPadding);
