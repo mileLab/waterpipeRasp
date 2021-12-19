@@ -266,6 +266,8 @@ static uint8_t encrypt_cbc(uint8_t *in)
     random_string(iv, iv_len); */
     calculateIV(iv);
     uint8_t nTest = sizeof(in);
+     printf("\n\nSize of INn");
+      printf("%x", nTest);
     uint8_t blockSize = 256 / 8;
     
 
