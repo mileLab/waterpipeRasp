@@ -337,9 +337,9 @@ static uint8_t encrypt_cbc(uint8_t *in,uint8_t inputSize)
     */
     printf("\n\n************************************\n");
     printf("Final encryptedPaket2 which will be send:\n");
-    for (uint8_t i = 0; i < 48; i++)
+    for (uint8_t i = 0; i < 58; i++)
     {
-        printf("%x", encryptedPaket2[i]);
+        printf("%x", encryptedPaket[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
     printf("\n\n************************************\n");
