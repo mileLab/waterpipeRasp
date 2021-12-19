@@ -132,12 +132,20 @@ static int decrypt_input_cbc(uint8_t *in)
         printf("IV the same!\n");
     for (uint8_t i = 0; i < 16; i++)
     {
-        printf("%x", decrpytBuffer[i]);
+        printf("%x", Decryptiv[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
         return (0);
     }else{
-         printf("IV not the same!\n");
+         printf("\nIV not the same!\n");
+         for (uint8_t i = 0; i < 16; i++)
+    {
+        printf("%x", Decryptiv[i]);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+          printf("\n************************************\n");
+          printf("%x", iv[i]);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+    }
     }
 
     printf("\n************************************\n");
