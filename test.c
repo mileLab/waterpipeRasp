@@ -21,6 +21,7 @@ PKCS7_Padding *structWithPaddingResult;
 PKCS7_unPadding *structWithUnpaddingResult;
 
 uint8_t iv[16];         //128 bitinitialization vector
+uint8_t Decryptiv[16]; 
 //128 bitinitialization vector
 static int test_encrypt_cbc(void);
 static int test_decrypt_cbc(void);
@@ -86,7 +87,7 @@ void unPaddingCipher(const void *const data, const uint64_t dataLength)
 }
 static int decrypt_input_cbc(uint8_t *in)
 {
-    uint8_t* Decryptiv[16]; 
+   
     //extractFlags();
     uint8_t startFlag[4];
     uint8_t endflagFlag[5];
