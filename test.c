@@ -119,9 +119,9 @@ static int decrypt_input_cbc(uint8_t *in)
      */
      printf("\n************************************\n");
     printf("\n>Decrpytion Cipher to decrypt\n\n");
-    for (uint8_t i = 0; i < 16; i++)
+    for (uint8_t i = 0; i < 48; i++)
     {
-        printf("%x", Decryptiv[i]);
+        printf("%x", in[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
        printf("\n************************************\n");
