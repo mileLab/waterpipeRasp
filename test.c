@@ -177,7 +177,7 @@ static int decrypt_input_cbc(uint8_t *in)
     //uint8_t iv2[] = {0x6b, 0xc1, 0xbe, 0xe2, 0x2e, 0x40, 0x9f, 0x96, 0xe9, 0x3d, 0x7e, 0x11, 0x73, 0x93, 0x17, 0x2a,    };
 
     struct AES_ctx ctx;
-    AES_init_ctx_iv(&ctx, key, iv);
+    AES_init_ctx_iv(&ctx, key, Decryptiv);
     AES_CBC_decrypt_buffer(&ctx, cipher, 32);
     if (testNumber == 1)
     {   printf("\n************************************\n");
