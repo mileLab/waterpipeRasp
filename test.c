@@ -20,7 +20,7 @@ uint8_t *ptrToPaddingDataResultBuffer[32];
 PKCS7_Padding *structWithPaddingResult;
 PKCS7_unPadding *structWithUnpaddingResult;
 
-uint8_t* iv[16];         //128 bitinitialization vector
+uint8_t iv[16];         //128 bitinitialization vector
 //128 bitinitialization vector
 static int test_encrypt_cbc(void);
 static int test_decrypt_cbc(void);
@@ -112,7 +112,7 @@ static int decrypt_input_cbc(uint8_t *in)
     
     for (int i = 53; i < 58; i++)
     {
-        endflagFlag[i - 85] = in[i];
+        endflagFlag[i - 58] = in[i];
     }
 
     printf("\n************************************\n");
