@@ -134,6 +134,7 @@ int main(void)
     decrypt_input_cbc(bme_TX_buffer, val);
     memset(bme_TX_buffer, 0, sizeof(bme_TX_buffer));
     memset(encryptedPaket,0,sizeof(encryptedPaket));
+    printf("\n\nString :%s\n\n",val)
    }
        filterChar(val, "A:", "ÿ","[X] BME TEMP: ","°C"); //"ÿ"
         filterChar(val, "B:",  "ÿ","[X] BME PRESS: ","hPa");
