@@ -168,7 +168,7 @@ static int decrypt_input_cbc(uint8_t *in, char *buff)
     printf("\nRemove Padding\n");
     unPaddingCipher(cipher,cipherLength);
     printf("Decrpytion remove padding");
-    uint8_t *ptrToPaddingDataResult3 = structWithUnpaddingResult->dataWithoutPadding;
+    uint8_t *ptrToUnpaddingDataResult3 = structWithUnpaddingResult->dataWithoutPadding;
      for (size_t i = 0; i < 31; i++)
             {
                 srcbuffer[i]=ptrToUnpaddingDataResult3[i];
