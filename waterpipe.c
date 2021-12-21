@@ -101,7 +101,7 @@ uint8_t RecData[50];
     strncat(RecData,TempData,sizeof(TempData));
     strncat(RecData,"ÿ",sizeof("ÿ")); 
     strncat(buffer,RecData,sizeof(RecData));
-    printf("string %s",buffer);
+    printf("Sending string %s",buffer);
 
 }
 double rand_range(double min, double max)
@@ -134,7 +134,7 @@ int main(void)
     decrypt_input_cbc(bme_TX_buffer, val);
     memset(bme_TX_buffer, 0, sizeof(bme_TX_buffer));
     memset(encryptedPaket,0,sizeof(encryptedPaket));
-    printf("\n\nString :%s\n\n",val);
+    printf("\n\nReceived String :%s\n\n",val);
    }
        filterChar(val, "A:", "ÿ","[X] BME TEMP: ","°C"); //"ÿ"
         filterChar(val, "B:",  "ÿ","[X] BME PRESS: ","hPa");
