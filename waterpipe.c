@@ -124,7 +124,7 @@ int main(void)
   
     encrypt_cbc(in2,8);
     
-    decrypt_input_cbc(encryptedPaket);
+    decrypt_input_cbc(encryptedPaket,val);
 
     memset(encryptedPaket,0,sizeof(encryptedPaket));
     while(1){
