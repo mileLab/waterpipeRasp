@@ -36,7 +36,7 @@ PKCS7_Padding* addPadding(const void* const data, const uint64_t dataLength, con
 */
 typedef struct {
     void*    dataWithoutPadding;         /* result of remove padding from data */
-    uint8_t dataLengthWithoutPadding;   /* length of the result */
+    uint64_t dataLengthWithoutPadding;   /* length of the result */
     uint8_t  valueOfRemovedByteFromData; /* value of byte that was used for padding */
 } PKCS7_unPadding;                              
 
