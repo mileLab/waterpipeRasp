@@ -154,10 +154,10 @@ int main(void)
         */
         //memset(data, 0, sizeof(data));
         memset(val, 0, sizeof(val));
-   // decrypt_input_cbc(encryptedPaket);  ss
+  
     memset(bme_TX_buffer, 0, sizeof(bme_TX_buffer));
     memset(encryptedPaket,0,sizeof(encryptedPaket));
-    //encrypt_cbc(in2,8);
+    
     }
     
     //https://stackoverflow.com/questions/25360893/convert-char-to-uint8-t
