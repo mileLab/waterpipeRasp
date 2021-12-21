@@ -209,7 +209,6 @@ static uint8_t encrypt_cbc(uint8_t *in,uint8_t inputSize)
     encryptedPaket[55] = 0x35; //
     encryptedPaket[56] = 0x2f; //
     encryptedPaket[57] = 0x3d; // End: End flag
-    counterSend++;
     for (size_t i = 4; i < 20; i++)
     {
         encryptedPaket[i] = iv[i - 4];
