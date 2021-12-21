@@ -16,12 +16,13 @@ uint8_t endFlag[5];
 uint8_t *encryptBuffer[32];
 uint8_t encryptedPaket2[48];
 uint8_t encryptedPaket[57];
-
+char srcbuffer[100];
 static void phex(uint8_t *str);
 uint8_t *decrpytBuffer[16];
 uint8_t *ptrToPaddingDataResultBuffer[32];
 PKCS7_Padding *structWithPaddingResult;
 PKCS7_unPadding *structWithUnpaddingResult;
+
 
 uint8_t iv[16];         //128 bitinitialization vector
 
@@ -90,12 +91,13 @@ void unPaddingCipher(const void *const data, const uint8_t dataLength)
     } 
     printf("\n\n************************************\n\n");
 }
-static int decrypt_input_cbc(uint8_t *in)
+static int decrypt_input_cbc(uint8_t *in, char *buff)
 {
-   
+     debugMsg("[X] Inside function [X]\r\n");
+
     // Define buffers for Paket
-    //uint8_t startFlag[4];
-    //uint8_t endFlag[5];
+    uint8_t startFlag[4];
+    uint8_t endFlag[5];
     uint8_t cipher[32];
     uint8_t Decryptiv[16]; 
     //Get Start Flag out of Paket
@@ -104,6 +106,7 @@ static int decrypt_input_cbc(uint8_t *in)
         startFlag[i] = in[i];
     }
     //Get End Flag out of Paket
+      debugMsg("[X] after first for [X]\r\n");
     for (int i = 53; i < 58; i++)
     {
         endFlag[i - 58] = in[i];
@@ -123,17 +126,24 @@ static int decrypt_input_cbc(uint8_t *in)
     */
     
     // get Cipher text out of Paket (input)
-    for (size_t i = 20; i < 53; i++)
+    for (size_t i = 20; i < 52; i++)
     {
         cipher[i - 20] = in[i];
     }
+       for (size_t i = 0; i < 32; i++)
+{
+    printf("%x", cipher[i]);
+    ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+
+}
+
 
     
-    uint8_t cipherLength = sizeof(cipher);
-  
+    uint64_t cipherLength = sizeof(cipher);
+    //uint8_t cipherLength = 128;
     printf("decrypt function cbc start\n");
     uint8_t key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
-    uint8_t out2[] = {0xff, 0xfe, 0xfd, 0xfc,0xfb, 0xfa, 0xf9, 0xf8};
+    //uint8_t out2[] = {0xff, 0xfe, 0xfd, 0xfc,0xfb, 0xfa, 0xf9, 0xf8};
     
     struct AES_ctx ctx;
     AES_init_ctx_iv(&ctx, key, Decryptiv);
@@ -142,23 +152,73 @@ static int decrypt_input_cbc(uint8_t *in)
     printf("\n************************************\n");
     printf("\nRemove Padding\n");
     unPaddingCipher(cipher,cipherLength);
-    printf("Decrpytion remove padding");
-    uint8_t *ptrToPaddingDataResult3 = structWithUnpaddingResult->dataWithoutPadding;
+    printf("Decrpytion remove padding\n");
+    //uint8_t *ptrToPaddingDataResult3 = structWithUnpaddingResult->dataWithoutPadding;
+    //memcpy(srcbuffer,structWithUnpaddingResult->dataWithoutPadding,10);
+     uint8_t *ptrToUnpaddingDataResult2 = structWithUnpaddingResult->dataWithoutPadding;
+for (size_t i = 0; i < 32; i++)
+{
+    printf("%x", ptrToUnpaddingDataResult2[i]);
+    ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+
+}
+
+
+    // for(int i=0; i<sizeof(ptrToUnpaddingDataResult2) ;i++)
+    // {
+
+    //     srcbuffer[i]=ptrToUnpaddingDataResult2[i];
+    //     printf("stelle %c", srcbuffer[i]);
+    // }
+        // for(int i=0; i<32; i++)
+        // {
     
-    printf("\nDecrpytion Test with decrptBuffer!\n");
-    if (0 == memcmp((char *)out2, (char *)ptrToPaddingDataResult3, 8))
-    {
-        /*
-        printf("Decrpytion SUCCESS in decryptBuffer!\n");
-    for (uint8_t i = 0; i < 8; i++)
-    {
-        printf("%x", ptrToPaddingDataResult3[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
+
+        //     printf("vor itoa\n");
+        //             //sprintf(srcbuffer[i], "%i", (int)ptrToUnpaddingDataResult2[i]);
+        //     //bme_TX_buffer[i]=(char)encryptedPaket[i]
+        //     itoa((int)ptrToUnpaddingDataResult2[i], srcbuffer[i]);
+        //     printf("stelle %c\n",srcbuffer[i]);
+        // }
+
+        //     printf("vor itoa\n");
+        //     //printf("ptr: %d",ptrToUnpaddingDataResult2);
+         //    int test=255;
+         //    uint8_t speicher[50];
+         //itoa(test ,speicher,50,10);
+        // snprintf(srcbuffer,sizeof(speicher),"%s",speicher);
+
+
+            //printf("arrayplatze: %d\n",sizeof(ptrToUnpaddingDataResult2)/sizeof(ptrToUnpaddingDataResult2[0]));
+             //itoa(ptrToUnpaddingDataResult2, srcbuffer,100,10);
+             //memcpy(srcbuffer, "0",100);
+            for (size_t i = 0; i < 31; i++)
+            {
+                srcbuffer[i]=ptrToUnpaddingDataResult2[i];
+                buff[i]=srcbuffer[i];
+            }
+            
+             //strncat(srcbuffer,ptrToUnpaddingDataResult2, ret);
+          //   printf("pointer: %s \n",ptrToUnpaddingDataResult2);
+           // printf("pointer: %s \n",(int)ptrToUnpaddingDataResult2);
+             //printf("stelle: %s\n",srcbuffer);
+
+    //srcbuffer = structWithUnpaddingResult->dataWithoutPadding;
+    
+   // printf("\nDecrpytion Test with decrptBuffer!\n");
+    // if (0 == memcmp((char *)out2, (char *)ptrToPaddingDataResult3, 8))
+    // {
+    //     /*
+    //     printf("Decrpytion SUCCESS in decryptBuffer!\n");
+    // for (uint8_t i = 0; i < 8; i++)
+    // {
+    //     printf("%x", ptrToPaddingDataResult3[i]);
+    //     ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+    // }
         
-        */
-    }return (0);
-    
+    //     */
+    // }return (0);
+    // else{return (-1)}
 }
 
 // function for randomization
@@ -207,7 +267,7 @@ void calculateIV(uint8_t *iv)
         printf("%x", iv[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     } */
-    return 0;
+
     
 }
 
@@ -298,5 +358,13 @@ static uint8_t encrypt_cbc(uint8_t *in,uint8_t inputSize)
         encryptedPaket[i] = ptrToPaddingDataResult2[i - 20];
         encryptedPaket2[i-4] = ptrToPaddingDataResult2[i - 20];
     }
+    for (size_t i = 0; i < 32; i++)
+{
+    printf("%x", ptrToPaddingDataResult2[i]);
+    ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+
+}
+
+     printf("end ENCRYPTION\n");
     
 }

@@ -9,9 +9,7 @@ add_executable( waterpipe
                 randomization.c)
 
 
-target_link_libraries(  waterpipe
-                        wiringPi
-                        bluetooth)
+
 
 target_sources(${PROJECT_NAME}
     PRIVATE
