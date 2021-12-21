@@ -87,14 +87,14 @@ uint8_t RecData[50];
 
     /* Pressure float to string */
     temperature = rand_range(-5,5);
-    gcvt(temperature,5,TempData)
+    gcvt(temperature,5,TempData);
     strncat(RecData,"B:",sizeof("B:"));
     strncat(RecData,TempData,sizeof(TempData));
     strncat(RecData,"ÿ",sizeof("ÿ")); 
 
     /* Humidity float to string */
     temperature = rand_range(-5,5);
-    gcvt(temperature,5,TempData)
+    gcvt(temperature,5,TempData);
     strncat(RecData,"C:",sizeof("C:"));
     strncat(RecData,TempData,sizeof(TempData));
     strncat(RecData,"ÿ",sizeof("ÿ")); 
