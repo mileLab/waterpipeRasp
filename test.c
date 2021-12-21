@@ -197,8 +197,7 @@ static uint8_t encrypt_cbc(uint8_t *in,uint8_t inputSize)
     
     AES_init_ctx_iv(&ctx, key, iv);
     AES_CBC_encrypt_buffer(&ctx, ptrToPaddingDataResult2, 32);
-    counterSend++;
-
+    
 
     // Defining start and end Flags
     encryptedPaket[0] = 0x79;  //Begin: Start flag
