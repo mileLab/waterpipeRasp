@@ -72,7 +72,7 @@ void PaddingPlainText(const uint8_t *const plainTextData, const uint16_t dataBit
     */
 }
 //// Function to remove PKSC7 Padding
-void unPaddingCipher(const void *const data, const uint64_t dataLength)
+void unPaddingCipher(const void *const data, const uint8_t dataLength)
 {
     printf("\n************************************\n");
     printf("\nStart unpadding\n");
