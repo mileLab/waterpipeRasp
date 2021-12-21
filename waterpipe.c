@@ -127,7 +127,7 @@ int main(void)
     uint8_t RecData[50];
     uint8_t TempData[5];
     uint8_t buffer[50];
-    while(i==0){
+   
         
     float_t temperature;
     temperature = rand_range(-5,5);
@@ -174,14 +174,13 @@ int main(void)
         } */
         
         //memset(data, 0, sizeof(data));
-        memset(val, 0, sizeof(val));
+    //    memset(val, 0, sizeof(val));
    // decrypt_input_cbc(encryptedPaket);  
-    memset(bme_TX_buffer, 0, sizeof(bme_TX_buffer));
-    memset(encryptedPaket,0,sizeof(encryptedPaket));
+   // memset(bme_TX_buffer, 0, sizeof(bme_TX_buffer));
+   // memset(encryptedPaket,0,sizeof(encryptedPaket));
     //encrypt_cbc(in2,8);
     
-    }
-
+ 
     //https://stackoverflow.com/questions/25360893/convert-char-to-uint8-t
 }
 
