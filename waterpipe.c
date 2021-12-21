@@ -140,7 +140,7 @@ int main(void)
        filterChar(val, "A:", "ÿ","[X] BME TEMP: ","°C"); //"ÿ"
         filterChar(val, "B:",  "ÿ","[X] BME PRESS: ","hPa");
         filterChar(val, "C:",  "ÿ","[X] BME HUM: ","%");
-        filterChar(val, "D:",  "ÿ","[X] DS18B20 TEMP: ","°C");
+      /*  filterChar(val, "D:",  "ÿ","[X] DS18B20 TEMP: ","°C");
         if(filterChar(val, "E:",  "ÿ","[X] WATERLEVEL: ","cm") >= 4.0f)
         {
             pwmWrite(PWM_PIN1, 0);
@@ -148,7 +148,7 @@ int main(void)
         else
         {
             pwmWrite(PWM_PIN1, 1023);
-        }
+        } */
         
         //memset(data, 0, sizeof(data));
         memset(val, 0, sizeof(val));
