@@ -5,19 +5,18 @@ project (waterpipe C CXX ASM)
 add_executable( waterpipe 
                 waterpipe.c
                 aes.c
-                PKSC7.c
-                randomization.c)
+                PKSC7.c)
 
-
-
+target_link_libraries(  waterpipe
+                        wiringPi
+                        bluetooth)
 
 target_sources(${PROJECT_NAME}
     PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/aes.c
         ${CMAKE_CURRENT_LIST_DIR}/PKSC7.c
-       
+                           
     INTERFACE
-       
         ${CMAKE_CURRENT_LIST_DIR}/PKSC7.h
         ${CMAKE_CURRENT_LIST_DIR}/aes.h
-         ${CMAKE_CURRENT_LIST_DIR}/aes.hpp)
+            ${CMAKE_CURRENT_LIST_DIR}/aes.hpp)
