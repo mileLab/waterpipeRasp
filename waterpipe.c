@@ -127,12 +127,14 @@ int main(void)
     decrypt_input_cbc(encryptedPaket);
 
     memset(encryptedPaket,0,sizeof(encryptedPaket));
+    while(True){
     HC05_TX_BME280( bme_TX_buffer);   
     encrypt_cbc((uint8_t *)bme_TX_buffer,sizeof(bme_TX_buffer));
     memcpy(bme_TX_buffer, encryptedPaket,sizeof(encryptedPaket));
     decrypt_input_cbc(bme_TX_buffer);
-   
-   
+    memset(bme_TX_buffer, 0, sizeof(bme_TX_buffer));
+    memset(encryptedPaket,0,sizeof(encryptedPaket));
+   }
        /* filterChar(val, "A:", "ÿ","[X] BME TEMP: ","°C"); //"ÿ"
         filterChar(val, "B:",  "ÿ","[X] BME PRESS: ","hPa");
         filterChar(val, "C:",  "ÿ","[X] BME HUM: ","%");
