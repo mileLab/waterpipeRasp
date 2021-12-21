@@ -44,6 +44,6 @@ typedef struct {
     Remove PKCS7 padding from data.
     Your data at the provided address does not change. A copy is created, to which the removing padding is applied.
 */
-PKCS7_unPadding* removePadding(const void* const data, const uint8_t dataLength);
+PKCS7_unPadding* removePadding(const void* const data, const uint64_t dataLength);
 
 #endif // PKCS7_H

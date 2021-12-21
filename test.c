@@ -11,9 +11,12 @@
 #include "aes.h"
 #include "PKSC7.h"
 
+uint8_t startFlag[4];
+uint8_t endFlag[5];
 uint8_t *encryptBuffer[32];
 uint8_t encryptedPaket2[48];
 uint8_t encryptedPaket[57];
+
 static void phex(uint8_t *str);
 uint8_t *decrpytBuffer[16];
 uint8_t *ptrToPaddingDataResultBuffer[32];
@@ -91,75 +94,47 @@ static int decrypt_input_cbc(uint8_t *in)
 {
    
     // Define buffers for Paket
-    uint8_t startFlag[4];
-    uint8_t endFlag[5];
+    //uint8_t startFlag[4];
+    //uint8_t endFlag[5];
     uint8_t cipher[32];
     uint8_t Decryptiv[16]; 
+    //Get Start Flag out of Paket
      for (int i = 0; i < 4; i++)
     {
         startFlag[i] = in[i];
     }
+    //Get End Flag out of Paket
     for (int i = 53; i < 58; i++)
     {
         endFlag[i - 58] = in[i];
     }
-    /*
-    printf("\n************************************\n");
-    printf("\n Decryption StartFlag:\n\n");
-    for (uint8_t i = 0; i < 5; i++)
-    {
-        printf("%x", startFlag[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
-    
-    for (int i = 53; i < 58; i++)
-    {
-        endflagFlag[i - 58] = in[i];
-    }
-       
-    printf("\n************************************\n");
-    printf("\n>Decryption EndFlag:\n\n");
-    for (uint8_t i = 0; i < 6; i++)
-    {
-        printf("%x", endflagFlag[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
-     */
-    
+    //Get IV out of Paket
     for (size_t i = 4; i < 20; i++)
     {
         Decryptiv[i - 4] = in[i];
     }
+    /*
      if (0 == memcmp((char *)iv,(char *)Decryptiv, 16))
     {
         printf("Decryption IV the same!\n");
     }else{
          printf("\nIDecrypton V not the same!\n");
     }
-    
-    /*
-    printf("\n************************************\n");
-    printf("\n>Decrpytion IV:\n\n");
-    for (uint8_t i = 0; i < 16; i++)
-    {
-        printf("%x", Decryptiv[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
     */
+    
     // get Cipher text out of Paket (input)
     for (size_t i = 20; i < 53; i++)
     {
         cipher[i - 20] = in[i];
     }
 
-    //size_t n = sizeof(in);
+    
     uint8_t cipherLength = sizeof(cipher);
   
     printf("decrypt function cbc start\n");
     uint8_t key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
     uint8_t out2[] = {0xff, 0xfe, 0xfd, 0xfc,0xfb, 0xfa, 0xf9, 0xf8};
-    //uint8_t iv2[] = {0x6b, 0xc1, 0xbe, 0xe2, 0x2e, 0x40, 0x9f, 0x96, 0xe9, 0x3d, 0x7e, 0x11, 0x73, 0x93, 0x17, 0x2a,    };
-
+    
     struct AES_ctx ctx;
     AES_init_ctx_iv(&ctx, key, Decryptiv);
     AES_CBC_decrypt_buffer(&ctx, cipher, 32);
@@ -170,26 +145,20 @@ static int decrypt_input_cbc(uint8_t *in)
     printf("Decrpytion remove padding");
     uint8_t *ptrToPaddingDataResult3 = structWithUnpaddingResult->dataWithoutPadding;
     
-    /*
-    printf("Decrpytion  decrypted cipher!\n");
-    for (uint8_t i = 0; i < 32; i++)
-    {
-        printf("%x", cipher[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
-    */
-
     printf("\nDecrpytion Test with decrptBuffer!\n");
     if (0 == memcmp((char *)out2, (char *)ptrToPaddingDataResult3, 8))
     {
+        /*
         printf("Decrpytion SUCCESS in decryptBuffer!\n");
     for (uint8_t i = 0; i < 8; i++)
     {
         printf("%x", ptrToPaddingDataResult3[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
-        return (0);
-    }
+        
+        */
+    }return (0);
+    
 }
 
 // function for randomization
@@ -248,7 +217,8 @@ static uint8_t encrypt_cbc(uint8_t *in,uint8_t inputSize)
     calculateIV(iv); // calculate IV everytime new for each run
     
     uint8_t blockSize = 256 / 8;
-    
+  
+
 
    /* Ä printf("\n************************************\n");
     printf("\nORIGINAL DATA (size is %i bytes) before Padding:\n\n", nTest);
@@ -265,6 +235,12 @@ static uint8_t encrypt_cbc(uint8_t *in,uint8_t inputSize)
     {
        PaddingPlainText(in, inputSize, blockSize);
     }
+    if (sizeof(in)>blockSize)
+    {
+        printf("blocksize > 32\r\n");
+        return -1;
+    }
+    
      printf("\n\n************************************\n");
     //https://github.com/GRISHNOV/PKCS7-Padding/blob/master/src/PKCS7.c
 
@@ -317,53 +293,10 @@ static uint8_t encrypt_cbc(uint8_t *in,uint8_t inputSize)
         encryptedPaket[i] = iv[i - 4];
         encryptedPaket2[i-4] = iv[i - 4];
     }
-    for (size_t i = 20; i < 52; i++)
+    for (size_t i = 20; i < 53; i++)
     {
         encryptedPaket[i] = ptrToPaddingDataResult2[i - 20];
         encryptedPaket2[i-4] = ptrToPaddingDataResult2[i - 20];
     }
-    /* 
-    memcpy((char *)decrpytBuffer, (char *)iv, 16); //copy Iv
-    if (0 == memcmp((char *)iv, (char *)decrpytBuffer, 16))
-    {
-        printf("\n enrcyption SUCCESS in IV!\n");
-    }else{
-        printf("\n enrcyption False in IV!\n");
-       for (uint8_t i = 0; i < 16; i++)
-    {
-        printf("%x", decrpytBuffer[i]);
-    }
-    }
-    */
-    printf("\n\n************************************\n");
-    printf("Final encryptedPaket2 which will be send:\n");
-    for (uint8_t i = 0; i < 58; i++)
-    {
-        printf("%x", encryptedPaket[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
-    printf("\n\n************************************\n");
-   
-  /*  printf("\n\n************************************\n");
-    printf("Final Paket which will be send:\n");
-    for (uint8_t i = 0; i < 58; i++)
-    {
-        printf("%x", encryptedPaket[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    } */
-    /*
-    printf("\n\n************************************\n");
-    printf("end of encrypt function\n");
-    printf("\n\n************************************\n");
-    if (0 == memcmp((char *)out, (char *)in, 32))
-    {
-        printf("SUCCESS!\n");
-        return (0);
-    }
-    else
-    {
-        printf("FAILURE!\n");
-        return (1);
-    } 
-    */
+    
 }
