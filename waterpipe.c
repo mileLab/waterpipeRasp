@@ -71,6 +71,14 @@ char bme_TX_buffer[50];
 float temperature, pressure, humidity, waterLevel, waterTemperature;
 char *endTermimn = "ÿ";
 // function for randomization
+double rand_range(double min, double max)
+{ double random = ((double) rand()) / RAND_MAX;
+ double range = (max - min) * random;
+ double number = min + range;
+  
+  return number;
+}
+
 void HC05_TX_BME280(uint8_t *buffer)
 {
 uint8_t RecData[50];
