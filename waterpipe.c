@@ -127,7 +127,7 @@ int main(void)
     decrypt_input_cbc(encryptedPaket);
 
     memset(encryptedPaket,0,sizeof(encryptedPaket));
-    while(True){
+    while(1){
     HC05_TX_BME280( bme_TX_buffer);   
     encrypt_cbc((uint8_t *)bme_TX_buffer,sizeof(bme_TX_buffer));
     memcpy(bme_TX_buffer, encryptedPaket,sizeof(encryptedPaket));
