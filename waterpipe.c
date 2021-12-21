@@ -56,12 +56,6 @@
 /*=========================================================*/
 /*== GLOBAL VARIABLES =====================================*/
 /*=========================================================*/
-uint16_t pwmRange = 1000;
-int32_t pwmClockDefault = 54e6;
-float_t pwmDC = 0.1;
-uint8_t swTimerFact = 10;
-uint8_t swPwmPeriod = 5; /*!< in ms */
-uint8_t runMotA = 0;
 
 int socketPi;
 int status;
@@ -100,7 +94,7 @@ int main(void)
     strncat(RecData,"ÿ",sizeof("ÿ")); 
     strncat(RecData,"C:",sizeof("C:"));
     strncat(RecData,TempData,sizeof(TempData));
-    strncat(RecData,"ÿ",sizeof("ÿ")); 
+    strncat(RecData,"ÿ",sizeof("ÿ"));
     strncat(buffer,RecData,sizeof(RecData));
 
     encrypt_cbc((uint8_t *)bme_TX_buffer,sizeof(bme_TX_buffer));
