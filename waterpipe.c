@@ -105,8 +105,10 @@ uint8_t RecData[50];
     printf("Sending string %s",buffer);
 
 }
-double rand_range(double min, double max)
-{ double random = ((double) rand()) / RAND_MAX;
+static double rand_range(double min, double max)
+{ 
+    
+ double random = ((double) rand()) / RAND_MAX;
  double range = (max - min) * random;
  double number = min + range;
   
