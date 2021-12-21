@@ -67,7 +67,7 @@ int socketPi;
 int status;
 int bytesRead;
 char data[1024] = {0};
-
+char bme_TX_buffer[50];
 float temperature, pressure, humidity, waterLevel, waterTemperature;
 char *endTermimn = "ÿ";
 // function for randomization
