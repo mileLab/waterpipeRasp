@@ -70,6 +70,8 @@ char data[1024] = {0};
 char bme_TX_buffer[60];
 float temperature, pressure, humidity, waterLevel, waterTemperature;
 char *endTermimn = "ÿ";
+unsigned int counterSend=0;
+unsigned int counterReceived=1;
 // function for randomization
 double rand_range(double min, double max)
 { 
@@ -140,6 +142,7 @@ int main(void)
        filterChar(val, "A:", "ÿ","[X] BME TEMP: ","°C"); //"ÿ"
         filterChar(val, "B:",  "ÿ","[X] BME PRESS: ","hPa");
         filterChar(val, "C:",  "ÿ","[X] BME HUM: ","%");
+        printf("%d",sizeof(unsigned int));
       /*  filterChar(val, "D:",  "ÿ","[X] DS18B20 TEMP: ","°C");
         if(filterChar(val, "E:",  "ÿ","[X] WATERLEVEL: ","cm") >= 4.0f)
         {
