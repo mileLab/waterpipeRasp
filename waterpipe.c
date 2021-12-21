@@ -78,7 +78,7 @@ void HC05_TX_BME280(uint8_t *buffer)
 uint8_t RecData[50];
     uint8_t TempData[5];
     float_t temperature;
-    temperature = rand_range(-5,5);
+    temperature = rand_range(-50,50);
     gcvt(temperature,5,TempData);
     
     // needed to test if padding is working
