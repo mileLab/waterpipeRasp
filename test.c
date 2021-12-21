@@ -246,6 +246,11 @@ static int decrypt_input_cbc(uint8_t *in, char *buff)
          printf("%x", cipher[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
+    for (size_t i = 0; i < 16; i++)
+    {
+         printf("%x", Decryptiv[i]);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+    }
     
     
     uint8_t cipherLength = sizeof(cipher)*8;
