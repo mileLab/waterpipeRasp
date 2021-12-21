@@ -259,6 +259,11 @@ static int decrypt_input_cbc(uint8_t *in, char *buff)
     AES_CBC_decrypt_buffer(&ctx, cipher, 32);
 
     printf("\n************************************\n");
+    for (size_t i = 0; i < 32; i++)
+    {
+         printf("%x", cipher[i]);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+    }
     printf("\nRemove Padding\n");
     unPaddingCipher(cipher,cipherLength);
     printf("Decrpytion remove padding");
