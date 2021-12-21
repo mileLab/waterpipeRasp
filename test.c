@@ -96,12 +96,7 @@ static int decrypt_input_cbc(uint8_t *in, char *buff)
     {
         Decryptiv[i - 4] = in[i];
     }
-     if (0 == memcmp((char *)iv,(char *)Decryptiv, 16))
-    {
-        printf("Decryption IV the same!\n");
-    }else{
-         printf("\nIDecrypton V not the same!\n");
-    }
+     
     
     
     for (size_t i = 20; i < 53; i++)
@@ -270,50 +265,8 @@ static uint8_t encrypt_cbc(uint8_t *in,uint8_t inputSize)
     for (size_t i = 20; i < 52; i++)
     {
         encryptedPaket[i] = ptrToPaddingDataResult2[i - 20];
-        encryptedPaket2[i-4] = ptrToPaddingDataResult2[i - 20];
+       
     }
-    /* 
-    memcpy((char *)decrpytBuffer, (char *)iv, 16); //copy Iv
-    if (0 == memcmp((char *)iv, (char *)decrpytBuffer, 16))
-    {
-        printf("\n enrcyption SUCCESS in IV!\n");
-    }else{
-        printf("\n enrcyption False in IV!\n");
-       for (uint8_t i = 0; i < 16; i++)
-    {
-        printf("%x", decrpytBuffer[i]);
-    }
-    }
-    */
-    printf("\n\n************************************\n");
-    printf("Final encryptedPaket2 which will be send:\n");
-    for (uint8_t i = 0; i < 58; i++)
-    {
-        printf("%x", encryptedPaket[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
-    printf("\n\n************************************\n");
-   
-  /*  printf("\n\n************************************\n");
-    printf("Final Paket which will be send:\n");
-    for (uint8_t i = 0; i < 58; i++)
-    {
-        printf("%x", encryptedPaket[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    } */
-    /*
-    printf("\n\n************************************\n");
-    printf("end of encrypt function\n");
-    printf("\n\n************************************\n");
-    if (0 == memcmp((char *)out, (char *)in, 32))
-    {
-        printf("SUCCESS!\n");
-        return (0);
-    }
-    else
-    {
-        printf("FAILURE!\n");
-        return (1);
-    } 
-    */
+  
+  
 }
