@@ -134,9 +134,8 @@ int main(void)
     decrypt_input_cbc(bme_TX_buffer, val);
     memset(bme_TX_buffer, 0, sizeof(bme_TX_buffer));
     memset(encryptedPaket,0,sizeof(encryptedPaket));
-    printf("\n\nStrin %s \n\n",val);
-}
-        filterChar(val, "A:", "ÿ","[X] BME TEMP: ","°C"); //"ÿ"
+   }
+       filterChar(val, "A:", "ÿ","[X] BME TEMP: ","°C"); //"ÿ"
         filterChar(val, "B:",  "ÿ","[X] BME PRESS: ","hPa");
         filterChar(val, "C:",  "ÿ","[X] BME HUM: ","%");
         filterChar(val, "D:",  "ÿ","[X] DS18B20 TEMP: ","°C");
@@ -157,7 +156,6 @@ int main(void)
     //encrypt_cbc(in2,8);
     
     //https://stackoverflow.com/questions/25360893/convert-char-to-uint8-t
-
 }
 
 
