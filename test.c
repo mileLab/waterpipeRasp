@@ -204,7 +204,7 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t inputSize)
 
 
 
-static int decrypt_input_cbc(uint8_t *in)
+static int decrypt_input_cbc(uint8_t *in, char *buff)
 {
    
     // Define buffers for Paket
