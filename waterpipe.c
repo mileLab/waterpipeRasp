@@ -428,21 +428,26 @@ void timer_handler(int32_t sigNr)
     }
 }
 
-float filterChar(char *string, char *searchString, char *term)
+float filterChar(char *string, char *searchString, char *term, char *output,char *unit)
 {
     int len;
     char buff[strlen(searchString)];
+    char data[strlen(searchString)];
     char *ret = strstr(string, searchString);
 
     if (ret != 0)
     {
+
         for (int i = 0; i < strlen(searchString); ++i)
         {
             buff[i] = ret[i];
+            //printf("buff[i] %c\n",buff[i] );
+            //printf("searchstring: %s\n", searchString);
         }
-    }
 
-    if (strcmp(buff, searchString) == 0 && ret != 0)
+    }
+//strcmp(buff, searchString)
+    if (strstr(searchString,buff ) == 0 && ret != 0)
     {
 
         len = strcspn(ret, term);
@@ -451,17 +456,21 @@ float filterChar(char *string, char *searchString, char *term)
         for (int i = 0; i < len; ++i)
         {
             buff[i] = ret[i + strlen(searchString)];
+            data[i] = ret[i + strlen(searchString)];
         }
 
-        buff[len - strlen(searchString)] = '\0' /*"ÿ"*/;
-        debug2Val("\r\n %s%s [X] \r\n", searchString, buff);
+        buff[len - strlen(searchString)] = '\0';//'\0'; //"ÿ"; //'\0'
+        data[len - strlen(searchString)] = '\0';//'\0';//"ÿ";
+       // debug2Val("\r\n %s%s [X] \r\n", searchString, buff);
+        debug2Val("\r\n %s%s [X] \r\n", output, strncat(data,unit,sizeof(unit)));
+
         return strtod(buff, NULL); /*!< strtod gives better control of undefined range */
     }
     else
     {
-        debugMsg("=============================\r\n");
-        debugVal("%s not found\r\n", searchString);
-        debugMsg("=============================\r\n");
+        //  debugMsg("=============================\r\n");
+		// debugVal("%s not found\r\n",searchString);
+		// debugMsg("=============================\r\n"); 
         return -200;
     }
 }
