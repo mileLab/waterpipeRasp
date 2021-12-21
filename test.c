@@ -89,93 +89,6 @@ void unPaddingCipher(const void *const data, const uint64_t dataLength)
     }
     printf("\n\n************************************\n\n");
 }
-static int decrypt_input_cbc(uint8_t *in, char *buff)
-{
-    debugMsg("[X] Inside function [X]\r\n");
-
-    // Define buffers for Paket
-    uint8_t startFlag[4];
-    uint8_t endFlag[5];
-    uint8_t cipher[32];
-    uint8_t Decryptiv[16];
-    //Get Start Flag out of Paket
-    for (int i = 0; i < 4; i++)
-    {
-        startFlag[i] = in[i];
-    }
-    //Get End Flag out of Paket
-    debugMsg("[X] after first for [X]\r\n");
-    for (int i = 53; i < 58; i++)
-    {
-        endFlag[i - 58] = in[i];
-    }
-    //Get IV out of Paket
-    for (size_t i = 4; i < 20; i++)
-    {
-        Decryptiv[i - 4] = in[i];
-    }
-    for (size_t i = 0; i < 16; i++)
-    {
-        printf("%x", Decryptiv[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
-
-     printf("IV\n");
-
-    /*
-     if (0 == memcmp((char *)iv,(char *)Decryptiv, 16))
-    {
-        printf("Decryption IV the same!\n");
-    }else{
-         printf("\nIDecrypton V not the same!\n");
-    }
-    */
-
-    // get Cipher text out of Paket (input)
-    for (size_t i = 20; i < 53; i++)
-    {
-        cipher[i - 20] = in[i];
-    }
-    for (size_t i = 0; i < 32; i++)
-    {
-        printf("%x", cipher[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
-
-    uint64_t cipherLength = sizeof(cipher);
-    //uint8_t cipherLength = 128;
-    printf("decrypt function cbc start\n");
-    uint8_t key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
-    //uint8_t out2[] = {0xff, 0xfe, 0xfd, 0xfc,0xfb, 0xfa, 0xf9, 0xf8};
-
-    struct AES_ctx ctx;
-    AES_init_ctx_iv(&ctx, key, Decryptiv);
-    AES_CBC_decrypt_buffer(&ctx, cipher, 32);
-    for (size_t i = 0; i < 32; i++)
-    {
-        printf("%x", cipher[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
-
-    printf("\n************************************\n");
-    printf("\nRemove Padding\n");
-    unPaddingCipher(cipher, cipherLength);
-    printf("Decrpytion remove padding\n");
-    //uint8_t *ptrToPaddingDataResult3 = structWithUnpaddingResult->dataWithoutPadding;
-    //memcpy(srcbuffer,structWithUnpaddingResult->dataWithoutPadding,10);
-    uint8_t *ptrToUnpaddingDataResult2 = structWithUnpaddingResult->dataWithoutPadding;
-    for (size_t i = 0; i < 32; i++)
-    {
-        printf("%x", ptrToUnpaddingDataResult2[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
-
-    for (size_t i = 0; i < 31; i++)
-    {
-        srcbuffer[i] = ptrToUnpaddingDataResult2[i];
-        buff[i] = srcbuffer[i];
-    }
-}
 
 // function for randomization
 int rand_comparison(const void *a, const void *b)
@@ -253,29 +166,10 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t inputSize)
     struct AES_ctx ctx;
     uint8_t key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
 
-    /* 
-    printf("\n\n************************************\n");
-    printf(" ENCRYPTION PaddingResult \n");
-    printf("\n\n************************************\n");
-    for (uint8_t i = 0; i < 32; i++)
-    {
-        printf("%x", ptrToPaddingDataResult2[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    } 
-    */
-    //uint8_t iv2[] = {0x6b, 0xc1, 0xbe, 0xe2, 0x2e, 0x40, 0x9f, 0x96, 0xe9, 0x3d, 0x7e, 0x11, 0x73, 0x93, 0x17, 0x2a,};
-
+   
     AES_init_ctx_iv(&ctx, key, iv);
     AES_CBC_encrypt_buffer(&ctx, ptrToPaddingDataResult2, 32);
-    /*
-     printf("\n\n************************************\n");
-    printf(" ENCRYPTION PaddingResult after encryption \n");
-    printf("\n\n************************************\n");
-    for (uint8_t i = 0; i < 32; i++)
-    {
-        printf("%x", ptrToPaddingDataResult2[i]); 
-    }
-    */
+   
 
     // Defining start and end Flags
     encryptedPaket[0] = 0x79;  //Begin: Start flag
@@ -305,4 +199,129 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t inputSize)
     }
 
     printf("end ENCRYPTION\n");
+}
+
+
+
+static int decrypt_input_cbc(uint8_t *in, char *buff)
+{
+     debugMsg("[X] Inside function [X]\r\n");
+
+    // Define buffers for Paket
+    uint8_t startFlag[4];
+    uint8_t endFlag[5];
+    uint8_t cipher[32];
+    uint8_t Decryptiv[16]; 
+    //Get Start Flag out of Paket
+     for (int i = 0; i < 4; i++)
+    {
+        startFlag[i] = in[i];
+    }
+    //Get End Flag out of Paket
+      debugMsg("[X] after first for [X]\r\n");
+    for (int i = 53; i < 58; i++)
+    {
+        endFlag[i - 58] = in[i];
+    }
+    //Get IV out of Paket
+    for (size_t i = 4; i < 20; i++)
+    {
+        Decryptiv[i - 4] = in[i];
+    }
+    /*
+     if (0 == memcmp((char *)iv,(char *)Decryptiv, 16))
+    {
+        printf("Decryption IV the same!\n");
+    }else{
+         printf("\nIDecrypton V not the same!\n");
+    }
+    */
+    
+    // get Cipher text out of Paket (input)
+    for (size_t i = 20; i < 52; i++)
+    {
+        cipher[i - 20] = in[i];
+    }
+
+    
+    uint64_t cipherLength = sizeof(cipher)*8;
+    //uint8_t cipherLength = 128;
+    printf("decrypt function cbc start\n");
+    uint8_t key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
+    //uint8_t out2[] = {0xff, 0xfe, 0xfd, 0xfc,0xfb, 0xfa, 0xf9, 0xf8};
+    
+    struct AES_ctx ctx;
+    AES_init_ctx_iv(&ctx, key, Decryptiv);
+    AES_CBC_decrypt_buffer(&ctx, cipher, 32);
+
+    printf("\n************************************\n");
+    printf("\nRemove Padding\n");
+    unPaddingCipher(cipher,cipherLength);
+    printf("Decrpytion remove padding\n");
+    //uint8_t *ptrToPaddingDataResult3 = structWithUnpaddingResult->dataWithoutPadding;
+    //memcpy(srcbuffer,structWithUnpaddingResult->dataWithoutPadding,10);
+     uint8_t *ptrToUnpaddingDataResult2 = structWithUnpaddingResult->dataWithoutPadding;
+for (size_t i = 0; i < 32; i++)
+{
+    printf("%x", ptrToUnpaddingDataResult2[i]);
+    ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+
+}
+
+
+    // for(int i=0; i<sizeof(ptrToUnpaddingDataResult2) ;i++)
+    // {
+
+    //     srcbuffer[i]=ptrToUnpaddingDataResult2[i];
+    //     printf("stelle %c", srcbuffer[i]);
+    // }
+        // for(int i=0; i<32; i++)
+        // {
+    
+
+        //     printf("vor itoa\n");
+        //             //sprintf(srcbuffer[i], "%i", (int)ptrToUnpaddingDataResult2[i]);
+        //     //bme_TX_buffer[i]=(char)encryptedPaket[i]
+        //     itoa((int)ptrToUnpaddingDataResult2[i], srcbuffer[i]);
+        //     printf("stelle %c\n",srcbuffer[i]);
+        // }
+
+        //     printf("vor itoa\n");
+        //     //printf("ptr: %d",ptrToUnpaddingDataResult2);
+         //    int test=255;
+         //    uint8_t speicher[50];
+         //itoa(test ,speicher,50,10);
+        // snprintf(srcbuffer,sizeof(speicher),"%s",speicher);
+
+
+            //printf("arrayplatze: %d\n",sizeof(ptrToUnpaddingDataResult2)/sizeof(ptrToUnpaddingDataResult2[0]));
+             //itoa(ptrToUnpaddingDataResult2, srcbuffer,100,10);
+             //memcpy(srcbuffer, "0",100);
+            for (size_t i = 0; i < 31; i++)
+            {
+                srcbuffer[i]=ptrToUnpaddingDataResult2[i];
+                buff[i]=srcbuffer[i];
+            }
+            
+             //strncat(srcbuffer,ptrToUnpaddingDataResult2, ret);
+          //   printf("pointer: %s \n",ptrToUnpaddingDataResult2);
+           // printf("pointer: %s \n",(int)ptrToUnpaddingDataResult2);
+             //printf("stelle: %s\n",srcbuffer);
+
+    //srcbuffer = structWithUnpaddingResult->dataWithoutPadding;
+    
+   // printf("\nDecrpytion Test with decrptBuffer!\n");
+    // if (0 == memcmp((char *)out2, (char *)ptrToPaddingDataResult3, 8))
+    // {
+    //     /*
+    //     printf("Decrpytion SUCCESS in decryptBuffer!\n");
+    // for (uint8_t i = 0; i < 8; i++)
+    // {
+    //     printf("%x", ptrToPaddingDataResult3[i]);
+    //     ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+    // }
+        
+    //     */
+    // }return (0);
+    // else{return (-1)}
 }
