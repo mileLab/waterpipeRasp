@@ -101,6 +101,7 @@ uint8_t RecData[50];
     strncat(RecData,TempData,sizeof(TempData));
     strncat(RecData,"ÿ",sizeof("ÿ")); 
     strncat(buffer,RecData,sizeof(RecData));
+    printf("string %s",buffer);
 
 }
 double rand_range(double min, double max)
@@ -125,7 +126,7 @@ int main(void)
     
     decrypt_input_cbc(encryptedPaket);
 
- 
+    memset(encryptedPaket,0,sizeof(encryptedPaket));
     HC05_TX_BME280( bme_TX_buffer);   
     encrypt_cbc((uint8_t *)bme_TX_buffer,sizeof(bme_TX_buffer));
     memcpy(bme_TX_buffer, encryptedPaket,sizeof(encryptedPaket));
