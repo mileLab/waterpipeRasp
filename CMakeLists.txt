@@ -7,7 +7,9 @@ add_executable( waterpipe
                 aes.c
                 PKSC7.c)
 
-
+target_link_libraries(  waterpipe
+                        wiringPi
+                        bluetooth)
 
 target_sources(${PROJECT_NAME}
     PRIVATE
