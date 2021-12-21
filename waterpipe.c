@@ -13,8 +13,8 @@
 /*=========================================================*/
 /*== INCLUDES =============================================*/
 /*=========================================================*/
-//#include <wiringPi.h>
-//#include <softPwm.h>
+#include <wiringPi.h>
+#include <softPwm.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
@@ -25,11 +25,10 @@
 #include <string.h>
 #include <sys/time.h>
 //#include <ctime>
-/*
 #include <sys/socket.h>
 #include <bluetooth/bluetooth.h>
 #include <bluetooth/rfcomm.h>
-*/
+
 #include "waterpipe.h"
 #include "test.c"
 /*=========================================================*/
@@ -105,10 +104,8 @@ uint8_t RecData[50];
     printf("Sending string %s",buffer);
 
 }
-static double rand_range(double min, double max)
-{ 
-    
- double random = ((double) rand()) / RAND_MAX;
+double rand_range(double min, double max)
+{ double random = ((double) rand()) / RAND_MAX;
  double range = (max - min) * random;
  double number = min + range;
   
@@ -130,7 +127,7 @@ int main(void)
     decrypt_input_cbc(encryptedPaket,val);
 
     memset(encryptedPaket,0,sizeof(encryptedPaket));
-   for(int i=0; i<51; i++){
+   for(int i=0; i<51;i++){
     HC05_TX_BME280( bme_TX_buffer);   
     encrypt_cbc((uint8_t *)bme_TX_buffer,sizeof(bme_TX_buffer));
     memcpy(bme_TX_buffer, encryptedPaket,sizeof(encryptedPaket));
@@ -142,8 +139,8 @@ int main(void)
        filterChar(val, "A:", "ÿ","[X] BME TEMP: ","°C"); //"ÿ"
         filterChar(val, "B:",  "ÿ","[X] BME PRESS: ","hPa");
         filterChar(val, "C:",  "ÿ","[X] BME HUM: ","%");
-     /*   filterChar(val, "D:",  "ÿ","[X] DS18B20 TEMP: ","°C");
-      if(filterChar(val, "E:",  "ÿ","[X] WATERLEVEL: ","cm") >= 4.0f)
+        filterChar(val, "D:",  "ÿ","[X] DS18B20 TEMP: ","°C");
+        if(filterChar(val, "E:",  "ÿ","[X] WATERLEVEL: ","cm") >= 4.0f)
         {
             pwmWrite(PWM_PIN1, 0);
         }
@@ -151,13 +148,13 @@ int main(void)
         {
             pwmWrite(PWM_PIN1, 1023);
         }
-        */
+        
         //memset(data, 0, sizeof(data));
         memset(val, 0, sizeof(val));
-  
+   // decrypt_input_cbc(encryptedPaket);  
     memset(bme_TX_buffer, 0, sizeof(bme_TX_buffer));
     memset(encryptedPaket,0,sizeof(encryptedPaket));
-    
+    //encrypt_cbc(in2,8);
     }
     
     //https://stackoverflow.com/questions/25360893/convert-char-to-uint8-t
