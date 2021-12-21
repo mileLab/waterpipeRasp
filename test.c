@@ -58,15 +58,7 @@ void PaddingPlainText(const uint8_t *const plainTextData, const uint16_t dataBit
     printf("\nblock size(size is %i bytes):\n\n", BLOCK_SIZE); */
     structWithPaddingResult = addPadding(testData, testDataLength, BLOCK_SIZE); 
     uint8_t *ptrToPaddingDataResult = structWithPaddingResult->dataWithPadding;
-  /*  printf("\n Add PADDING (size is %li bytes):\n\n", structWithPaddingResult->dataLengthWithPadding);
-    
-    for (uint16_t i = 0; i < structWithPaddingResult->dataLengthWithPadding; i++)
-    {
-        printf("%x", *ptrToPaddingDataResult);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-        ptrToPaddingDataResult++;
-    }  
-    */
+  
     
 }
 //// Function to remove PKSC7 Padding
@@ -78,13 +70,7 @@ void unPaddingCipher(const void *const data, const uint8_t dataLength)
     structWithUnpaddingResult = removePadding(data, dataLength);
     uint8_t *ptrToUnpaddingDataResult = structWithUnpaddingResult->dataWithoutPadding;
 
-    printf("\nREMOVE PADDING (size is %li bytes):\n\n", structWithUnpaddingResult->dataLengthWithoutPadding);
-    for (uint16_t i = 0; i < structWithUnpaddingResult->dataLengthWithoutPadding; i++)
-    {
-        printf("%x", *ptrToUnpaddingDataResult);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-        ptrToUnpaddingDataResult++;
-    } 
+   
     printf("\n\n************************************\n\n");
 }
 static int decrypt_input_cbc(uint8_t *in, char *buff)
@@ -103,28 +89,8 @@ static int decrypt_input_cbc(uint8_t *in, char *buff)
     {
         endFlag[i - 58] = in[i];
     }
-    /*
-    printf("\n************************************\n");
-    printf("\n Decryption StartFlag:\n\n");
-    for (uint8_t i = 0; i < 5; i++)
-    {
-        printf("%x", startFlag[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
     
-    for (int i = 53; i < 58; i++)
-    {
-        endflagFlag[i - 58] = in[i];
-    }
-       
-    printf("\n************************************\n");
-    printf("\n>Decryption EndFlag:\n\n");
-    for (uint8_t i = 0; i < 6; i++)
-    {
-        printf("%x", endflagFlag[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
-     */
+   
     
     for (size_t i = 4; i < 20; i++)
     {
@@ -137,16 +103,7 @@ static int decrypt_input_cbc(uint8_t *in, char *buff)
          printf("\nIDecrypton V not the same!\n");
     }
     
-    /*
-    printf("\n************************************\n");
-    printf("\n>Decrpytion IV:\n\n");
-    for (uint8_t i = 0; i < 16; i++)
-    {
-        printf("%x", Decryptiv[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
-    */
-    // get Cipher text out of Paket (input)
+    
     for (size_t i = 20; i < 53; i++)
     {
         cipher[i - 20] = in[i];
