@@ -75,7 +75,7 @@ void HC05_TX_BME280(uint8_t *buffer)
 {
 uint8_t RecData[50];
     uint8_t TempData[5];
-    float32_t temperature;
+    float_t temperature;
     temperature = rand_range(-5,5);
     gcvt(temperature,5,TempData);
     
