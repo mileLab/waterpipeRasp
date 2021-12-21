@@ -77,7 +77,7 @@ uint8_t RecData[50];
     uint8_t TempData[5];
     float32_t temperature;
     temperature = rand_range(-5,5);
-    gcvt(,5,TempData)
+    gcvt(temperature,5,TempData)
     
     // needed to test if padding is working
     uint8_t in2[8] = {0xff, 0xfe, 0xfd, 0xfc,0xfb, 0xfa, 0xf9, 0xf8};
@@ -86,15 +86,17 @@ uint8_t RecData[50];
     strncat(RecData,"ÿ",sizeof("ÿ"));
 
     /* Pressure float to string */
-    
+    temperature = rand_range(-5,5);
+    gcvt(temperature,5,TempData)
     strncat(RecData,"B:",sizeof("B:"));
-    strncat(RecData,PressData,sizeof(PressData));
+    strncat(RecData,TempData,sizeof(TempData));
     strncat(RecData,"ÿ",sizeof("ÿ")); 
 
     /* Humidity float to string */
-   
+    temperature = rand_range(-5,5);
+    gcvt(temperature,5,TempData)
     strncat(RecData,"C:",sizeof("C:"));
-    strncat(RecData,HumData,sizeof(HumData));
+    strncat(RecData,TempData,sizeof(TempData));
     strncat(RecData,"ÿ",sizeof("ÿ")); 
     strncat(buffer,RecData,sizeof(RecData));
 
