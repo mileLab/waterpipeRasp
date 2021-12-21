@@ -160,7 +160,6 @@ AES_CBC_encrypt_buffer(&ctx, ptrToPaddingDataResult2, 32);
         printf("%x", ptrToPaddingDataResult2[i]); 
     }
   
-
     {
         encryptedPaket[i] = iv[i - 4];
         encryptedPaket2[i-4] = iv[i - 4];
@@ -192,7 +191,6 @@ AES_CBC_encrypt_buffer(&ctx, ptrToPaddingDataResult2, 32);
     AES_init_ctx_iv(&ctx, key, iv);
     AES_CBC_encrypt_buffer(&ctx, ptrToPaddingDataResult2, 32);
   
-
     // Defining start and end Flags
     encryptedPaket[0] = 0x79;  //Begin: Start flag
     encryptedPaket[1] = 0x3a;  // Assci y:
@@ -203,7 +201,6 @@ AES_CBC_encrypt_buffer(&ctx, ptrToPaddingDataResult2, 32);
     encryptedPaket[55] = 0x35; //
     encryptedPaket[56] = 0x2f; //
     encryptedPaket[57] = 0x3d; // End: End flag
-
     for (size_t i = 4; i < 20; i++)
     {
         encryptedPaket[i] = iv[i - 4];
