@@ -203,13 +203,13 @@ static uint8_t encrypt_cbc(uint8_t *in, uint8_t inputSize)
 
 
 
-static int decrypt_input_cbc(uint8_t *in, char *buff)
-{
-     debugMsg("[X] Inside function [X]\r\n");
 
+static int decrypt_input_cbc(uint8_t *in)
+{
+   
     // Define buffers for Paket
-    uint8_t startFlag[4];
-    uint8_t endFlag[5];
+    //uint8_t startFlag[4];
+    //uint8_t endFlag[5];
     uint8_t cipher[32];
     uint8_t Decryptiv[16]; 
     //Get Start Flag out of Paket
@@ -218,7 +218,6 @@ static int decrypt_input_cbc(uint8_t *in, char *buff)
         startFlag[i] = in[i];
     }
     //Get End Flag out of Paket
-      debugMsg("[X] after first for [X]\r\n");
     for (int i = 53; i < 58; i++)
     {
         endFlag[i - 58] = in[i];
@@ -238,17 +237,17 @@ static int decrypt_input_cbc(uint8_t *in, char *buff)
     */
     
     // get Cipher text out of Paket (input)
-    for (size_t i = 20; i < 52; i++)
+    for (size_t i = 20; i < 53; i++)
     {
         cipher[i - 20] = in[i];
     }
 
     
-    uint64_t cipherLength = sizeof(cipher)*8;
-    //uint8_t cipherLength = 128;
+    uint8_t cipherLength = sizeof(cipher);
+  
     printf("decrypt function cbc start\n");
     uint8_t key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
-    //uint8_t out2[] = {0xff, 0xfe, 0xfd, 0xfc,0xfb, 0xfa, 0xf9, 0xf8};
+    uint8_t out2[] = {0xff, 0xfe, 0xfd, 0xfc,0xfb, 0xfa, 0xf9, 0xf8};
     
     struct AES_ctx ctx;
     AES_init_ctx_iv(&ctx, key, Decryptiv);
@@ -257,71 +256,21 @@ static int decrypt_input_cbc(uint8_t *in, char *buff)
     printf("\n************************************\n");
     printf("\nRemove Padding\n");
     unPaddingCipher(cipher,cipherLength);
-    printf("Decrpytion remove padding\n");
-    //uint8_t *ptrToPaddingDataResult3 = structWithUnpaddingResult->dataWithoutPadding;
-    //memcpy(srcbuffer,structWithUnpaddingResult->dataWithoutPadding,10);
-     uint8_t *ptrToUnpaddingDataResult2 = structWithUnpaddingResult->dataWithoutPadding;
-for (size_t i = 0; i < 32; i++)
-{
-    printf("%x", ptrToUnpaddingDataResult2[i]);
-    ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-
-}
-
-
-    // for(int i=0; i<sizeof(ptrToUnpaddingDataResult2) ;i++)
-    // {
-
-    //     srcbuffer[i]=ptrToUnpaddingDataResult2[i];
-    //     printf("stelle %c", srcbuffer[i]);
-    // }
-        // for(int i=0; i<32; i++)
-        // {
+    printf("Decrpytion remove padding");
+    uint8_t *ptrToPaddingDataResult3 = structWithUnpaddingResult->dataWithoutPadding;
     
-
-        //     printf("vor itoa\n");
-        //             //sprintf(srcbuffer[i], "%i", (int)ptrToUnpaddingDataResult2[i]);
-        //     //bme_TX_buffer[i]=(char)encryptedPaket[i]
-        //     itoa((int)ptrToUnpaddingDataResult2[i], srcbuffer[i]);
-        //     printf("stelle %c\n",srcbuffer[i]);
-        // }
-
-        //     printf("vor itoa\n");
-        //     //printf("ptr: %d",ptrToUnpaddingDataResult2);
-         //    int test=255;
-         //    uint8_t speicher[50];
-         //itoa(test ,speicher,50,10);
-        // snprintf(srcbuffer,sizeof(speicher),"%s",speicher);
-
-
-            //printf("arrayplatze: %d\n",sizeof(ptrToUnpaddingDataResult2)/sizeof(ptrToUnpaddingDataResult2[0]));
-             //itoa(ptrToUnpaddingDataResult2, srcbuffer,100,10);
-             //memcpy(srcbuffer, "0",100);
-            for (size_t i = 0; i < 31; i++)
-            {
-                srcbuffer[i]=ptrToUnpaddingDataResult2[i];
-                buff[i]=srcbuffer[i];
-            }
-            
-             //strncat(srcbuffer,ptrToUnpaddingDataResult2, ret);
-          //   printf("pointer: %s \n",ptrToUnpaddingDataResult2);
-           // printf("pointer: %s \n",(int)ptrToUnpaddingDataResult2);
-             //printf("stelle: %s\n",srcbuffer);
-
-    //srcbuffer = structWithUnpaddingResult->dataWithoutPadding;
-    
-   // printf("\nDecrpytion Test with decrptBuffer!\n");
-    // if (0 == memcmp((char *)out2, (char *)ptrToPaddingDataResult3, 8))
-    // {
-    //     /*
-    //     printf("Decrpytion SUCCESS in decryptBuffer!\n");
-    // for (uint8_t i = 0; i < 8; i++)
-    // {
-    //     printf("%x", ptrToPaddingDataResult3[i]);
-    //     ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    // }
+    printf("\nDecrpytion Test with decrptBuffer!\n");
+    if (0 == memcmp((char *)out2, (char *)ptrToPaddingDataResult3, 8))
+    {
+        /*
+        printf("Decrpytion SUCCESS in decryptBuffer!\n");
+    for (uint8_t i = 0; i < 8; i++)
+    {
+        printf("%x", ptrToPaddingDataResult3[i]);
+        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
+    }
         
-    //     */
-    // }return (0);
-    // else{return (-1)}
+        */
+    }return (0);
+   
 }
