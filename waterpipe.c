@@ -230,4 +230,5 @@ float filterChar(char *string, char *searchString, char *term, char *output,char
 		// debugMsg("=============================\r\n"); 
         return -200;
     }
-}
+    
+ }
