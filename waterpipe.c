@@ -157,7 +157,7 @@ int main(void)
     printf("START DECRY\n");
     memcpy(bme_TX_buffer2, encryptedPaket,sizeof(encryptedPaket));
     printf("START DECRY2\n");
-    decrypt_input_cbc(bme_TX_buffer2,val);
+    decrypt_input_cbc(encryptedPaket,val);
    
    
         filterChar(val, "A:", "ÿ","[X] BME TEMP: ","°C"); //"ÿ"
