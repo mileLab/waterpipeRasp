@@ -213,27 +213,12 @@ static uint8_t encrypt_cbc(uint8_t *in,uint8_t inputSize)
     for (size_t i = 4; i < 20; i++)
     {
         encryptedPaket[i] = iv[i - 4];
-        encryptedPaket2[i-4] = iv[i - 4];
-    }
+       
     for (size_t i = 20; i < 52; i++)
     {
         encryptedPaket[i] = ptrToPaddingDataResult2[i - 20];
-        encryptedPaket2[i-4] = ptrToPaddingDataResult2[i - 20];
+        
     }
-    /* 
-    memcpy((char *)decrpytBuffer, (char *)iv, 16); //copy Iv
-    if (0 == memcmp((char *)iv, (char *)decrpytBuffer, 16))
-    {
-        printf("\n enrcyption SUCCESS in IV!\n");
-    }else{
-        printf("\n enrcyption False in IV!\n");
-       for (uint8_t i = 0; i < 16; i++)
-    {
-        printf("%x", decrpytBuffer[i]);
-    }
-    }
-    */
-  
-    
+
    
 }

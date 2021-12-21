@@ -13,8 +13,8 @@
 /*=========================================================*/
 /*== INCLUDES =============================================*/
 /*=========================================================*/
-#include <wiringPi.h>
-#include <softPwm.h>
+//#include <wiringPi.h>
+//#include <softPwm.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
@@ -25,10 +25,11 @@
 #include <string.h>
 #include <sys/time.h>
 //#include <ctime>
+/*
 #include <sys/socket.h>
 #include <bluetooth/bluetooth.h>
 #include <bluetooth/rfcomm.h>
-
+*/
 #include "waterpipe.h"
 #include "test.c"
 /*=========================================================*/
@@ -139,8 +140,8 @@ int main(void)
        filterChar(val, "A:", "ÿ","[X] BME TEMP: ","°C"); //"ÿ"
         filterChar(val, "B:",  "ÿ","[X] BME PRESS: ","hPa");
         filterChar(val, "C:",  "ÿ","[X] BME HUM: ","%");
-        filterChar(val, "D:",  "ÿ","[X] DS18B20 TEMP: ","°C");
-        if(filterChar(val, "E:",  "ÿ","[X] WATERLEVEL: ","cm") >= 4.0f)
+     /*   filterChar(val, "D:",  "ÿ","[X] DS18B20 TEMP: ","°C");
+      if(filterChar(val, "E:",  "ÿ","[X] WATERLEVEL: ","cm") >= 4.0f)
         {
             pwmWrite(PWM_PIN1, 0);
         }
@@ -148,10 +149,10 @@ int main(void)
         {
             pwmWrite(PWM_PIN1, 1023);
         }
-        
+        */
         //memset(data, 0, sizeof(data));
         memset(val, 0, sizeof(val));
-   // decrypt_input_cbc(encryptedPaket);  
+   // decrypt_input_cbc(encryptedPaket);  ss
     memset(bme_TX_buffer, 0, sizeof(bme_TX_buffer));
     memset(encryptedPaket,0,sizeof(encryptedPaket));
     //encrypt_cbc(in2,8);
