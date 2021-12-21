@@ -243,12 +243,12 @@ static int decrypt_input_cbc(uint8_t *in, char *buff)
     }
     for (size_t i = 0; i < 32; i++)
     {
-         printf("%x", iv[i]);
+         printf("%x", cipher[i]);
         ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
     }
     
     
-    uint8_t cipherLength = sizeof(cipher);
+    uint8_t cipherLength = sizeof(cipher)*8;
   
     printf("decrypt function cbc start\n");
     uint8_t key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
