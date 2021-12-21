@@ -127,7 +127,7 @@ int main(void)
     decrypt_input_cbc(encryptedPaket,val);
 
     memset(encryptedPaket,0,sizeof(encryptedPaket));
-   for(int i=0; i<51;i++){
+  // for(int i=0; i<51;i++){
     HC05_TX_BME280( bme_TX_buffer);   
     encrypt_cbc((uint8_t *)bme_TX_buffer,sizeof(bme_TX_buffer));
     memcpy(bme_TX_buffer, encryptedPaket,sizeof(encryptedPaket));
@@ -155,7 +155,7 @@ int main(void)
     memset(bme_TX_buffer, 0, sizeof(bme_TX_buffer));
     memset(encryptedPaket,0,sizeof(encryptedPaket));
     //encrypt_cbc(in2,8);
-    }
+    
     
     //https://stackoverflow.com/questions/25360893/convert-char-to-uint8-t
 }
