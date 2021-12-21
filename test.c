@@ -19,7 +19,7 @@ uint8_t *decrpytBuffer[16];
 uint8_t *ptrToPaddingDataResultBuffer[32];
 PKCS7_Padding *structWithPaddingResult;
 PKCS7_unPadding *structWithUnpaddingResult;
-
+char srcbuffer[100];
 uint8_t iv[16];         //128 bitinitialization vector
 
 //128 bitinitialization vector
@@ -87,7 +87,7 @@ void unPaddingCipher(const void *const data, const uint8_t dataLength)
     } 
     printf("\n\n************************************\n\n");
 }
-static int decrypt_input_cbc(uint8_t *in)
+static int decrypt_input_cbc(uint8_t *in, char *buff)
 {
    
     // Define buffers for Paket
@@ -169,7 +169,11 @@ static int decrypt_input_cbc(uint8_t *in)
     unPaddingCipher(cipher,cipherLength);
     printf("Decrpytion remove padding");
     uint8_t *ptrToPaddingDataResult3 = structWithUnpaddingResult->dataWithoutPadding;
-    
+     for (size_t i = 0; i < 31; i++)
+            {
+                srcbuffer[i]=ptrToUnpaddingDataResult3[i];
+                buff[i]=srcbuffer[i];
+            }
     /*
     printf("Decrpytion  decrypted cipher!\n");
     for (uint8_t i = 0; i < 32; i++)
@@ -179,17 +183,7 @@ static int decrypt_input_cbc(uint8_t *in)
     }
     */
 
-    printf("\nDecrpytion Test with decrptBuffer!\n");
-    if (0 == memcmp((char *)out2, (char *)ptrToPaddingDataResult3, 8))
-    {
-        printf("Decrpytion SUCCESS in decryptBuffer!\n");
-    for (uint8_t i = 0; i < 8; i++)
-    {
-        printf("%x", ptrToPaddingDataResult3[i]);
-        ((i + 1) % 4 == 0) ? printf("\n") : printf("\t");
-    }
-        return (0);
-    }
+    
 }
 
 // function for randomization

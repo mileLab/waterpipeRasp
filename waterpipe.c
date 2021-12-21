@@ -62,7 +62,7 @@ float_t pwmDC = 0.1;
 uint8_t swTimerFact = 10;
 uint8_t swPwmPeriod = 5; /*!< in ms */
 uint8_t runMotA = 0;
-
+uint8_t val[1024];
 int socketPi;
 int status;
 int bytesRead;
@@ -131,11 +131,11 @@ int main(void)
     HC05_TX_BME280( bme_TX_buffer);   
     encrypt_cbc((uint8_t *)bme_TX_buffer,sizeof(bme_TX_buffer));
     memcpy(bme_TX_buffer, encryptedPaket,sizeof(encryptedPaket));
-    decrypt_input_cbc(bme_TX_buffer);
+    decrypt_input_cbc(bme_TX_buffer, val);
     memset(bme_TX_buffer, 0, sizeof(bme_TX_buffer));
     memset(encryptedPaket,0,sizeof(encryptedPaket));
    }
-       /* filterChar(val, "A:", "ÿ","[X] BME TEMP: ","°C"); //"ÿ"
+       filterChar(val, "A:", "ÿ","[X] BME TEMP: ","°C"); //"ÿ"
         filterChar(val, "B:",  "ÿ","[X] BME PRESS: ","hPa");
         filterChar(val, "C:",  "ÿ","[X] BME HUM: ","%");
         filterChar(val, "D:",  "ÿ","[X] DS18B20 TEMP: ","°C");
@@ -155,7 +155,6 @@ int main(void)
     memset(encryptedPaket,0,sizeof(encryptedPaket));
     //encrypt_cbc(in2,8);
     
-    */
     //https://stackoverflow.com/questions/25360893/convert-char-to-uint8-t
 }
 
