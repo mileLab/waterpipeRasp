@@ -142,7 +142,7 @@ int main(void)
        filterChar(val, "A:", "ÿ","[X] BME TEMP: ","°C"); //"ÿ"
         filterChar(val, "B:",  "ÿ","[X] BME PRESS: ","hPa");
         filterChar(val, "C:",  "ÿ","[X] BME HUM: ","%");
-        printf("%d",sizeof(unsigned int));
+        printf("%i",sizeof(unsigned int));
       /*  filterChar(val, "D:",  "ÿ","[X] DS18B20 TEMP: ","°C");
         if(filterChar(val, "E:",  "ÿ","[X] WATERLEVEL: ","cm") >= 4.0f)
         {
